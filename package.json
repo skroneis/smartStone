@@ -1,0 +1,35 @@
+{
+  "name": "smartstone",
+  "version": "1.0.0",
+  "description": "stone's home automation",
+  "main": "app.js",
+  "scripts": {
+    "test": "http://127.0.0.1/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skroneis"
+  },
+  "keywords": [
+    "home",
+    "automation"
+  ],
+  "author": "Stefan Kroneis",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.2",
+    "dgram": "^1.0.1",
+    "express": "^4.14.0",
+    "lcdi2c": "^1.0.6",
+    "lirc_node": "0.0.4",
+    "moment": "^2.15.2",
+    "netatmo": "^1.6.0",
+    "node-schedule": "^1.2.0",
+    "nodemailer": "^2.6.4",
+    "pad": "^1.0.2",
+    "request": "^2.78.0",
+    "rpi-gpio": "^0.7.0",
+    "socket.io": "^1.5.1",
+    "winston": "^2.2.0"
+  }
+}
