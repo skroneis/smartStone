@@ -56,7 +56,8 @@ var actuals = {
 		wiGeMax: " - ",
 		wiRiWiGeMax: " - ",
 		reference: " - "
-	}
+	},
+	page: 1
 	//   greeting: function () {
 	//     return "Hello " + this.name + ".  Wow, you are " + this.age + " years old.";
 	//   }
@@ -162,19 +163,30 @@ schedule.scheduleJob('*/5 * * * *', function () {
 // ir.init();
 // eventEmitter.on('irReceived', irreceived);
 
+//infrared callback (LED / LCD)
 var irCallback = function (data) {
 	console.log("callback...");
 	console.log(data.key);
 	if (data.key == "KEY_PLAY") {
 		gpioStone.setOn(gpioStone.LED_GREEN);
 	}
-	else {
+	else if (data.key == "KEY_ENTER") {
 		gpioStone.setOff(gpioStone.LED_GREEN);
+	}
+	else if (data.key == "KEY_UP") {
+		actuals.page = actuals.page + 1;
+	}
+	else if (data.key == "KEY_DOWN") {
+		actuals.page = actuals.page - 1;
+		if (actuals.page <= 0)
+			actuals.page = 1;
 	}
 };
 
 ir.addListener("KEY_PLAY", irCallback);
 ir.addListener("KEY_ENTER", irCallback);
+ir.addListener("KEY_UP", irCallback);
+ir.addListener("KEY_DOWN", irCallback);
 
 // ir.test();
 //util.inherits(ir, EventEmitter);
