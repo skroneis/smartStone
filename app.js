@@ -10,7 +10,7 @@ var ir = new IR(); ir.init();
 
 //LCD-library
 var LCD = require("./lcd.js");
-var lcd = new LCD();lcd.init();
+var lcd = new LCD(); lcd.init();
 
 //GPIO (requred)
 var api = require("./iControl");
@@ -52,9 +52,9 @@ var actuals = {
 		dateTime: "",
 		temp: " - ",
 		wiGe: " - ",
-        wiRi: " - ",
-        wiGeMax: " - ",
-        wiRiWiGeMax: " - ",
+		wiRi: " - ",
+		wiGeMax: " - ",
+		wiRiWiGeMax: " - ",
 		reference: " - "
 	}
 	//   greeting: function () {
@@ -162,18 +162,18 @@ schedule.scheduleJob('*/5 * * * *', function () {
 // ir.init();
 // eventEmitter.on('irReceived', irreceived);
 
-var irCallback = function(data) {
+var irCallback = function (data) {
 	console.log("callback...");
 	console.log(data.key);
-	if (data.key == "KEY_PLAY"){
-	  gpioStone.setOn(gpioStone.LED_GREEN);
+	if (data.key == "KEY_PLAY") {
+		gpioStone.setOn(gpioStone.LED_GREEN);
 	}
 	else {
-	  gpioStone.setOff(gpioStone.LED_GREEN);
+		gpioStone.setOff(gpioStone.LED_GREEN);
 	}
 };
 
-ir.addListener("KEY_PLAY", irCallback );
+ir.addListener("KEY_PLAY", irCallback);
 ir.addListener("KEY_ENTER", irCallback);
 
 // ir.test();
@@ -189,7 +189,7 @@ ir.addListener("KEY_ENTER", irCallback);
 //gpioStone.flash(gpioStone.LED_GREEN);
 //gpioStone.setOff(gpioStone.LED_GREEN);
 // var listenerId = lirc_node.addListener(function(data) {
-  // console.log("Received IR keypress '" + data.key + "' from remote '" + data.remote +"'");
+// console.log("Received IR keypress '" + data.key + "' from remote '" + data.remote +"'");
 // });
 
 
