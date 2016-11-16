@@ -140,14 +140,14 @@ LCDStone.prototype.setData = function (data) {
     console.log(lines.getLine(0));
     console.log(lines.getLine(1));
     console.log(lines.getLine(2));
-    console.log(lines._lines[3]);
+    console.log(lines._lines[3].content);
 
     //print to LCD...
     lcd.println(lines.getLine(0), 1);
     lcd.println(lines.getLine(1), 2);
     lcd.println(lines.getLine(2), 3);
     lcd.setCursor(0, 3)
-    lcd.print(lines._lines[3]);
+    lcd.print(lines._lines[3].content + "  ");
 };
 
 
