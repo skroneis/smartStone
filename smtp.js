@@ -3,6 +3,7 @@ var nodemailer = require('nodemailer');
 exports = module.exports = SmtpMailer;
 var self = null;
 
+//constructor
 function SmtpMailer() {
     console.log("constructor - SmtpMailer");
     self = this;

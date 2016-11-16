@@ -9,6 +9,7 @@ var self = null;
 var lirc_node = require('lirc_node');
 lirc_node.init();
 
+//constructor
 function IRReceive() {
   console.log("constructor - IRReceive");
   this.callback = null;
@@ -16,6 +17,7 @@ function IRReceive() {
 
 util.inherits(IRReceive, EventEmitter);
 
+//init
 IRReceive.prototype.init = function () {
   this.on('done', function () {
     console.log('done.');

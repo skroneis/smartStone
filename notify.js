@@ -5,6 +5,7 @@ var fs = require('fs');
 exports = module.exports = MakerNotify;
 var self = null;
 
+//constructor
 function MakerNotify() {
     console.log("constructor - MakerNotify");
     self = this;

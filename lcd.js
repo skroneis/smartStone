@@ -2,34 +2,34 @@ var pad = require('pad');
 var moment = require('moment');
 
 var LCD = require('lcdi2c');
-var lcd = new LCD( 1, 0x27, 20, 4 );
+var lcd = new LCD(1, 0x27, 20, 4);
 
 //special LCD characters
 //OUT: 0
-lcd.createChar(0,[0x11,0xa,0xe,0x1f,0xe,0xa,0x11]);
+lcd.createChar(0, [0x11, 0xa, 0xe, 0x1f, 0xe, 0xa, 0x11]);
 //IN: 1
-lcd.createChar(1,[0x4,0xa,0x11,0x1f,0x11,0x11,0x1f]);
+lcd.createChar(1, [0x4, 0xa, 0x11, 0x1f, 0x11, 0x11, 0x1f]);
 //GradC
-lcd.createChar(3,[0x18,0x18,0x3,0x4,0x4,0x4,0x3]);
+lcd.createChar(3, [0x18, 0x18, 0x3, 0x4, 0x4, 0x4, 0x3]);
 //clock
-lcd.createChar(4,[0x0,0xe,0x15,0x17,0x11,0xe,0x0]);
+lcd.createChar(4, [0x0, 0xe, 0x15, 0x17, 0x11, 0xe, 0x0]);
 //co2
-lcd.createChar(5,[0x0,0x0,0x1c,0x4,0x1c,0x10,0x1c]);
+lcd.createChar(5, [0x0, 0x0, 0x1c, 0x4, 0x1c, 0x10, 0x1c]);
 
 // LCD ERROR HANDLING
-if ( lcd.error ) { 
-    lcdErrorHandler( lcd.error );
+if (lcd.error) {
+    lcdErrorHandler(lcd.error);
 }
 // LCD ERROR HANDLING
-function lcdErrorHandler( err ) {
-    console.log( 'Unable to print to LCD display on bus 1 at address 0x27' );
-	logger.error('Unable to print to LCD display on bus 1 at address 0x27');
+function lcdErrorHandler(err) {
+    console.log('Unable to print to LCD display on bus 1 at address 0x27');
+    logger.error('Unable to print to LCD display on bus 1 at address 0x27');
 };
 
 exports = module.exports = LCDStone;
 var self = null;
 
-var lines = {
+/*var lines = {
     L1: "",
     L2: "",
     L3: "",
@@ -62,8 +62,54 @@ var lines = {
         this.L4 = "CO" + String.fromCharCode(5) + " " + data.IN.co2 + "  ";
         return this.L4;
     }
+};*/
+
+var lines = {
+    getLine: function (idx) {
+        return pad(this._lines[idx].content, 20) + "*";
+    },
+    setLine: function (idx, data) {
+        //create line if it does not exist in array
+        this._createLine(idx, data);
+        if (idx == 0) {
+            this._lines[idx].content = "TMP " + String.fromCharCode(0) + " " + getFormattedData(data.KRO.temp) + String.fromCharCode(3) + " " + String.fromCharCode(1) + " " + getFormattedData(data.IN.temp) + String.fromCharCode(3);
+        } else if (idx == 1) {
+            this._lines[idx].content = 'WiGe ' + getFormattedData(data.KRO.wiGe) + ' MAX ' + getFormattedData(data.KRO.wiGeMax)
+        } else if (idx == 2) {
+            this._lines[idx].content = 'WiRi ' + getFormattedData(data.KRO.wiRi) + " (" + getCardinal(new Number(data.KRO.wiRi)) + ")"
+        } else if (idx == 3) {
+            this._lines[idx].content = "CO" + String.fromCharCode(5) + " " + data.IN.co2 + "  "
+        }
+        //TODO...
+        return this._lines[idx].content;
+    },
+    _createLine: function (idx, data) {
+        if (this._lines[idx] === undefined) {
+            this._lines.push({ id: idx, content: "EMPTY LINE" });
+        }
+    },
+    _lines:
+    [
+        {
+            id: 1,
+            content: ""
+        },
+        {
+            id: 2,
+            content: ""
+        },
+        {
+            id: 3,
+            content: ""
+        },
+        {
+            id: 4,
+            content: ""
+        }
+    ]
 };
 
+//constructor
 function LCDStone() {
     console.log("constructor - LCDStone");
     self = this;
@@ -78,25 +124,30 @@ LCDStone.prototype.init = function () {
 };
 
 LCDStone.prototype.setData = function (data) {
+    console.log("setLCDData...");
     // console.log(data.IN.temp);
     // var numTempIn = new Number("2.5");
     // var numStr = numTempIn.toFixed(2);
     // console.log(numStr);
     // lines.L1 = lines.L1 + " " + numStr;
     // console.log(lines.getL2() + "X");
-    lines.setLine1(data);
-    lines.setLine2(data);
-    lines.setLine3(data);
-    lines.setLine4(data);
 
-    console.log(lines.getL1());
-    console.log(lines.getL2());
-    console.log(lines.getL3());
-    console.log(lines.L4);    
-    //lcd.println(setLine1(data), 1);
-    //TODO for line 4 (!):
-    // lcd.setCursor(0,3)
-	// lcd.print
+    lines.setLine(0, data);
+    lines.setLine(1, data);
+    lines.setLine(2, data);
+    lines.setLine(3, data);
+
+    console.log(lines.getLine(0));
+    console.log(lines.getLine(1));
+    console.log(lines.getLine(2));
+    console.log(lines._lines[3]);
+
+    //print to LCD...
+    lcd.println(lines.getLine(0), 1);
+    lcd.println(lines.getLine(1), 2);
+    lcd.println(lines.getLine(2), 3);
+    lcd.setCursor(0, 3)
+    lcd.print(lines._lines[3]);
 };
 
 
@@ -104,16 +155,14 @@ LCDStone.prototype.setData = function (data) {
 var timerInterval = function () {
     var time = moment().format('HH:mm:ss');
     //console.log(time);
-	/*lcd.setCursor(11,3);
-	lcd.print(String.fromCharCode(4))
-	lcd.print(time);
-	lcd.home();*/
-    //lcd.println(0,4);
-    // lcd.setCursor(0,4);
-    // lcd.write('0');
+    lcd.setCursor(11, 3);
+    lcd.print(String.fromCharCode(4))
+    lcd.print(time);
+    lcd.home();
 }
 setInterval(timerInterval, 100)
 
+//helper
 var getFormattedData = function (str) {
     var numTempIn = new Number(str);
     var numStr = numTempIn.toFixed(2);

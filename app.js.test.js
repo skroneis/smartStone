@@ -74,4 +74,5 @@ console.log(lines.getLine(0));
 console.log(lines._lines);
 
 //SMTP mail
-smtp.sendMail("smartStone", "<b>Sepp Forcher</b>");
+// smtp.sendMail("smartStone", "<b>Sepp Forcher</b>");
+
