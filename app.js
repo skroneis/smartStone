@@ -77,14 +77,17 @@ server.on('listening', function () {
 	console.log('UDP Server listening on ' + address.address + ":" + address.port);
 });
 server.on('message', function (message, remote) {
-	console.log(remote.address + ':' + remote.port + ' - ' + message);
+	// console.log(remote.address + ':' + remote.port + ' - ' + message);
 	var msg = JSON.parse(message);
 	//console.log("MESSAGE: " + msg.temp);
 	actuals.KRO.dateTime = msg.dateTime;
 	actuals.KRO.temp = msg.temp;
 	actuals.KRO.wiGe = msg.wiGe;
 	actuals.KRO.wiRi = msg.wiRi;
-	actuals.KRO.wiGeMax = msg.wiGeMax;
+	if (msg.wiGeMax != "") {
+		// console.log("SEEEEEEEEEEEEEEEEEET");
+		actuals.KRO.wiGeMax = msg.wiGeMax;
+	}
 	actuals.KRO.wiRiWiGeMax = msg.wiRiWiGeMax;
 	actuals.KRO.reference = msg.reference;
 	/*console.log("dateTime: " + actuals.KRO.dateTime);
@@ -208,4 +211,4 @@ ir.addListener("KEY_DOWN", irCallback);
 
 
 
-logger.info("----END----");
+logger.info("----app.js END----");

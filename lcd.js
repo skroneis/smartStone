@@ -66,7 +66,7 @@ var self = null;
 
 var lines = {
     getLine: function (idx) {
-        return pad(this._lines[idx].content, 20) + "*";
+        return pad(this._lines[idx].content, 20); // + "*";
     },
     setLine: function (idx, data) {
         //create line if it does not exist in array
@@ -74,12 +74,21 @@ var lines = {
         if (idx == 0) {
             this._lines[idx].content = "TMP " + String.fromCharCode(0) + " " + getFormattedData(data.KRO.temp) + String.fromCharCode(3) + " " + String.fromCharCode(1) + " " + getFormattedData(data.IN.temp) + String.fromCharCode(3);
         } else if (idx == 1) {
-            this._lines[idx].content = 'WiGe ' + getFormattedData(data.KRO.wiGe) + ' MAX ' + getFormattedData(data.KRO.wiGeMax)
+            this._lines[idx].content = 'WiGe ' + getFormattedData(data.KRO.wiGe) + ' MAX ' + getFormattedData(data.KRO.wiGeMax);
         } else if (idx == 2) {
-            this._lines[idx].content = 'WiRi ' + getFormattedData(data.KRO.wiRi) + " (" + getCardinal(new Number(data.KRO.wiRi)) + ")"
+            this._lines[idx].content = 'WiRi ' + getFormattedData(data.KRO.wiRi) + " (" + getCardinal(new Number(data.KRO.wiRi)) + ")";
         } else if (idx == 3) {
-            this._lines[idx].content = "CO" + String.fromCharCode(5) + " " + data.IN.co2 + "  "
+            this._lines[idx].content = "CO" + String.fromCharCode(5) + " " + data.IN.co2 + "  ";
+        } else if (idx == 4) {
+            this._lines[idx].content = "Alter: " + data.IN.maturity;
+        } else if (idx == 5) {
+            this._lines[idx].content = "";
+        } else if (idx == 6) {
+            this._lines[idx].content = "";
+        } else if (idx == 7) {
+            this._lines[idx].content = "";
         }
+
         //TODO...
         return this._lines[idx].content;
     },
@@ -124,7 +133,7 @@ LCDStone.prototype.init = function () {
 };
 
 LCDStone.prototype.setData = function (data) {
-    console.log("setLCDData...");
+    // console.log("setLCDData...");
     // console.log(data.IN.temp);
     // var numTempIn = new Number("2.5");
     // var numStr = numTempIn.toFixed(2);
@@ -132,22 +141,46 @@ LCDStone.prototype.setData = function (data) {
     // lines.L1 = lines.L1 + " " + numStr;
     // console.log(lines.getL2() + "X");
 
-    lines.setLine(0, data);
-    lines.setLine(1, data);
-    lines.setLine(2, data);
-    lines.setLine(3, data);
+    console.log("page: " + data.page);
+    // actuals.IN.maturity
 
-    console.log(lines.getLine(0));
-    console.log(lines.getLine(1));
-    console.log(lines.getLine(2));
-    console.log(lines._lines[3].content);
+    //page 1
+    if (data.page == 1) {
+        lines.setLine(0, data);
+        lines.setLine(1, data);
+        lines.setLine(2, data);
+        lines.setLine(3, data);
 
-    //print to LCD...
-    lcd.println(lines.getLine(0), 1);
-    lcd.println(lines.getLine(1), 2);
-    lcd.println(lines.getLine(2), 3);
-    lcd.setCursor(0, 3)
-    lcd.print(lines._lines[3].content + "  ");
+        console.log(lines.getLine(0));
+        console.log(lines.getLine(1));
+        console.log(lines.getLine(2));
+        console.log(lines._lines[3].content);
+
+        //print to LCD...
+        lcd.println(lines.getLine(0), 1);
+        lcd.println(lines.getLine(1), 2);
+        lcd.println(lines.getLine(2), 3);
+        lcd.setCursor(0, 3)
+        lcd.print(lines._lines[3].content + "  ");
+    }
+    //page 2
+    else if (data.page == 2) {
+        // lcd.clear();
+        lines.setLine(4, data);
+        lines.setLine(5, data);
+        lines.setLine(6, data);
+        lines.setLine(7, data);
+
+        console.log(lines.getLine(4));
+        console.log(lines.getLine(5));
+        console.log(lines.getLine(6));
+        console.log(lines.getLine(7));
+
+        lcd.println(lines.getLine(4), 1);
+        lcd.println(lines.getLine(5), 2);
+        lcd.println(lines.getLine(6), 3);
+        lcd.println(lines.getLine(7), 4);
+    }
 };
 
 
@@ -165,7 +198,10 @@ setInterval(timerInterval, 100)
 //helper
 var getFormattedData = function (str) {
     var numTempIn = new Number(str);
+    // console.log("XXXXXXXXXXXXXXXXXX" + numTempIn);
     var numStr = numTempIn.toFixed(2);
+    if (numStr == "NaN")
+        numStr = "";
     return numStr;
 };
 

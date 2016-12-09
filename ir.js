@@ -76,7 +76,7 @@ IRReceive.prototype._addListener = function(key) {
 	  //self._sendEvent();
 	  var retVal = { value: "Sepp Forcher", key: key };
       self.callback(retVal);  
-	}, 100);
+	}, 300);
 };
 //TODO - enable (!)
 // var listenerId = lirc_node.addListener(function(data) {
