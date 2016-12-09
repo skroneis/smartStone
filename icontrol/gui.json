@@ -3,7 +3,7 @@
     "coloredNetworkFeedback": true,
     "pages": [
         {
-            "pageLabel": "Rpi-Gateway",
+            "pageLabel": "smartStone",
             "timeout": 2,
             "compactHeight": false,
             "_comment4": "iPhone: For each page you can set a request timeout (in seconds) and specify if you want a more compact view",
@@ -11,21 +11,37 @@
                 {
                     "_comment5": "There are 5 sizeTypes namely small, medium, large, verySmall and smallVertical. Corresponding buttons and commands must exist.",
                     "button1": "LED 11",
-                    "cmd1": "http://192.168.0.123:3001/api/setData/11",
+                    "cmd1": "http://192.168.0.123:8001/api/setData/11",
                     "cmd1Id": "uniqueCmdId1L",
                     "_comment6": "You may specify a unique id for a command. This way it is callable from other apps, i.e. icontrol://execute?uniqueCmdId1L - if you do not want that, remove its corresponding key",
                     "headline1": "LED on 💡",
                     "sizeType": "large"
                 },
                 {
-                    "button1": "on 💡",
-                    "button2": "off 🌙",
-                    "cmd1": "http://192.168.0.123:3001/api/setOn/11",
+                    "button1": "11 on 💡",
+                    "button2": "11 off 🌙",
+                    "cmd1": "http://192.168.0.123:8001/api/setOn/11",
                     "cmd1Id": "uniqueCmdId1M",
-                    "cmd2": "http://192.168.0.123:3001/api/setOff/11",
+                    "cmd2": "http://192.168.0.123:8001/api/setOff/11",
                     "cmd2Id": "uniqueCmdId2M",
-                    "headline1": "Light",
+                    "headline1": "LED",
                     "sizeType": "medium"
+                },
+                {
+                    "button1": "12 💡",
+                    "button2": "12 🌙",
+					"button3": "13 💡",
+                    "button4": "13 🌙",
+                    "cmd1": "http://192.168.0.123:8001/api/setOn/12",
+                    "cmd1Id": "uniqueCmdId3M",
+                    "cmd2": "http://192.168.0.123:8001/api/setOff/12",
+                    "cmd2Id": "uniqueCmdId4M",
+					"cmd3": "http://192.168.0.123:8001/api/setOn/13",
+                    "cmd3Id": "uniqueCmdId5M",
+                    "cmd4": "http://192.168.0.123:8001/api/setOff/13",
+                    "cmd4Id": "uniqueCmdId6M",
+                    "headline1": "LED",
+                    "sizeType": "small"
                 }
             ]
         }
