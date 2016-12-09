@@ -50,9 +50,9 @@
 
 		<!--<pre>{{isLoading}}</pre>-->
 		<div class="container">
-			<div class="well bs-component" ng-show="isLoading">
+			<!--<div class="well bs-component" ng-show="isLoading">
 				<span><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>&nbsp;&nbsp;Bitte warten...</span>
-			</div>
+			</div>-->
 			<!--<div class="well bs-component" ng-show="isLoading">
                     <div class="row">
                         <div class="col-lg-7">
@@ -71,6 +71,9 @@
 						</div>
 						<div class="col-sm-2">
 							<span>Außen: <b>{{infos.KRO.temp}}</b>°C</span>
+						</div>
+						<div class="col-sm-8">
+							<span ng-show="isLoading" class="pull-right" style="height: 10px;"><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i></span>
 						</div>
 					</div>
 					<div class="row">
@@ -95,11 +98,17 @@
 					<div class="row pull-right">
 						<div class="col-sm-2">
 							<span>Alter:&nbsp;<b>{{infos.IN.maturity}}</b>min</span>
-						</div>
+						</div>						
 					</div>
 				</div>
 			</div>
+			<ul class="nav nav-pills">
+			<li><a href="./api/test" target="_blank">api <span class="badge"></span></a></li>
+			</ul>
+</ul>
+
 		</div>
+
 	</div>
 
 	<!--footer-->

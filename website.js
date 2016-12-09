@@ -5,6 +5,9 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 
+//LED
+var GpioStone = require('./gpio_stone');
+var gpioStone = new GpioStone();
 // =======================
 // configuration =========
 // =======================
@@ -39,11 +42,11 @@ function errorHandler(err, req, res, next) {
 
 //Update values (actual)
 var modules = module.exports = {
-    update: function(values) {        
-		//console.log("update...");
+    update: function (values) {
+        //console.log("update...");
         //console.log(values.temp);
         actuals = values;
-     }
+    }
 };
 
 // =======================
@@ -85,14 +88,14 @@ apiRoutes.get('/test', function (req, res, next) {
 //iPhone App
 apiRoutes.get('/setOff/:id', function (req, res, next) {
     //if(err) res.send(err);
-    gu.setPin(req.params.id, 0);
+    gpioStone.setOff(req.params.id);
     //res.json("OK");
     res.json({ success: true });
 });
 
 apiRoutes.get('/setOn/:id', function (req, res, next) {
     //if(err) res.send(err);
-    gu.setPin(req.params.id, 1);
+    gpioStone.setOn(req.params.id);
     //res.json("OK");
     res.json({ success: true });
 });
