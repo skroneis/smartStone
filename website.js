@@ -82,5 +82,20 @@ apiRoutes.get('/test', function (req, res, next) {
     }
 });
 
+//iPhone App
+apiRoutes.get('/setOff/:id', function (req, res, next) {
+    //if(err) res.send(err);
+    gu.setPin(req.params.id, 0);
+    //res.json("OK");
+    res.json({ success: true });
+});
+
+apiRoutes.get('/setOn/:id', function (req, res, next) {
+    //if(err) res.send(err);
+    gu.setPin(req.params.id, 1);
+    //res.json("OK");
+    res.json({ success: true });
+});
+
 // apply the routes to our application with the prefix /api
 app.use('/api', apiRoutes);
