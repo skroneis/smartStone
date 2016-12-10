@@ -11,19 +11,20 @@
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" />
+	<link rel="stylesheet" href="./css/custom.css" />
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1"
 		crossorigin="anonymous">
-		
-		<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
-				<link rel="apple-touch-icon" sizes="57x57" href="icons/apple-touch-icon-57x57.png" />
-				<link rel="apple-touch-icon" sizes="72x72" href="icons/apple-touch-icon-72x72.png" />
-				<link rel="apple-touch-icon" sizes="76x76" href="icons/apple-touch-icon-76x76.png" />
-				<link rel="apple-touch-icon" sizes="114x114" href="icons/apple-touch-icon-114x114.png" />
-				<link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon-120x120.png" />
-				<link rel="apple-touch-icon" sizes="144x144" href="icons/apple-touch-icon-144x144.png" />
-				<link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png" />
-				<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180x180.png" />
-				
+
+	<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+	<link rel="apple-touch-icon" sizes="57x57" href="./icons/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="./icons/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon" sizes="76x76" href="./icons/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="./icons/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon" sizes="120x120" href="./icons/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="./icons/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon" sizes="152x152" href="./icons/apple-touch-icon-152x152.png" />
+	<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon-180x180.png" />
+
 </head>
 
 <body>
@@ -83,9 +84,9 @@
 						<div class="col-sm-2">
 							<span>Außen: <b>{{infos.KRO.temp}}</b>°C</span>
 						</div>
-						<div class="col-sm-8">
+						<!--<div class="col-sm-8">
 							<span ng-show="isLoading" class="pull-right" style="height: 10px;"><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i></span>
-						</div>
+						</div>-->
 					</div>
 					<div class="row">
 						<div class="col-sm-2">
@@ -109,15 +110,16 @@
 					<div class="row pull-right">
 						<div class="col-sm-2">
 							<span>Alter:&nbsp;<b>{{infos.IN.maturity}}</b>min</span>
-						</div>						
+						</div>
 					</div>
 				</div>
 			</div>
 			<ul class="nav nav-pills">
-			<li><a href="./api/test" target="_blank">api <span class="badge"></span></a></li>
-			</ul>
-</ul>
+				<li><a href="./api/test" target="_blank">api <span class="badge"></span></a>
 
+				</li>
+				<div ng-show="isLoading" class="pull-right spinner"><img src="./images/spinner.gif" alt="loading"></div>
+			</ul>
 		</div>
 
 	</div>
@@ -127,13 +129,13 @@
 	<footer>
 		<div class="container">
 			<p class="pull-left">
-				&copy; 2016 Stefan Kroneis &nbsp; <span ng-controller='TimeCtrl' style="float: right;" ng-cloak>{{ clock  | date:'EEEE, dd.MM.yyyy HH:mm:ss'}}</span>
+				&copy;&nbsp;2016&nbsp;Stefan&nbsp;Kroneis &nbsp; <span class="clock" ng-controller='TimeCtrl' style="float: right;" ng-cloak>{{ clock  | date:'EEEE, dd.MM.yyyy HH:mm:ss'}}</span>
 			</p>
 			<!--<div id="heartbeat" Xhidden="hidden">
                 <img height="16" src="./images/loading.gif" alt="loading">
             </div>-->
 			<div class="pull-right">
-				Version: 1.0.0
+				Version: 1.0.3
 			</div>
 		</div>
 	</footer>
