@@ -179,12 +179,14 @@ var irCallback = function (data) {
 	else if (data.key == "KEY_UP") {
 		actuals.page = actuals.page + 1;
 		console.log(actuals.page);
+		gpioStone.flash(gpioStone.LED_GREEN);
 	}
 	else if (data.key == "KEY_DOWN") {
 		actuals.page = actuals.page - 1;
 		if (actuals.page <= 0)
 			actuals.page = 1;
 		console.log(actuals.page);
+		gpioStone.flash(gpioStone.LED_GREEN);
 	}
 };
 

@@ -20,12 +20,12 @@ util.inherits(IRReceive, EventEmitter);
 //init
 IRReceive.prototype.init = function () {
   this.on('done', function () {
-    console.log('done.');
+    // console.log('done.');
   });
 }
 
 IRReceive.prototype.addListener = function (key, callback) {
-  console.log("addListener...");
+  // console.log("addListener...");
   self = this;
   
   function parameterError() {

@@ -1,5 +1,6 @@
 var pad = require('pad');
 var moment = require('moment');
+var schedule = require('node-schedule');
 
 var LCD = require('lcdi2c');
 var lcd = new LCD(1, 0x27, 20, 4);
@@ -211,3 +212,23 @@ function getCardinal(degrees) {
     var idx = Math.round((degrees % 360) / 45);
     return caridnals[idx];
 };
+
+
+//schedul LCD
+//schedule - display backlight off
+schedule.scheduleJob('0 23 * * *', function(){
+  lcd.off();
+  console.log('display off!');
+});
+schedule.scheduleJob('30 6 * * *', function(){
+  lcd.on();
+  console.log('display on!');
+});
+schedule.scheduleJob('0 9 * * 1-5', function(){
+  //lcd.off();
+  console.log('display off!');
+});
+schedule.scheduleJob('0 17 * * 1-5', function(){
+  lcd.on();
+  console.log('display on!');
+});
