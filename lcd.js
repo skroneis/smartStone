@@ -77,7 +77,7 @@ var lines = {
         } else if (idx == 1) {
             this._lines[idx].content = 'WiGe ' + getFormattedData(data.KRO.wiGe) + ' MAX ' + getFormattedData(data.KRO.wiGeMax);
         } else if (idx == 2) {
-            this._lines[idx].content = 'WiRi ' + getFormattedData(data.KRO.wiRi) + " (" + getCardinal(new Number(data.KRO.wiRi)) + ")";
+            this._lines[idx].content = 'WiRi ' + getFormattedData(data.KRO.wiRi) + " (" + self.getCardinal(new Number(data.KRO.wiRi)) + ")";
         } else if (idx == 3) {
             this._lines[idx].content = "CO" + String.fromCharCode(5) + " " + data.IN.co2 + "  ";
         } else if (idx == 4) {
@@ -207,7 +207,7 @@ var getFormattedData = function (str) {
 };
 
 //var getCardinal = function (degrees)
-function getCardinal(degrees) {
+LCDStone.prototype.getCardinal = function(degrees) {
     var caridnals = ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"];
     var idx = Math.round((degrees % 360) / 45);
     return caridnals[idx];

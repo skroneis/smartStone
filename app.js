@@ -53,6 +53,7 @@ var actuals = {
 		temp: " - ",
 		wiGe: " - ",
 		wiRi: " - ",
+		wiRiStr: " - ",
 		wiGeMax: " - ",
 		wiRiWiGeMax: " - ",
 		reference: " - "
@@ -210,7 +211,5 @@ ir.addListener("KEY_DOWN", irCallback);
 // var listenerId = lirc_node.addListener(function(data) {
 // console.log("Received IR keypress '" + data.key + "' from remote '" + data.remote +"'");
 // });
-
-
 
 logger.info("----app.js END----");
