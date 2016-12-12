@@ -6,3 +6,11 @@
 .clock {
     color: lightGray;
 }
+
+.row-bordered:after {
+  content: "";
+  display: block;
+  border-bottom: 0px solid #ccc;
+  margin: 0 15px;
+  margin-top: 30px;
+}

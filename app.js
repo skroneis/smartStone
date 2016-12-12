@@ -84,8 +84,8 @@ server.on('message', function (message, remote) {
 	actuals.KRO.temp = msg.temp;
 	actuals.KRO.wiGe = msg.wiGe;
 	actuals.KRO.wiRi = msg.wiRi;
+	actuals.KRO.wiRiStr = lcd.getCardinal(new Number(msg.wiRi));
 	if (msg.wiGeMax != "") {
-		// console.log("SEEEEEEEEEEEEEEEEEET");
 		actuals.KRO.wiGeMax = msg.wiGeMax;
 	}
 	actuals.KRO.wiRiWiGeMax = msg.wiRiWiGeMax;

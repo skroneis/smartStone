@@ -61,6 +61,7 @@
 		</div>
 
 		<!--<pre>{{isLoading}}</pre>-->
+		<!--<pre>{{infos}}</pre>-->
 		<div class="container">
 			<!--<div class="well bs-component" ng-show="isLoading">
 				<span><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>&nbsp;&nbsp;Bitte warten...</span>
@@ -78,7 +79,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<span>Temperatur: <b>{{infos.IN.temp}}</b>°C</span>
 						</div>
 						<div class="col-sm-2">
@@ -89,17 +90,17 @@
 						</div>-->
 					</div>
 					<div class="row">
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<span>CO<sub>2</sub>: <b>{{infos.IN.co2}}</b></span>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<span>Druck: <b>{{infos.IN.pressure}}</b>mbar</span>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-2">
+					<div class="row row-bordered">
+						<div class="col-sm-3">
 							<span>Feuchtigkeit: <b>{{infos.IN.humidity}}</b>%</span>
 						</div>
 						<div class="col-sm-2">
@@ -108,8 +109,17 @@
 					</div>
 					<!--maturity-->
 					<div class="row pull-right">
+						<div class="col-sm-3">
+							<span>Alter:&nbsp;<b>{{infos.IN.maturity}}</b>&nbsp;min</span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-3">
+							<span>WiGe: <b>{{infos.KRO.wiGe}}</b>km/h</span>
+						</div>
 						<div class="col-sm-2">
-							<span>Alter:&nbsp;<b>{{infos.IN.maturity}}</b>min</span>
+							<span>WiRi: <b>{{infos.KRO.wiRi| number:0}}</b>Grad&nbsp;(<b>{{infos.KRO.wiRiStr}}</b>)</span>
 						</div>
 					</div>
 				</div>
