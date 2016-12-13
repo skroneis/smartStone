@@ -4,18 +4,24 @@
   "description": "stone's home automation",
   "main": "app.js",
   "scripts": {
-    "test": "http://127.0.0.1/test"
+    "test": "http://127.0.0.1:8001/api/test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/skroneis"
+    "url": "git+https://github.com/skroneis/smartStone.git"
   },
   "keywords": [
     "home",
-    "automation"
+    "automation",
+    "iot",
+    "Raspberry Pi"
   ],
   "author": "Stefan Kroneis",
-  "license": "ISC",
+  "license": "GPL-3.0",
+  "bugs": { 
+     "url": "https://github.com/skroneis/smartStone/issues" 
+   },
+  "homepage": "https://github.com/skroneis/smartStone#readme",
   "dependencies": {
     "async": "^2.1.2",
     "dgram": "^1.0.1",
