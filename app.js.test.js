@@ -1,7 +1,7 @@
-var GpioStone = require('./gpio_stone_wp');
-var gpioStone = new GpioStone();
+// var GpioStone = require('./gpio_stone_wp');
+// var gpioStone = new GpioStone();
+// gpioStone.flash(gpioStone.LED_GREEN);
 
-gpioStone.flash(gpioStone.LED_GREEN);
 
 /*var pad = require('pad');
 // var LCD = require("./lcd.js");
