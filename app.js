@@ -14,7 +14,7 @@ var lcd = new LCD(); lcd.init();
 
 //GPIO (requred)
 var api = require("./iControl");
-var GpioStone = require('./gpio_stone');
+var GpioStone = require('./gpio_stone_wp');
 var gpioStone = new GpioStone();
 
 //npm libraries

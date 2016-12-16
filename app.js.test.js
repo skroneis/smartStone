@@ -1,4 +1,9 @@
-var pad = require('pad');
+var GpioStone = require('./gpio_stone_wp');
+var gpioStone = new GpioStone();
+
+gpioStone.flash(gpioStone.LED_GREEN);
+
+/*var pad = require('pad');
 // var LCD = require("./lcd.js");
 // var lcd = new LCD();lcd.init();
 
@@ -75,4 +80,7 @@ console.log(lines._lines);
 
 //SMTP mail
 // smtp.sendMail("smartStone", "<b>Sepp Forcher</b>");
+
+*/
+
 
