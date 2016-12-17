@@ -189,12 +189,19 @@ var irCallback = function (data) {
 		console.log(actuals.page);
 		gpioStone.flash(gpioStone.LED_GREEN);
 	}
+	else if (data.key == "KEY_MENU") {
+		console.log("KEY_MENU");
+		console.log(actuals.KRO.temp);
+		gpioStone.flash(gpioStone.LED_GREEN);
+		notify.notify("temp");
+	}
 };
 
 ir.addListener("KEY_PLAY", irCallback);
 ir.addListener("KEY_ENTER", irCallback);
 ir.addListener("KEY_UP", irCallback);
 ir.addListener("KEY_DOWN", irCallback);
+ir.addListener("KEY_MENU", irCallback);
 
 // ir.test();
 //util.inherits(ir, EventEmitter);

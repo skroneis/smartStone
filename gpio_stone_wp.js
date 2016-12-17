@@ -19,12 +19,12 @@ function GPIOStone() {
 }
 
 GPIOStone.prototype.setOn = function (pin) {
-    console.log("ON: ....: " + pin);
+    // console.log("ON: ....: " + pin);
     wpi.digitalWrite(pin, 1);
 };
 
 GPIOStone.prototype.setOff = function (pin) {
-    console.log("OFF: ....: " + pin);
+    // console.log("OFF: ....: " + pin);
     wpi.digitalWrite(pin, 0);
 };
 

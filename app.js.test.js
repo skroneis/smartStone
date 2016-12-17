@@ -1,3 +1,8 @@
+var Notifier = require("./notify.js");
+var notify = new Notifier();
+notify.notify("Hello World! 1");
+
+
 // var GpioStone = require('./gpio_stone_wp');
 // var gpioStone = new GpioStone();
 // gpioStone.flash(gpioStone.LED_GREEN);
