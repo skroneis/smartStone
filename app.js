@@ -26,7 +26,7 @@ var events = require('events');
 var EventEmitter = events.EventEmitter;
 var eventEmitter = new events.EventEmitter();
 //Maker notifier
-var Notifier = require("./notify.js");
+var Notifier = require("./telegramNotify.js");
 var notify = new Notifier();
 // var lirc_node = require('lirc_node');
 // lirc_node.init();
@@ -190,10 +190,10 @@ var irCallback = function (data) {
 		gpioStone.flash(gpioStone.LED_GREEN);
 	}
 	else if (data.key == "KEY_MENU") {
-		console.log("KEY_MENU");
-		console.log(actuals.KRO.temp);
+		// console.log("KEY_MENU");
+		// console.log(actuals.KRO.temp);
 		gpioStone.flash(gpioStone.LED_GREEN);
-		notify.notify("temp");
+		notify.notify("Temp: " + actuals.KRO.temp);
 	}
 };
 

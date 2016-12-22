@@ -1,4 +1,4 @@
-var Notifier = require("./notify.js");
+var Notifier = require("./telegramNotify.js");
 var notify = new Notifier();
 notify.notify("Hello World! 1");
 
