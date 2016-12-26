@@ -31,3 +31,18 @@ TelegramNotify.prototype.notify = function (message) {
         json: post_data
     });
 };
+
+
+TelegramNotify.prototype.notifyHtml = function (message) {
+    var post_data = {
+        chat_id: config.TelegramChatId,
+        text: message,
+        parse_mode: "html"
+    };
+    var url = "https://api.telegram.org/bot" + config.TelegramBotApiToken + "/sendMessage";
+    request({
+        url: url,
+        method: "POST",
+        json: post_data
+    });
+};

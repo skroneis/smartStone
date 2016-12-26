@@ -8,6 +8,9 @@ var http = require("./website");
 var IR = require("./ir.js");
 var ir = new IR(); ir.init();
 
+var ScheduledNotifier = require("./scheduledNotifyer.js");
+var scheduledNotifier = new ScheduledNotifier();
+
 //LCD-library
 var LCD = require("./lcd.js");
 var lcd = new LCD(); lcd.init();
@@ -65,6 +68,7 @@ var actuals = {
 };
 //update angular values...
 http.update(actuals);
+scheduledNotifier.init(actuals);
 
 // =============================
 // UDP listener ================

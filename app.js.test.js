@@ -1,7 +1,18 @@
-var Notifier = require("./telegramNotify.js");
-var notify = new Notifier();
-notify.notify("Hello World! 1");
+// var Notifier = require("./telegramNotify.js");
+// var notify = new Notifier();
+// notify.notifyHtml("Hello World! 1<i>BOLD!!!</i>");
 
+var ScheduledNotifier = require("./scheduledNotifyer.js");
+var scheduledNotifier = new ScheduledNotifier();
+
+var actuals = {
+	temp: 12.3
+};
+
+scheduledNotifier.init(actuals);
+
+// actuals.temp = 15.5;
+// scheduledNotifier.send();
 
 // var GpioStone = require('./gpio_stone_wp');
 // var gpioStone = new GpioStone();
