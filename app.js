@@ -70,7 +70,7 @@ var actuals = {
 //http.update(actuals);
 http.init(actuals);
 scheduledNotifier.init(actuals);
-lcd.setData(actuals);
+// lcd.setData(actuals);
 
 // =============================
 // UDP listener ================
@@ -101,7 +101,7 @@ server.on('message', function (message, remote) {
 	console.log("temp: " + actuals.KRO.temp);
 	console.log("reference: " + actuals.KRO.reference);*/
 	// http.update(actuals);
-	// lcd.setData(actuals);
+	lcd.setData(actuals);
 });
 server.bind(PORT);
 
