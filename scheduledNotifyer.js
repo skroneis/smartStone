@@ -15,14 +15,14 @@ function ScheduledNotifyer() {
 
 ScheduledNotifyer.prototype.init = function (data) {
     actuals = data;
-    // console.log("~~~~~~~~~~~~~~~~~~ " + actuals.temp);
-    // notify.notifyHtml("Guten Morgen!\nTemp: " + actuals.temp);
+    // console.log("~~~~~~~~~~~~~~~~~~ " + actuals.KRO.temp);
+    // notify.notifyHtml("Guten Morgen!\nTemp: " + actuals.KRO.temp);
 };
 
 
 schedule.scheduleJob('30 7 * * *', function () {
-    notify.notifyHtml("Guten Morgen!\nTemp: " + actuals.temp);
-    console.log("scheduleJob ~~~~~~~~~~~~~~~~~~ " + actuals.temp);
+    notify.notifyHtml("Guten Morgen!\nTemp: " + actuals.KRO.temp);
+    console.log("scheduleJob ~~~~~~~~~~~~~~~~~~ " + actuals.KRO.temp);
 });
 
 

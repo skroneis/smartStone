@@ -40,10 +40,10 @@ function errorHandler(err, req, res, next) {
 }
 
 
-//Update values (actual)
+//init values (actual)
 var modules = module.exports = {
-    update: function (values) {
-        //console.log("update...");
+    init: function (values) {
+        //console.log("init (http)...");
         //console.log(values.temp);
         actuals = values;
     }

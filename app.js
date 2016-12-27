@@ -66,9 +66,11 @@ var actuals = {
 	//     return "Hello " + this.name + ".  Wow, you are " + this.age + " years old.";
 	//   }
 };
-//update angular values...
-http.update(actuals);
+//init angular values...
+//http.update(actuals);
+http.init(actuals);
 scheduledNotifier.init(actuals);
+lcd.setData(actuals);
 
 // =============================
 // UDP listener ================
@@ -98,8 +100,8 @@ server.on('message', function (message, remote) {
 	/*console.log("dateTime: " + actuals.KRO.dateTime);
 	console.log("temp: " + actuals.KRO.temp);
 	console.log("reference: " + actuals.KRO.reference);*/
-	http.update(actuals);
-	lcd.setData(actuals);
+	// http.update(actuals);
+	// lcd.setData(actuals);
 });
 server.bind(PORT);
 
@@ -132,7 +134,7 @@ var getNetatmoMeasures = function () {
 	});
 
 	//update angular values...
-	http.update(actuals);
+	// http.update(actuals);
 };
 
 //init (manual)
