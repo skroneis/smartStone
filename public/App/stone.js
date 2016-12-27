@@ -31,6 +31,10 @@
             });
     };
 
+    $scope.getDate = function () {
+        return (new Date).toLocaleFormat("%A, %B %e, %Y");
+    };
+
     setInterval(function () {
         console.log("get....");
         $scope.getInfos();
