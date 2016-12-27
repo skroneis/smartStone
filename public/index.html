@@ -141,14 +141,14 @@
 	<footer>
 		<div class="container">
 			<p class="pull-left">
-				&copy;&nbsp;2016&nbsp;Stefan&nbsp;Kroneis &nbsp; <span class="clock" ng-controller='TimeCtrl' style="float: right;" ng-cloak>{{ clock  | date:'EEEE, dd.MM.yyyy HH:mm:ss'}}</span>
+				&copy;&nbsp;<span ng-controller='stoneController'>{{ getDate() |  date:"yyyy" }}</span>&nbsp;Stefan&nbsp;Kroneis &nbsp; <span class="clock" ng-controller='TimeCtrl' style="float: right;" ng-cloak>{{ clock  | date:'EEEE, dd.MM.yyyy HH:mm:ss'}}</span>
 				
 			</p>
 			<!--<div id="heartbeat" Xhidden="hidden">
                 <img height="16" src="./images/loading.gif" alt="loading">
             </div>-->
-			<div class="pull-right">
-				{{ getDate() |  date:"yyyy" }}Version: 1.0.5
+			<div class="pull-right"> 
+				Version: 1.0.5
 			</div>
 		</div>
 	</footer>

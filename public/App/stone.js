@@ -14,11 +14,11 @@
 
     $scope.getInfos = function () {
         //alert("getInfos");
-        console.log("getInfos");
+        // console.log("getInfos");
         $scope.isLoading = true;
         //$http.defaults.headers.common["RequestVerificationToken"] = $scope.token;
-        console.log("-----------------------------");
-        console.log(MyApp.rootPath);
+        // console.log("-----------------------------");
+        // console.log(MyApp.rootPath);
         return $http.get(MyApp.rootPath + 'api/getData', null).then(function (response) {
             //console.log(response.data);
             $scope.infos = response.data;
@@ -32,11 +32,11 @@
     };
 
     $scope.getDate = function () {
-        return (new Date).toLocaleFormat("%A, %B %e, %Y");
+        return new Date();
     };
 
     setInterval(function () {
-        console.log("get....");
+        // console.log("get....");
         $scope.getInfos();
     }, 1000 * 5) //5 secongs...
 });

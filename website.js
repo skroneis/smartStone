@@ -54,7 +54,7 @@ var modules = module.exports = {
 // =======================
 app.use(function (req, res, next) {
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    console.log('Client IP:', ip);
+    // console.log('Client IP:', ip);
     next();
 });
 
