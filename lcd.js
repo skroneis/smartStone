@@ -75,15 +75,15 @@ var lines = {
         if (idx == 0) {
             this._lines[idx].content = "TMP " + String.fromCharCode(0) + " " + getFormattedData(data.KRO.temp) + String.fromCharCode(3) + " " + String.fromCharCode(1) + " " + getFormattedData(data.IN.temp) + String.fromCharCode(3);
         } else if (idx == 1) {
-            this._lines[idx].content = 'WiGe ' + getFormattedData(data.KRO.wiGe) + ' MAX ' + getFormattedData(data.KRO.nodeWiGeMax) + '@' + getFormattedData(data.KRO.nodeWiGeWiRiMax);
+            this._lines[idx].content = 'WiGe ' + getFormattedDataFixed(data.KRO.wiGe, 1) + ' MAX ' + getFormattedDataFixed(data.KRO.nodeWiGeMax, 0) + '@' + getFormattedDataFixed(data.KRO.nodeWiGeWiRiMax, 0);
         } else if (idx == 2) {
-            this._lines[idx].content = 'WiRi ' + getFormattedData(data.KRO.wiRi) + " (" + self.getCardinal(new Number(data.KRO.wiRi)) + ")";
+            this._lines[idx].content = 'WiRi ' + getFormattedDataFixed(data.KRO.wiRi, 1) + " (" + self.getCardinal(new Number(data.KRO.wiRi)) + ")";
         } else if (idx == 3) {
             this._lines[idx].content = "CO" + String.fromCharCode(5) + " " + data.IN.co2 + "  ";
         } else if (idx == 4) {
             this._lines[idx].content = "Alter: " + data.IN.maturity;
         } else if (idx == 5) {
-            this._lines[idx].content = "";
+            this._lines[idx].content = "Array: " + data.KRO.lengthWiGe + " " + data.KRO.lengthWiRi;
         } else if (idx == 6) {
             this._lines[idx].content = "";
         } else if (idx == 7) {
@@ -128,7 +128,7 @@ function LCDStone() {
 
 //init
 LCDStone.prototype.init = function () {
-    console.log("initializing...");
+    console.log("initializing LCD...");
     lcd.println('initializing...', 1);
     lcd.on();
 };
@@ -201,6 +201,15 @@ var getFormattedData = function (str) {
     var numTempIn = new Number(str);
     // console.log("XXXXXXXXXXXXXXXXXX" + numTempIn);
     var numStr = numTempIn.toFixed(2);
+    if (numStr == "NaN")
+        numStr = "";
+    return numStr;
+};
+
+var getFormattedDataFixed = function (str, decimal) {
+    var numTempIn = new Number(str);
+    // console.log("XXXXXXXXXXXXXXXXXX" + numTempIn);
+    var numStr = numTempIn.toFixed(decimal);
     if (numStr == "NaN")
         numStr = "";
     return numStr;

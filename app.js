@@ -75,6 +75,8 @@ http.init(actuals);
 scheduledNotifier.init(actuals);
 // lcd.setData(actuals);
 
+logger.info("----app.js START----");
+
 // =============================
 // UDP listener ================
 // =============================
@@ -110,6 +112,8 @@ server.on('message', function (message, remote) {
 	var dataRetVal = dataManager.Get();
 	actuals.KRO.nodeWiGeMax = dataRetVal.wige;
 	actuals.KRO.nodeWiGeWiRiMax = dataRetVal.wiri;
+	actuals.KRO.lengthWiGe = dataRetVal.lengthWiGe;
+	actuals.KRO.lengthWiRi = dataRetVal.lengthWiRi;
 	//set values to display
 	lcd.setData(actuals);
 });

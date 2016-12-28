@@ -4,11 +4,11 @@ dataManager.init();
 // console.log(dataManager.P);
 // dataManager.Min(dataManager.P());
 
-dataManager.Push(dataManager.WiGe(), 10, dataManager.WiRi(), 301);
-dataManager.Push(dataManager.WiGe(), 20, dataManager.WiRi(),302);
-dataManager.Push(dataManager.WiGe(), 30, dataManager.WiRi(),303);
-dataManager.Push(dataManager.WiGe(), 40, dataManager.WiRi(),304);
-dataManager.Push(dataManager.WiGe(), 50, dataManager.WiRi(),305);
+dataManager.Push(dataManager.WiGe(), 6.23, dataManager.WiRi(), 269.30);
+dataManager.Push(dataManager.WiGe(), 10.93, dataManager.WiRi(), 298.39);
+dataManager.Push(dataManager.WiGe(), 11.60, dataManager.WiRi(), 301.29);
+dataManager.Push(dataManager.WiGe(), 10.50, dataManager.WiRi(), 271.14);
+dataManager.Push(dataManager.WiGe(), 10.51, dataManager.WiRi(), 271.15);
 
 //console.log(dataManager.Min(dataManager.WiGe()));
 // console.log(dataManager.Max(dataManager.WiGe()));
@@ -16,7 +16,7 @@ dataManager.Push(dataManager.WiGe(), 50, dataManager.WiRi(),305);
 // console.log(dataManager.WiRi());
 
 var retVal = dataManager.Get();
-console.log(retVal.wige+" @"+retVal.wiri);
+console.log(retVal.wige + " @" + retVal.wiri);
 // console.log(retVal.idx);
 // console.log(retVal.wiri);
 

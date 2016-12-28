@@ -8,7 +8,7 @@ var WiRi = [];
 //init values (actual)
 var modules = module.exports = {
     init: function () {
-        console.log("Data-Manager...");
+        console.log("constructor - Data-Manager...");
     },
     Min: function (arr) {
         return arr.min();
@@ -17,13 +17,13 @@ var modules = module.exports = {
         return arr.max();
     },
     Push: function (arrayWiGe, valueWiGe, arrayWiRi, valueWiRi) {
-        arrayWiGe.push(valueWiGe);
-        arrayWiRi.push(valueWiRi);
-        if (arrayWiGe.length > 4) {   //1800 ~ 1h
+        arrayWiGe.push(parseFloat(valueWiGe));
+        arrayWiRi.push(parseFloat(valueWiRi));
+        if (arrayWiGe.length > 1800) {   //1800 ~ 1h
             arrayWiGe.shift();
             console.log("remove (%s)", arrayWiGe.length);
         }
-        if (arrayWiRi.length > 4) {   //1800 ~ 1h
+        if (arrayWiRi.length > 1800) {   //1800 ~ 1h
             arrayWiRi.shift();
             console.log("remove (%s)", arrayWiRi.length);
         }
@@ -38,13 +38,18 @@ var modules = module.exports = {
         return WiRi;
     },
     Get: function () {
+        // console.log("-------------------- " + WiGe.max());
+        // console.log("++++++++++++++++++++++ " + WiRi);
+        // console.log("++++++++++++++++++++++ " + WiGe);
         var idx = WiGe.indexOf(WiGe.max());
         // console.log("INDEX: " + idx);
         // console.log("WiRi: " + WiRi[idx]);
         return {
             idx: idx,
             wiri: WiRi[idx],
-            wige: WiGe.max()
+            wige: WiGe.max(),
+            lengthWiGe: WiGe.length,
+            lengthWiRi: WiRi.length
         };
     }
 };
