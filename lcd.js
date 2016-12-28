@@ -75,7 +75,7 @@ var lines = {
         if (idx == 0) {
             this._lines[idx].content = "TMP " + String.fromCharCode(0) + " " + getFormattedData(data.KRO.temp) + String.fromCharCode(3) + " " + String.fromCharCode(1) + " " + getFormattedData(data.IN.temp) + String.fromCharCode(3);
         } else if (idx == 1) {
-            this._lines[idx].content = 'WiGe ' + getFormattedData(data.KRO.wiGe) + ' MAX ' + getFormattedData(data.KRO.wiGeMax);
+            this._lines[idx].content = 'WiGe ' + getFormattedData(data.KRO.wiGe) + ' MAX ' + getFormattedData(data.KRO.nodeWiGeMax) + '@' + getFormattedData(data.KRO.nodeWiGeWiRiMax);
         } else if (idx == 2) {
             this._lines[idx].content = 'WiRi ' + getFormattedData(data.KRO.wiRi) + " (" + self.getCardinal(new Number(data.KRO.wiRi)) + ")";
         } else if (idx == 3) {

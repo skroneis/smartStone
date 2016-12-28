@@ -70,6 +70,7 @@ var actuals = {
 };
 //init angular values...
 //http.update(actuals);
+dataManager.init();
 http.init(actuals);
 scheduledNotifier.init(actuals);
 // lcd.setData(actuals);
@@ -103,6 +104,13 @@ server.on('message', function (message, remote) {
 	console.log("temp: " + actuals.KRO.temp);
 	console.log("reference: " + actuals.KRO.reference);*/
 	// http.update(actuals);
+
+	//call data manager
+	dataManager.Push(dataManager.WiGe(), actuals.KRO.wiGe, dataManager.WiRi(), actuals.KRO.wiRi);
+	var dataRetVal = dataManager.Get();
+	actuals.KRO.nodeWiGeMax = dataRetVal.wige;
+	actuals.KRO.nodeWiGeWiRiMax = dataRetVal.wiri;
+	//set values to display
 	lcd.setData(actuals);
 });
 server.bind(PORT);

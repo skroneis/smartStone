@@ -4,17 +4,21 @@ dataManager.init();
 // console.log(dataManager.P);
 // dataManager.Min(dataManager.P());
 
-dataManager.Push(dataManager.WiGe(), 10);
-dataManager.Push(dataManager.WiGe(), 20);
-dataManager.Push(dataManager.WiGe(), 30);
-dataManager.Push(dataManager.WiGe(), 40);
-dataManager.Push(dataManager.WiGe(), 50);
+dataManager.Push(dataManager.WiGe(), 10, dataManager.WiRi(), 301);
+dataManager.Push(dataManager.WiGe(), 20, dataManager.WiRi(),302);
+dataManager.Push(dataManager.WiGe(), 30, dataManager.WiRi(),303);
+dataManager.Push(dataManager.WiGe(), 40, dataManager.WiRi(),304);
+dataManager.Push(dataManager.WiGe(), 50, dataManager.WiRi(),305);
 
-console.log(dataManager.Min(dataManager.WiGe()));
-console.log(dataManager.Max(dataManager.WiGe()));
+//console.log(dataManager.Min(dataManager.WiGe()));
+// console.log(dataManager.Max(dataManager.WiGe()));
+//console.log(dataManager.WiGe().length);
+// console.log(dataManager.WiRi());
 
-console.log(dataManager.WiGe().length);
-
+var retVal = dataManager.Get();
+console.log(retVal.wige+" @"+retVal.wiri);
+// console.log(retVal.idx);
+// console.log(retVal.wiri);
 
 // var Notifier = require("./telegramNotify.js");
 // var notify = new Notifier();
