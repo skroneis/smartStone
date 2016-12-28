@@ -1,15 +1,33 @@
+var dataManager = require("./dataManager");
+
+dataManager.init();
+// console.log(dataManager.P);
+// dataManager.Min(dataManager.P());
+
+dataManager.Push(dataManager.WiGe(), 10);
+dataManager.Push(dataManager.WiGe(), 20);
+dataManager.Push(dataManager.WiGe(), 30);
+dataManager.Push(dataManager.WiGe(), 40);
+dataManager.Push(dataManager.WiGe(), 50);
+
+console.log(dataManager.Min(dataManager.WiGe()));
+console.log(dataManager.Max(dataManager.WiGe()));
+
+console.log(dataManager.WiGe().length);
+
+
 // var Notifier = require("./telegramNotify.js");
 // var notify = new Notifier();
 // notify.notifyHtml("Hello World! 1<i>BOLD!!!</i>");
 
-var ScheduledNotifier = require("./scheduledNotifyer.js");
-var scheduledNotifier = new ScheduledNotifier();
+// var ScheduledNotifier = require("./scheduledNotifyer.js");
+// var scheduledNotifier = new ScheduledNotifier();
 
-var actuals = {
-	temp: 12.3
-};
+// var actuals = {
+// 	temp: 12.3
+// };
 
-scheduledNotifier.init(actuals);
+// scheduledNotifier.init(actuals);
 
 // actuals.temp = 15.5;
 // scheduledNotifier.send();

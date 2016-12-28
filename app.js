@@ -34,6 +34,8 @@ var notify = new Notifier();
 // var lirc_node = require('lirc_node');
 // lirc_node.init();
 
+var dataManager = require("./dataManager");
+
 //config
 var config = require('./config');
 
