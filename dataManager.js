@@ -3,6 +3,7 @@
 // =======================
 var express = require('express');
 var dateFormat = require('dateformat');
+const arrayLength = 1800;//1800 ~ 1h
 // var p = [35, 2, 65, 7, 8, 9, 12, 121, 33, 99];
 var WiGe = [];
 var WiRi = [];
@@ -22,15 +23,15 @@ var modules = module.exports = {
         arrayWiGe.push(parseFloat(valueWiGe));
         arrayWiRi.push(parseFloat(valueWiRi));
         Timestamps.push(Date.now());
-        if (arrayWiGe.length > 1800) {   //1800 ~ 1h
+        if (arrayWiGe.length > arrayLength) {
             arrayWiGe.shift();
             // console.log("remove (%s)", arrayWiGe.length);
         }
-        if (arrayWiRi.length > 1800) {   //1800 ~ 1h
+        if (arrayWiRi.length > arrayLength) {
             arrayWiRi.shift();
             // console.log("remove (%s)", arrayWiRi.length);
         }
-        if (Timestamps.length > 1800) {
+        if (Timestamps.length > arrayLength) {
             Timestamps.shift();
             // console.log("remove (%s)", Timestamps.length);
         }
@@ -58,11 +59,13 @@ var modules = module.exports = {
             wige: WiGe.max(),
             lengthWiGe: WiGe.length,
             lengthWiRi: WiRi.length,
-            wiGeMaxAt: dateFormat(Timestamps[idx], "dddd, mmmm dS, yyyy, h:MM:ss TT"),
+            wiGeMaxAt: dateFormat(Timestamps[idx], "isoDateTime"),
+            wiGeMaxAtStr: dateFormat(Timestamps[idx], "dddd, mmmm dS, yyyy, h:MM:ss TT"),
             lengthTimestamps: Timestamps.length,
             wigeMin: WiGe.min(),
             wiriMin: WiRi[idx_min],
-            wiGeMinAt: dateFormat(Timestamps[idx_min], "dddd, mmmm dS, yyyy, h:MM:ss TT")
+            wiGeMinAt: dateFormat(Timestamps[idx_min], "isoDateTime"),
+            wiGeMinAtStr: dateFormat(Timestamps[idx_min], "dddd, mmmm dS, yyyy, h:MM:ss TT")
         };
     }
 };

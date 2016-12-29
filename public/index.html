@@ -122,7 +122,19 @@
 							<span>WiRi <b>{{infos.KRO.wiRi| number:0}}</b>Grad&nbsp;(<b>{{infos.KRO.wiRiStr}}</b>)</span>
 						</div>
 						<div class="col-sm-2">
-							<span>@{{infos.KRO.dateTime| date:'dd.MM.yyyy HH:mm:ss'}}</span>
+							<span>WiGeMax <b>{{infos.KRO.nodeWiGeMax}}</b>km/h @<b>{{infos.KRO.nodeWiGeWiRiMax}}</b>Grad</span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-3">
+							<span>WiGeMin <b>{{infos.KRO.nodeWiGeMin}}</b>km/h @<b>{{infos.KRO.nodeWiGeWiRiMin}}</b>Grad</span>
+						</div>
+						<div class="col-sm-2">
+							<span>WiGeMaxAt <b>{{infos.KRO.wiGeMaxAt}}</b></span>
+						</div>
+						<div class="col-sm-2">
+							<span>WiGeMinAt <b>{{infos.KRO.wiGeMinAt}}</b></span>
 						</div>
 					</div>
 				</div>
@@ -148,7 +160,7 @@
                 <img height="16" src="./images/loading.gif" alt="loading">
             </div>-->
 			<div class="pull-right"> 
-				Version: 1.0.5
+				Version: 1.0.6
 			</div>
 		</div>
 	</footer>
