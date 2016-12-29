@@ -18,3 +18,15 @@
 .panel{
     margin-bottom: 0;
 }
+
+.in{
+    color: red;
+}
+
+.out{
+    color: blue;
+}
+
+.page-header {
+    border-bottom: 0;
+}

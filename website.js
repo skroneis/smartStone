@@ -77,7 +77,7 @@ apiRoutes.get('/getData', function (req, res, next) {
 //TEST
 apiRoutes.get('/test', function (req, res, next) {
     try {
-        res.json({ temp: actuals.temp, success: true });
+        res.json({ temp: actuals.KRO.temp, success: true });
     }
     catch (e) {
         console.log(e);

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" ng-app="main">
+
+<head>
+    <meta charset="utf-8" />
+    <title>smartStone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/custom.css" />
+    <!--https://www.bootstrapcdn.com/-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="./icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="./icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./icons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="./icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="./icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="./icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="./icons/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon-180x180.png" />
+</head>
+
+<body>
+    <div ng-controller="stoneController" ng-init="init()" ng-cloak>
+        <div class="container">
+            <div class="page-header" id="banner">
+                <div class="row">
+                    <pre>{{infos | json}}</pre>
+                </div>
+            </div>
+            <!--<div ng-show="isLoading" class="pull-right spinner"><img src="./images/spinner.gif" alt="loading"></div>-->
+        </div>        
+    </div>
+
+    <!--footer-->
+    <footer>
+        <div class="container">
+            <span class="pull-left">
+            
+            </span>
+            <div class="pull-right">
+               
+            </div>
+        </div>
+    </footer>
+
+    <!-- JQuery -->
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+        crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-touch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap.min.js"></script>
+
+    <!--bootbox.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+
+    <script>
+        window.MyApp = {};
+        MyApp.rootPath = '/';
+    </script>
+
+<script src="./App/app.js"></script>
+<script src="./App/stone.js"></script>
+
+<!-- Page specific scripts -->
+<script>
+    //main functions (MVC)
+    $(document).ready(function () {
+        console.log("document ready...");
+    });
+</script>
+</body>
+
+</html>
