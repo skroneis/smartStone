@@ -18,12 +18,13 @@
   ],
   "author": "Stefan Kroneis",
   "license": "GPL-3.0",
-  "bugs": { 
-     "url": "https://github.com/skroneis/smartStone/issues" 
-   },
+  "bugs": {
+    "url": "https://github.com/skroneis/smartStone/issues"
+  },
   "homepage": "https://github.com/skroneis/smartStone#readme",
   "dependencies": {
     "async": "^2.1.2",
+    "dateformat": "^2.0.0",
     "dgram": "^1.0.1",
     "express": "^4.14.0",
     "lcdi2c": "^1.0.6",
