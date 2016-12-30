@@ -1,4 +1,4 @@
-var dataManager = require("./dataManager");
+/*var dataManager = require("./dataManager");
 
 dataManager.init();
 // console.log(dataManager.P);
@@ -17,7 +17,13 @@ dataManager.Push(dataManager.WiGe(), 11.60, dataManager.WiRi(), 101.29);
 // console.log(dataManager.WiRi());
 
 var retVal = dataManager.Get();
-console.log(retVal.wige + " @" + retVal.wiri + " --> " + retVal.wiGeMaxAt);
+console.log(retVal.wige + " @" + retVal.wiri + " --> " + retVal.wiGeMaxAt);*/
+
+//LCD-library
+// var LCD = require("./lcd.js");
+// var lcd = new LCD(); lcd.init();
+// console.log(lcd.getTelegramMessage(actuals));
+
 // console.log(retVal.idx);
 // console.log(retVal.wiri);
 

@@ -220,7 +220,7 @@ var irCallback = function (data) {
 		// console.log("KEY_MENU");
 		// console.log(actuals.KRO.temp);
 		gpioStone.flash(gpioStone.LED_GREEN);
-		notify.notify("Temp: " + actuals.KRO.temp);
+		notify.notify(lcd.getTelegramMessage(actuals));
 	}
 };
 
