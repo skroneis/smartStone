@@ -2,6 +2,9 @@ var schedule = require('node-schedule');
 var Notifier = require("./telegramNotify.js");
 var notify = new Notifier();
 
+//data manager
+var dataManager = require("./dataManager");
+
 exports = module.exports = ScheduledNotifyer;
 var self = null;
 var actuals = null;
@@ -15,14 +18,15 @@ function ScheduledNotifyer() {
 
 ScheduledNotifyer.prototype.init = function (data) {
     actuals = data;
+    dataManager.init(actuals);
     // console.log("~~~~~~~~~~~~~~~~~~ " + actuals.KRO.temp);
     // notify.notifyHtml("Guten Morgen!\nTemp: " + actuals.KRO.temp);
 };
 
 
 schedule.scheduleJob('30 7 * * *', function () {
-    notify.notifyHtml("Guten Morgen!\nTemp: " + actuals.KRO.temp);
-    console.log("scheduleJob ~~~~~~~~~~~~~~~~~~ " + actuals.KRO.temp);
+    notify.notifyHtml(dataManager.GetTelegramMessage());
+    // console.log("scheduleJob ~~~~~~~~~~~~~~~~~~ " + actuals.KRO.temp);
 });
 
 

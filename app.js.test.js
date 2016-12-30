@@ -1,5 +1,6 @@
-/*var dataManager = require("./dataManager");
+var dataManager = require("./dataManager");
 
+/*
 dataManager.init();
 // console.log(dataManager.P);
 // dataManager.Min(dataManager.P());
@@ -18,11 +19,34 @@ dataManager.Push(dataManager.WiGe(), 11.60, dataManager.WiRi(), 101.29);
 
 var retVal = dataManager.Get();
 console.log(retVal.wige + " @" + retVal.wiri + " --> " + retVal.wiGeMaxAt);*/
-
-//LCD-library
-// var LCD = require("./lcd.js");
-// var lcd = new LCD(); lcd.init();
-// console.log(lcd.getTelegramMessage(actuals));
+var actuals = {
+	IN: {
+		temp: " - ",
+		co2: " - ",
+		humidity: " - ",
+		pressure: " - "
+	},
+	OUT: {
+		temp: " - ",
+		humidity: " - "
+	},
+	KRO: {
+		dateTime: "",
+		temp: " - ",
+		wiGe: " - ",
+		wiRi: " - ",
+		wiRiStr: " - ",
+		wiGeMax: " - ",
+		wiRiWiGeMax: " - ",
+		reference: " - "
+	},
+	page: 1
+	//   greeting: function () {
+	//     return "Hello " + this.name + ".  Wow, you are " + this.age + " years old.";
+	//   }
+};
+dataManager.init(actuals);
+console.log(dataManager.GetTelegramMessage());
 
 // console.log(retVal.idx);
 // console.log(retVal.wiri);

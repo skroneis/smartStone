@@ -34,6 +34,7 @@ var notify = new Notifier();
 // var lirc_node = require('lirc_node');
 // lirc_node.init();
 
+//Data-Manager
 var dataManager = require("./dataManager");
 
 //config
@@ -70,7 +71,7 @@ var actuals = {
 };
 //init angular values...
 //http.update(actuals);
-dataManager.init();
+dataManager.init(actuals);
 http.init(actuals);
 scheduledNotifier.init(actuals);
 // lcd.setData(actuals);
@@ -220,7 +221,7 @@ var irCallback = function (data) {
 		// console.log("KEY_MENU");
 		// console.log(actuals.KRO.temp);
 		gpioStone.flash(gpioStone.LED_GREEN);
-		notify.notify(lcd.getTelegramMessage(actuals));
+		notify.notify(dataManager.GetTelegramMessage());
 	}
 };
 

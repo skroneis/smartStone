@@ -8,9 +8,11 @@ const arrayLength = 1800;//1800 ~ 1h
 var WiGe = [];
 var WiRi = [];
 var Timestamps = [];
+var actuals = null;
 //init values (actual)
 var modules = module.exports = {
-    init: function () {
+    init: function (values) {
+        actuals = values;
         console.log("constructor - Data-Manager...");
     },
     Min: function (arr) {
@@ -67,6 +69,10 @@ var modules = module.exports = {
             wiGeMinAt: dateFormat(Timestamps[idx_min], "isoDateTime"),
             wiGeMinAtStr: dateFormat(Timestamps[idx_min], "dddd, mmmm dS, yyyy, h:MM:ss TT")
         };
+    },
+    GetTelegramMessage: function() {
+        //console.log("getTelegramMessage...");
+        return "Guten Morgen!\n" + "Temp " + actuals.KRO.temp + "°C" + "\n" + "Wind: " + getFormattedDataFixed(actuals.KRO.nodeWiGeMax, 0) + '@' + getFormattedDataFixed(actuals.KRO.nodeWiGeWiRiMax, 0);;
     }
 };
 
@@ -79,3 +85,10 @@ Array.prototype.min = function () {
     return Math.min.apply(null, this);
 };
 
+var getFormattedDataFixed = function (str, decimal) {
+    var numTempIn = new Number(str);
+    var numStr = numTempIn.toFixed(decimal);
+    if (numStr == "NaN")
+        numStr = "";
+    return numStr;
+};

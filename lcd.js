@@ -116,10 +116,7 @@ var lines = {
             id: 4,
             content: ""
         }
-    ],
-    getTelegramMessage: function (data) {
-        return 
-    }
+    ]
 };
 
 //constructor
@@ -128,7 +125,6 @@ function LCDStone() {
     self = this;
 };
 
-
 //init
 LCDStone.prototype.init = function () {
     console.log("initializing LCD...");
@@ -136,10 +132,7 @@ LCDStone.prototype.init = function () {
     lcd.on();
 };
 
-LCDStone.prototype.getTelegramMessage = function(data) {
-    return lines.getTelegramMessage(data);
-};
-
+//st data
 LCDStone.prototype.setData = function (data) {
     // console.log("setLCDData...");
     // console.log(data.IN.temp);
