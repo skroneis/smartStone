@@ -3,12 +3,25 @@
 // =======================
 var express = require('express');
 var dateFormat = require('dateformat');
-const arrayLength = 1800;//1800 ~ 1h
+var schedule = require('node-schedule');
+const arrayLength = 720;    //720 ~ 1h/5sec
 // var p = [35, 2, 65, 7, 8, 9, 12, 121, 33, 99];
 var WiGe = [];
 var WiRi = [];
 var Timestamps = [];
 var actuals = null;
+
+//temp
+// var maxTempIn;
+// var maxTempInAt;
+// var minTempIn;
+// var minTempInAt;
+
+// var maxTempOut;
+// var maxTempOutAt;
+// var minTempOut;
+// var minTempOutAt;
+
 //init values (actual)
 var modules = module.exports = {
     init: function (values) {
@@ -70,9 +83,35 @@ var modules = module.exports = {
             wiGeMinAtStr: dateFormat(Timestamps[idx_min], "dddd, mmmm dS, yyyy, h:MM:ss TT")
         };
     },
-    GetTelegramMessage: function() {
+    GetTelegramMessage: function () {
         //console.log("getTelegramMessage...");
         return "Guten Morgen!\n" + "Temp " + actuals.KRO.temp + "°C" + "\n" + "Wind: " + getFormattedDataFixed(actuals.KRO.nodeWiGeMax, 0) + '@' + getFormattedDataFixed(actuals.KRO.nodeWiGeWiRiMax, 0);;
+    },
+    ResetMaxMinValues: function () {
+        actuals.CLAC.maxTempIn = -99;
+        actuals.CLAC.minTempIn = 100;
+        actuals.CLAC.maxTempOut = -99;
+        actuals.CLAC.minTempOut = 100;
+    },
+    SaveMinMaxValues: function () {
+        if (actuals == null)
+            return;
+        if (actuals.KRO.temp >= actuals.CLAC.maxTempOut) {
+            actuals.CLAC.maxTempOut = actuals.KRO.temp;
+            actuals.CLAC.maxTempOutAt = Date.now();
+        }
+        if (actuals.KRO.temp <= actuals.CLAC.minTempOut) {
+            actuals.CLAC.minTempOut = actuals.KRO.temp;
+            actuals.CLAC.minTempOutAt = Date.now();
+        }
+        if (actuals.IN.temp >= actuals.CLAC.maxTempIn) {
+            actuals.CLAC.maxTempIn = actuals.IN.temp;
+            actuals.CLAC.maxTempInAt = Date.now();
+        }
+        if (actuals.IN.temp <= actuals.CLAC.minTempIn) {
+            actuals.CLAC.minTempIn = actuals.IN.temp;
+            actuals.CLAC.minTempInAt = Date.now();
+        }
     }
 };
 
@@ -92,3 +131,9 @@ var getFormattedDataFixed = function (str, decimal) {
         numStr = "";
     return numStr;
 };
+
+//reset values at midnight
+schedule.scheduleJob('0 0 * * *', function(){
+  ResetMaxMinValues();
+  console.log('ResetMaxMinValues...');
+});

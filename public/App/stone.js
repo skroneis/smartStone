@@ -4,7 +4,7 @@
 
     var initialize = function () {
         console.log("initialize");
-        $scope.getInfos();
+        $scope.getValues();
     }
 
     $scope.init = function () {
@@ -12,7 +12,7 @@
         initialize();
     };
 
-    $scope.getInfos = function () {
+    $scope.getValues = function () {
         //alert("getInfos");
         // console.log("getInfos");
         $scope.isLoading = true;
@@ -21,7 +21,7 @@
         // console.log(MyApp.rootPath);
         return $http.get(MyApp.rootPath + 'api/getData', null).then(function (response) {
             //console.log(response.data);
-            $scope.infos = response.data;
+            $scope.actuals = response.data;
             $scope.isLoading = false;
         },
             function errorCallback(response) {
@@ -37,6 +37,6 @@
 
     setInterval(function () {
         // console.log("get....");
-        $scope.getInfos();
+        $scope.getValues();
     }, 1000 * 5) //5 secongs...
 });
