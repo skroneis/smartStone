@@ -64,6 +64,7 @@ var actuals = {
 		wiRiWiGeMax: " - ",
 		reference: " - "
 	},
+	CALC: {},
 	page: 1
 	//   greeting: function () {
 	//     return "Hello " + this.name + ".  Wow, you are " + this.age + " years old.";
@@ -124,6 +125,17 @@ server.on('message', function (message, remote) {
 	actuals.KRO.wiGeMinAt = dataRetVal.wiGeMinAt;
 	//set values to display
 	lcd.setData(actuals);
+	//Min Max (temp)
+	dataManager.SaveMinMaxValues();
+	// var dataRetValMinMax = dataManager.SaveMinMaxValues();
+	// actuals.CALC.maxTempIn = dataRetValMinMax.maxTempIn;
+	// actuals.CALC.maxTempInAt = dataRetValMinMax.maxTempInAt;
+	// actuals.CALC.minTempIn = dataRetValMinMax.minTempIn;
+	// actuals.CALC.minTempInAt = dataRetValMinMax.minTempInAt;
+	// actuals.CALC.maxTempOut = dataRetValMinMax.maxTempOut;
+	// actuals.CALC.maxTempOutAt = dataRetValMinMax.maxTempOutAt;
+	// actuals.CALC.minTempOut = dataRetValMinMax.minTempOut;
+	// actuals.CALC.minTempOutAt = dataRetValMinMax.minTempOutAt;
 });
 server.bind(PORT);
 

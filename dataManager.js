@@ -26,6 +26,7 @@ var actuals = null;
 var modules = module.exports = {
     init: function (values) {
         actuals = values;
+        this.ResetMaxMinValues();
         console.log("constructor - Data-Manager...");
     },
     Min: function (arr) {
@@ -88,30 +89,40 @@ var modules = module.exports = {
         return "Guten Morgen!\n" + "Temp " + actuals.KRO.temp + "°C" + "\n" + "Wind: " + getFormattedDataFixed(actuals.KRO.nodeWiGeMax, 0) + '@' + getFormattedDataFixed(actuals.KRO.nodeWiGeWiRiMax, 0);;
     },
     ResetMaxMinValues: function () {
-        actuals.CLAC.maxTempIn = -99;
-        actuals.CLAC.minTempIn = 100;
-        actuals.CLAC.maxTempOut = -99;
-        actuals.CLAC.minTempOut = 100;
+        actuals.CALC.maxTempIn = -99;
+        actuals.CALC.minTempIn = 100;
+        actuals.CALC.maxTempOut = -99;
+        actuals.CALC.minTempOut = 100;
     },
     SaveMinMaxValues: function () {
         if (actuals == null)
             return;
-        if (actuals.KRO.temp >= actuals.CLAC.maxTempOut) {
-            actuals.CLAC.maxTempOut = actuals.KRO.temp;
-            actuals.CLAC.maxTempOutAt = Date.now();
+        if (actuals.KRO.temp >= actuals.CALC.maxTempOut) {
+            actuals.CALC.maxTempOut = actuals.KRO.temp;
+            actuals.CALC.maxTempOutAt = Date.now();
         }
-        if (actuals.KRO.temp <= actuals.CLAC.minTempOut) {
-            actuals.CLAC.minTempOut = actuals.KRO.temp;
-            actuals.CLAC.minTempOutAt = Date.now();
+        if (actuals.KRO.temp <= actuals.CALC.minTempOut) {
+            actuals.CALC.minTempOut = actuals.KRO.temp;
+            actuals.CALC.minTempOutAt = Date.now();
         }
-        if (actuals.IN.temp >= actuals.CLAC.maxTempIn) {
-            actuals.CLAC.maxTempIn = actuals.IN.temp;
-            actuals.CLAC.maxTempInAt = Date.now();
+        if (actuals.IN.temp >= actuals.CALC.maxTempIn) {
+            actuals.CALC.maxTempIn = actuals.IN.temp;
+            actuals.CALC.maxTempInAt = Date.now();
         }
-        if (actuals.IN.temp <= actuals.CLAC.minTempIn) {
-            actuals.CLAC.minTempIn = actuals.IN.temp;
-            actuals.CLAC.minTempInAt = Date.now();
+        if (actuals.IN.temp <= actuals.CALC.minTempIn) {
+            actuals.CALC.minTempIn = actuals.IN.temp;
+            actuals.CALC.minTempInAt = Date.now();
         }
+        //  return {
+        //     maxTempIn: maxTempIn,
+        //     maxTempInAt: dateFormat(maxTempInAt, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
+        //     minTempIn: minTempIn,
+        //     minTempInAt: dateFormat(minTempInAt, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
+        //     maxTempOut: maxTempOut,
+        //     maxTempOutAt: dateFormat(maxTempOutAt, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
+        //     minTempOut: minTempOut,
+        //     minTempOutAt: dateFormat(minTempOutAt, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
+        // };
     }
 };
 
