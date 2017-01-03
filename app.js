@@ -45,24 +45,24 @@ var config = require('./config');
 // =============================
 var actuals = {
 	IN: {
-		temp: " - ",
-		co2: " - ",
-		humidity: " - ",
-		pressure: " - "
+		// temp: " - ",
+		// co2: " - ",
+		// humidity: " - ",
+		// pressure: " - "
 	},
 	OUT: {
-		temp: " - ",
-		humidity: " - "
+		// temp: " - ",
+		// humidity: " - "
 	},
 	KRO: {
-		dateTime: "",
-		temp: " - ",
-		wiGe: " - ",
-		wiRi: " - ",
-		wiRiStr: " - ",
-		wiGeMax: " - ",
-		wiRiWiGeMax: " - ",
-		reference: " - "
+		// dateTime: "",
+		// temp: " - ",
+		// wiGe: " - ",
+		// wiRi: " - ",
+		// wiRiStr: " - ",
+		// wiGeMax: " - ",
+		// wiRiWiGeMax: " - ",
+		// reference: " - "
 	},
 	CALC: {},
 	page: 1
@@ -111,18 +111,19 @@ server.on('message', function (message, remote) {
 
 	//call data manager
 	dataManager.Push(dataManager.WiGe(), actuals.KRO.wiGe, dataManager.WiRi(), actuals.KRO.wiRi);
-	var dataRetVal = dataManager.Get();
-	actuals.KRO.nodeWiGeMax = dataRetVal.wige;
-	actuals.KRO.nodeWiGeWiRiMax = dataRetVal.wiri;
-	actuals.KRO.nodeWiGeWiRiMaxStr = lcd.getCardinal(new Number(dataRetVal.wiri));
-	actuals.KRO.lengthWiGe = dataRetVal.lengthWiGe;
-	actuals.KRO.lengthWiRi = dataRetVal.lengthWiRi;
-	actuals.KRO.lengthTimestamps = dataRetVal.lengthTimestamps;
-	actuals.KRO.wiGeMaxAt = dataRetVal.wiGeMaxAt;
-	actuals.KRO.nodeWiGeMin = dataRetVal.wigeMin;
-	actuals.KRO.nodeWiGeWiRiMin = dataRetVal.wiriMin;
-	actuals.KRO.nodeWiGeWiRiMinStr = lcd.getCardinal(new Number(dataRetVal.wiriMin));
-	actuals.KRO.wiGeMinAt = dataRetVal.wiGeMinAt;
+	dataManager.Get();
+	//var dataRetVal = dataManager.Get();
+	// actuals.KRO.nodeWiGeMax = dataRetVal.wige;
+	// actuals.KRO.nodeWiGeWiRiMax = dataRetVal.wiri;
+	// actuals.KRO.nodeWiGeWiRiMaxStr = lcd.getCardinal(new Number(dataRetVal.wiri));
+	// actuals.KRO.lengthWiGe = dataRetVal.lengthWiGe;
+	// actuals.KRO.lengthWiRi = dataRetVal.lengthWiRi;
+	// actuals.KRO.lengthTimestamps = dataRetVal.lengthTimestamps;
+	// actuals.KRO.wiGeMaxAt = dataRetVal.wiGeMaxAt;
+	// actuals.KRO.nodeWiGeMin = dataRetVal.wigeMin;
+	// actuals.KRO.nodeWiGeWiRiMin = dataRetVal.wiriMin;
+	// actuals.KRO.nodeWiGeWiRiMinStr = lcd.getCardinal(new Number(dataRetVal.wiriMin));
+	// actuals.KRO.wiGeMinAt = dataRetVal.wiGeMinAt;
 	//set values to display
 	lcd.setData(actuals);
 	//Min Max (temp)
@@ -237,6 +238,7 @@ var irCallback = function (data) {
 	}
 };
 
+//IR-handlers
 ir.addListener("KEY_PLAY", irCallback);
 ir.addListener("KEY_ENTER", irCallback);
 ir.addListener("KEY_UP", irCallback);

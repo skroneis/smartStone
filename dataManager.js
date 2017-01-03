@@ -69,20 +69,19 @@ var modules = module.exports = {
         var idx_min = WiGe.lastIndexOf(WiGe.min());
         // console.log("INDEX: " + idx);
         // console.log("WiRi: " + WiRi[idx]);
-        return {
-            idx: idx,
-            wiri: WiRi[idx],
-            wige: WiGe.max(),
-            lengthWiGe: WiGe.length,
-            lengthWiRi: WiRi.length,
-            wiGeMaxAt: dateFormat(Timestamps[idx], "isoDateTime"),
-            wiGeMaxAtStr: dateFormat(Timestamps[idx], "dddd, mmmm dS, yyyy, h:MM:ss TT"),
-            lengthTimestamps: Timestamps.length,
-            wigeMin: WiGe.min(),
-            wiriMin: WiRi[idx_min],
-            wiGeMinAt: dateFormat(Timestamps[idx_min], "isoDateTime"),
-            wiGeMinAtStr: dateFormat(Timestamps[idx_min], "dddd, mmmm dS, yyyy, h:MM:ss TT")
-        };
+        actuals.KRO.nodeWiGeMax = WiGe.max();
+        actuals.KRO.nodeWiGeWiRiMax = WiRi[idx];
+        actuals.KRO.nodeWiGeWiRiMaxStr = getCardinal(new Number(WiRi[idx]));
+        actuals.KRO.lengthWiGe = WiGe.length;
+        actuals.KRO.lengthWiRi = WiRi.length;
+        actuals.KRO.lengthTimestamps = Timestamps.length;
+        actuals.KRO.wiGeMaxAt = dateFormat(Timestamps[idx], "isoDateTime");
+        actuals.KRO.wiGeMaxAtStr = dateFormat(Timestamps[idx], "dddd, mmmm dS, yyyy, h:MM:ss TT")
+        actuals.KRO.nodeWiGeMin = WiGe.min();
+        actuals.KRO.nodeWiGeWiRiMin = WiRi[idx_min];
+        actuals.KRO.nodeWiGeWiRiMinStr = getCardinal(new Number(WiRi[idx_min]));
+        actuals.KRO.wiGeMinAt = dateFormat(Timestamps[idx_min], "isoDateTime");
+        actuals.KRO.wiGeMinAtStr = dateFormat(Timestamps[idx_min], "dddd, mmmm dS, yyyy, h:MM:ss TT")        
     },
     GetTelegramMessage: function () {
         //console.log("getTelegramMessage...");
@@ -99,19 +98,23 @@ var modules = module.exports = {
             return;
         if (actuals.KRO.temp >= actuals.CALC.maxTempOut) {
             actuals.CALC.maxTempOut = actuals.KRO.temp;
-            actuals.CALC.maxTempOutAt = Date.now();
+            actuals.CALC.maxTempOutAt = dateFormat(Date.now(), "isoDateTime");
+            actuals.CALC.maxTempOutAtStr = dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
         }
         if (actuals.KRO.temp <= actuals.CALC.minTempOut) {
             actuals.CALC.minTempOut = actuals.KRO.temp;
-            actuals.CALC.minTempOutAt = Date.now();
+            actuals.CALC.minTempOutAt = dateFormat(Date.now(), "isoDateTime");
+            actuals.CALC.minTempOutAtStr = dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
         }
         if (actuals.IN.temp >= actuals.CALC.maxTempIn) {
             actuals.CALC.maxTempIn = actuals.IN.temp;
-            actuals.CALC.maxTempInAt = Date.now();
+            actuals.CALC.maxTempInAt = dateFormat(Date.now(), "isoDateTime");
+            actuals.CALC.maxTempInAtStr = dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
         }
         if (actuals.IN.temp <= actuals.CALC.minTempIn) {
             actuals.CALC.minTempIn = actuals.IN.temp;
-            actuals.CALC.minTempInAt = Date.now();
+            actuals.CALC.minTempInAt = dateFormat(Date.now(), "isoDateTime");
+            actuals.CALC.minTempInAtStr = dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
         }
         //  return {
         //     maxTempIn: maxTempIn,
@@ -143,8 +146,16 @@ var getFormattedDataFixed = function (str, decimal) {
     return numStr;
 };
 
+
+//var getCardinal = function (degrees)
+var getCardinal = function(degrees) {
+    var caridnals = ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"];
+    var idx = Math.round((degrees % 360) / 45);
+    return caridnals[idx];
+};
+
 //reset values at midnight
-schedule.scheduleJob('0 0 * * *', function(){
-  ResetMaxMinValues();
-  console.log('ResetMaxMinValues...');
+schedule.scheduleJob('0 0 * * *', function () {
+    ResetMaxMinValues();
+    console.log('ResetMaxMinValues...');
 });
