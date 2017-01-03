@@ -7,3 +7,4 @@ This project provides a simple Node.js home automation library for the Raspberry
 - ToDo...
 - 
 
+:fa-thumbs-up:
