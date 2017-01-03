@@ -1,214 +1,205 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" ng-app="main">
-
 <head>
-	<meta charset="utf-8" />
-	<title>smartStone</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<!-- Latest compiled and minified CSS -->
-	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" />
-	<link rel="stylesheet" href="./css/custom.css" />
-	<!--https://www.bootstrapcdn.com/-->
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-	<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
-	<link rel="apple-touch-icon" sizes="57x57" href="./icons/apple-touch-icon-57x57.png" />
-	<link rel="apple-touch-icon" sizes="72x72" href="./icons/apple-touch-icon-72x72.png" />
-	<link rel="apple-touch-icon" sizes="76x76" href="./icons/apple-touch-icon-76x76.png" />
-	<link rel="apple-touch-icon" sizes="114x114" href="./icons/apple-touch-icon-114x114.png" />
-	<link rel="apple-touch-icon" sizes="120x120" href="./icons/apple-touch-icon-120x120.png" />
-	<link rel="apple-touch-icon" sizes="144x144" href="./icons/apple-touch-icon-144x144.png" />
-	<link rel="apple-touch-icon" sizes="152x152" href="./icons/apple-touch-icon-152x152.png" />
-	<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon-180x180.png" />
-
+    <meta charset="utf-8" />
+    <title>smartStone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Latest compiled and minified CSS -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/custom.css" />
+    <!--https://www.bootstrapcdn.com/-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="./icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="./icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./icons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="./icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="./icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="./icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="./icons/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon-180x180.png" />
 </head>
-
 <body>
-
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>-->
-				<a class="navbar-brand" href="./index.html">smartStone</a>
-			</div>
-			<!--<div class="navbar-collapse collapse" id="navbar-main">
-				<ul class="nav navbar-nav navbar-right">
+                <a class="navbar-brand" href="./index.html">smartStone</a>
+            </div>
+            <!--<div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav navbar-right">
                         <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a></li>
                         <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a></li>
                     </ul>
-			</div>-->
-		</div>
-	</div>
-
-	<div ng-controller="stoneController" ng-init="init()" ng-cloak>
-		<div class="container">
-			<div class="page-header" id="banner">
-				<div class="row">
-					<!--<div class="col-lg-8 col-md-7 col-sm-6">
-						<h1>todo...</h1>
-						<p class="lead">todo...</p>
-					</div>-->
-				</div>
-			</div>
-		</div>
-
-		<!--<pre>{{isLoading}}</pre>-->
-		<!--<pre>{{infos | json}}</pre>-->
-		<div class="container">
-			<!--<div class="well bs-component" ng-show="isLoading">
-				<span><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>&nbsp;&nbsp;Bitte warten...</span>
-			</div>-->
-			<!--<div class="well bs-component" ng-show="isLoading">
+            </div>-->
+        </div>
+    </div>
+    <div ng-controller="stoneController" ng-init="init()" ng-cloak>
+        <div class="container">
+            <div class="page-header" id="banner">
+                <div class="row">
+                    <!--<div class="col-lg-8 col-md-7 col-sm-6">
+                        <h1>todo...</h1>
+                        <p class="lead">todo...</p>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <!--<pre>{{isLoading}}</pre>-->
+        <!--<pre>{{infos | json}}</pre>-->
+        <div class="container">
+            <!--<div class="well bs-component" ng-show="isLoading">
+                <span><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>&nbsp;&nbsp;Bitte warten...</span>
+            </div>-->
+            <!--<div class="well bs-component" ng-show="isLoading">
                     <div class="row">
                         <div class="col-lg-7">
                             <span>{{infos.Temp}}</span>
                         </div>
                     </div>
                 </div>-->
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title">Wetterdaten (smartStone)</h3>
-				</div>
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-sm-3">
-							<span><i class="fa fa-thermometer-half" aria-hidden="true"></i>&nbsp;<span class="out">Temp<sub>OUT</sub></span> <b>{{actuals.KRO.temp}}</b>°C</span>
-						</div>
-						<div class="col-sm-2">
-							<span><i class="fa fa-thermometer-half" aria-hidden="true"></i>&nbsp;<span class="in">Temp<sub>IN</sub></span> <b>{{actuals.IN.temp}}</b>°C</span>
-						</div>
-						<!--<div class="col-sm-8">
-							<span ng-show="isLoading" class="pull-right" style="height: 10px;"><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i></span>
-						</div>-->
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<span>CO<sub>2</sub> <b>{{actuals.IN.co2}}</b></span>
-						</div>
-						<div class="col-sm-3">
-							<span>Druck <b>{{actuals.IN.pressure}}</b>mbar</span>
-						</div>
-					</div>
-					
-					<div class="row row-bordered">
-						<div class="col-sm-3">
-							<span>RH<sub>IN</sub> <b>{{actuals.IN.humidity}}</b>%</span>
-						</div>
-						<div class="col-sm-2">
-							<span>RH<sub>OUT</sub> <b>{{actuals.OUT.humidity}}</b>%</span>
-						</div>
-					</div>
-
-					<div class="row row-bordered">
-						<div class="col-sm-3">
-							<span>WiGe <b>{{actuals.KRO.wiGe}}</b>km/h</span>
-						</div>
-						<div class="col-sm-2">
-							<span>WiRi <b>{{actuals.KRO.wiRi| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.wiRiStr}}</b>)</span>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-3">
-							<span>WiGeMax <b>{{actuals.KRO.nodeWiGeMax}}</b>km/h @<b>{{actuals.KRO.nodeWiGeWiRiMax| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.nodeWiGeWiRiMaxStr}}</b>)</span>
-						</div>
-						<div class="col-sm-2">
-							<span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.wiGeMaxAt | date:'HH:mm'}}</b></span>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-3">
-							<span>WiGeMin <b>{{actuals.KRO.nodeWiGeMin}}</b>km/h @<b>{{actuals.KRO.nodeWiGeWiRiMin| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.nodeWiGeWiRiMinStr}}</b>)</span>
-						</div>
-						<div class="col-sm-2">
-							<span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.wiGeMinAt | date:'HH:mm'}}</b></span>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-3">
-							<span>Max <b>{{actuals.CALC.maxTempOut}}</b>°C<b></span>
-						</div>
-						<div class="col-sm-2">
-							<span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempOutAt | date:'HH:mm'}}</b></span>
-						</div>
-					</div>
-
-					<!--maturity-->
-					<div class="row pull-right">
-						<div class="col-sm-3">
-							<span>Aktualität:&nbsp;<b>{{actuals.IN.maturity}}</b>&nbsp;min</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<ul class="nav nav-pills">
-				<li><a href="./api/test" target="_blank">api<span class="badge"></span></a> </li>
-				<li><a href="./raw.html" target="_blank">raw<span class="badge"></span></a> </li>
-				<div ng-show="isLoading" class="pull-right spinner"><img src="./images/spinner.gif" alt="loading"></div>
-			</ul>
-		</div>
-
-	</div>
-
-	<!--footer-->
-	<hr />
-	<footer>
-		<div class="container">
-			<p class="pull-left">
-				&copy;&nbsp;<span ng-controller='stoneController'>{{ getDate() |  date:"yyyy" }}</span>&nbsp;Stefan&nbsp;Kroneis &nbsp;
-				<span class="clock" ng-controller='TimeCtrl' style="float: right;" ng-cloak>{{ clock | date:'EEEE, dd.MM.yyyy HH:mm:ss'}}</span>
-
-</p>
-<!--<div id="heartbeat" Xhidden="hidden">
-                <img height="16" src="./images/loading.gif" alt="loading">
-            </div>-->
-<div class="pull-right">
-	Version: 1.0.6
-</div>
-</div>
-</footer>
-
-<!-- JQuery -->
-<script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
-	crossorigin="anonymous"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	crossorigin="anonymous"></script>
-
-<!-- Angular -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-touch.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap.min.js"></script>
-
-<!--bootbox.js-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-
-<script>
-	window.MyApp = {};
-	MyApp.rootPath = '/';
-</script>
-
-<script src="./App/app.js"></script>
-<script src="./App/stone.js"></script>
-
-<!-- Page specific scripts -->
-<script>
-	//main functions (MVC)
-	$(document).ready(function () {
-		console.log("document ready...");
-	});
-</script>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Wetterdaten (smartStone)</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <span><i class="fa fa-thermometer-half" aria-hidden="true"></i>&nbsp;<span class="out">Temp<sub>OUT</sub></span> <b>{{actuals.KRO.temp}}</b>°C</span>
+                        </div>
+                        <div class="col-sm-2">
+                            <span><i class="fa fa-thermometer-half" aria-hidden="true"></i>&nbsp;<span class="in">Temp<sub>IN</sub></span> <b>{{actuals.IN.temp}}</b>°C</span>
+                        </div>
+                        <!--<div class="col-sm-8">
+                            <span ng-show="isLoading" class="pull-right" style="height: 10px;"><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i></span>
+                        </div>-->
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <span>CO<sub>2</sub> <b>{{actuals.IN.co2}}</b></span>
+                        </div>
+                        <div class="col-sm-3">
+                            <span>Druck <b>{{actuals.IN.pressure}}</b>mbar</span>
+                        </div>
+                    </div>
+                    <div class="row row-bordered">
+                        <div class="col-sm-3">
+                            <span>RH<sub>IN</sub> <b>{{actuals.IN.humidity}}</b>%</span>
+                        </div>
+                        <div class="col-sm-2">
+                            <span>RH<sub>OUT</sub> <b>{{actuals.OUT.humidity}}</b>%</span>
+                        </div>
+                    </div>
+                    <div class="row row-bordered">
+                        <div class="col-sm-3">
+                            <span><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;WiGe <b ng-class="getWiGeClass(actuals.KRO.wiGe)">{{actuals.KRO.wiGe}}</b>km/h</span>
+                        </div>
+                        <div class="col-sm-2">
+                            <span>WiRi <b>{{actuals.KRO.wiRi| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.wiRiStr}}</b>)</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <span><i class="fa fa-paper-plane-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b ng-class="getWiGeClass(actuals.KRO.nodeWiGeMax)">{{actuals.KRO.nodeWiGeMax}}</b>km/h @<b>{{actuals.KRO.nodeWiGeWiRiMax| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.nodeWiGeWiRiMaxStr}}</b>)</span>
+                        </div>
+                        <div class="col-sm-2">
+                            <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.wiGeMaxAt | date:'HH:mm'}}</b></span>
+                        </div>
+                    </div>
+                    <div class="row row-bordered">
+                        <div class="col-sm-3">
+                            <span><i class="fa fa-paper-plane-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.nodeWiGeMin}}</b>km/h @<b>{{actuals.KRO.nodeWiGeWiRiMin| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.nodeWiGeWiRiMinStr}}</b>)</span>
+                        </div>
+                        <div class="col-sm-2">
+                            <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.wiGeMinAt | date:'HH:mm'}}</b></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <span>
+                                <i class="fa fa-thermometer-quarter" style="color: blue;" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempOut | number:1}}</b>°C
+                                <i class="fa fa-caret-down" aria-hidden="true"></i> <b>{{actuals.CALC.minTempOut| number:1}}</b>°C
+                            </span>
+                        </div>
+                        <div class="col-sm-2">
+                            <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempOutAt | date:'HH:mm'}}</b>/<b>{{actuals.CALC.minTempOutAt | date:'HH:mm'}}</b></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <span>
+                                <i class="fa fa-thermometer-full" style="color: red;" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempIn}}</b>°C
+                                <i class="fa fa-caret-down" aria-hidden="true"></i> <b>{{actuals.CALC.minTempIn}}</b>°C
+                            </span>
+                        </div>
+                        <div class="col-sm-2">
+                            <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempInAt | date:'HH:mm'}}</b>/<b>{{actuals.CALC.minTempInAt | date:'HH:mm'}}</b></span>
+                        </div>
+                    </div>
+                    <!--maturity-->
+                    <div class="row pull-right">
+                        <div class="col-sm-3">
+                            <span>Aktualität:&nbsp;<b>{{actuals.IN.maturity}}</b>&nbsp;min</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav nav-pills">
+                <li><a href="./api/test" target="_blank">api<span class="badge"></span></a> </li>
+                <li><a href="./raw.html" target="_blank">raw<span class="badge"></span></a> </li>
+                <div ng-show="isLoading" class="pull-right spinner"><img src="./images/spinner.gif" alt="loading"></div>
+            </ul>
+        </div>
+    </div>
+    <!--footer-->
+    <hr />
+    <footer>
+        <div class="container">
+            <p class="pull-left">
+                &copy;&nbsp;<span ng-controller='stoneController'>{{ getDate() |  date:"yyyy" }}</span>&nbsp;Stefan&nbsp;Kroneis &nbsp;
+                <span class="clock" ng-controller='TimeCtrl' style="float: right;" ng-cloak>{{ clock | date:'EEEE, dd.MM.yyyy HH:mm:ss'}}</span>
+            </p>
+            <!--<div id="heartbeat" Xhidden="hidden">
+                            <img height="16" src="./images/loading.gif" alt="loading">
+                        </div>-->
+            <div class="pull-right">
+                Version: 1.0.6
+            </div>
+        </div>
+    </footer>
+    <!-- JQuery -->
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+            crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-touch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap.min.js"></script>
+    <!--bootbox.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script>
+        window.MyApp = {};
+        MyApp.rootPath = '/';
+    </script>
+    <script src="./App/app.js"></script>
+    <script src="./App/stone.js"></script>
+    <!-- Page specific scripts -->
+    <script>
+        //main functions (MVC)
+        $(document).ready(function () {
+            console.log("document ready...");
+        });
+    </script>
 </body>
-
 </html>

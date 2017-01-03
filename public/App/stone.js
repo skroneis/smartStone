@@ -35,6 +35,12 @@
         return new Date();
     };
 
+    $scope.getWiGeClass = function (val) {
+        if (val > 50)
+            return "danger";
+        return null;
+    }
+
     setInterval(function () {
         // console.log("get....");
         $scope.getValues();

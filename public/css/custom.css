@@ -12,14 +12,14 @@
   display: block;
   border-bottom: 0px solid #ccc;
   margin: 0 15px;
-  margin-top: 30px;
+  margin-top: 28px;
 }
 
 .panel{
     margin-bottom: 0;
 }
 
-.in{
+.in, .danger{
     color: red;
 }
 
@@ -29,4 +29,8 @@
 
 .page-header {
     border-bottom: 0;
+}
+
+sub{
+    font-size: xx-small;
 }
