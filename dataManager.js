@@ -62,13 +62,8 @@ var modules = module.exports = {
         return WiRi;
     },
     Get: function () {
-        // console.log("-------------------- " + WiGe.max());
-        // console.log("++++++++++++++++++++++ " + WiRi);
-        // console.log("++++++++++++++++++++++ " + WiGe);
         var idx = WiGe.lastIndexOf(WiGe.max());
         var idx_min = WiGe.lastIndexOf(WiGe.min());
-        // console.log("INDEX: " + idx);
-        // console.log("WiRi: " + WiRi[idx]);
         actuals.KRO.nodeWiGeMax = WiGe.max();
         actuals.KRO.nodeWiGeWiRiMax = WiRi[idx];
         actuals.KRO.nodeWiGeWiRiMaxStr = getCardinal(new Number(WiRi[idx]));
@@ -76,12 +71,12 @@ var modules = module.exports = {
         actuals.KRO.lengthWiRi = WiRi.length;
         actuals.KRO.lengthTimestamps = Timestamps.length;
         actuals.KRO.wiGeMaxAt = dateFormat(Timestamps[idx], "isoDateTime");
-        actuals.KRO.wiGeMaxAtStr = dateFormat(Timestamps[idx], "dddd, mmmm dS, yyyy, h:MM:ss TT")
+        // actuals.KRO.wiGeMaxAtStr = dateFormat(Timestamps[idx], "dddd, mmmm dS, yyyy, h:MM:ss TT");
         actuals.KRO.nodeWiGeMin = WiGe.min();
         actuals.KRO.nodeWiGeWiRiMin = WiRi[idx_min];
         actuals.KRO.nodeWiGeWiRiMinStr = getCardinal(new Number(WiRi[idx_min]));
         actuals.KRO.wiGeMinAt = dateFormat(Timestamps[idx_min], "isoDateTime");
-        actuals.KRO.wiGeMinAtStr = dateFormat(Timestamps[idx_min], "dddd, mmmm dS, yyyy, h:MM:ss TT")
+        // actuals.KRO.wiGeMinAtStr = dateFormat(Timestamps[idx_min], "dddd, mmmm dS, yyyy, h:MM:ss TT");
     },
     GetTelegramMessage: function () {
         //console.log("getTelegramMessage...");
@@ -96,7 +91,7 @@ var modules = module.exports = {
     SaveMinMaxValues: function () {
         if (actuals == null)
             return;
-            
+
         var tempOut = parseFloat(actuals.KRO.temp);
         var tempIn = parseFloat(actuals.IN.temp);
 
@@ -108,22 +103,22 @@ var modules = module.exports = {
         if (tempOut >= actuals.CALC.maxTempOut) {
             actuals.CALC.maxTempOut = tempOut;
             actuals.CALC.maxTempOutAt = dateFormat(Date.now(), "isoDateTime");
-            actuals.CALC.maxTempOutAtStr = dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
+            // actuals.CALC.maxTempOutAtStr = dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
         }
         if (tempOut <= actuals.CALC.minTempOut) {
             actuals.CALC.minTempOut = tempOut;
             actuals.CALC.minTempOutAt = dateFormat(Date.now(), "isoDateTime");
-            actuals.CALC.minTempOutAtStr = dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
+            // actuals.CALC.minTempOutAtStr = dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
         }
         if (tempIn >= actuals.CALC.maxTempIn) {
             actuals.CALC.maxTempIn = tempIn;
             actuals.CALC.maxTempInAt = dateFormat(Date.now(), "isoDateTime");
-            actuals.CALC.maxTempInAtStr = dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
+            // actuals.CALC.maxTempInAtStr = dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
         }
         if (tempIn <= actuals.CALC.minTempIn) {
             actuals.CALC.minTempIn = tempIn;
             actuals.CALC.minTempInAt = dateFormat(Date.now(), "isoDateTime");
-            actuals.CALC.minTempInAtStr = dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
+            // actuals.CALC.minTempInAtStr = dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
         }
         //  return {
         //     maxTempIn: maxTempIn,

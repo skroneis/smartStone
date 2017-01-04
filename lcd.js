@@ -29,6 +29,7 @@ function lcdErrorHandler(err) {
 
 exports = module.exports = LCDStone;
 var self = null;
+var page = 1;
 
 /*var lines = {
     L1: "",
@@ -83,11 +84,11 @@ var lines = {
         } else if (idx == 4) {
             this._lines[idx].content = "Alter: " + data.IN.maturity;
         } else if (idx == 5) {
-            this._lines[idx].content = "Array: " + data.KRO.lengthWiGe + " " + data.KRO.lengthWiRi;
+            this._lines[idx].content = "Array: " + data.KRO.lengthWiGe + "/" + data.KRO.lengthWiRi + "/" + data.KRO.lengthTimestamps;
         } else if (idx == 6) {
-            this._lines[idx].content = "";
+            this._lines[idx].content = "Max: " + data.KRO.nodeWiGeMax + " @ " + data.KRO.nodeWiGeWiRiMaxStr;
         } else if (idx == 7) {
-            this._lines[idx].content = "";
+            this._lines[idx].content = "TempMax: " + data.CALC.maxTempOut + "/" + data.CALC.maxTempIn;
         }
 
         //TODO...
@@ -143,6 +144,7 @@ LCDStone.prototype.setData = function (data) {
     // console.log(lines.getL2() + "X");
 
     console.log("page: " + data.page);
+    self.page = data.page;
     // actuals.IN.maturity
 
     //page 1
@@ -187,19 +189,21 @@ LCDStone.prototype.setData = function (data) {
 
 // Display actual time
 var timerInterval = function () {
-    var time = moment().format('HH:mm:ss');
-    //console.log(time);
-    lcd.setCursor(11, 3);
-    lcd.print(String.fromCharCode(4))
-    lcd.print(time);
-    lcd.home();
+    //show only the time on lcd if page == 1
+    if (self.page == 1) {
+        var time = moment().format('HH:mm:ss');
+        //console.log(time);
+        lcd.setCursor(11, 3);
+        lcd.print(String.fromCharCode(4))
+        lcd.print(time);
+        lcd.home();
+    }
 }
 setInterval(timerInterval, 100)
 
 //helper
 var getFormattedData = function (str) {
     var numTempIn = new Number(str);
-    // console.log("XXXXXXXXXXXXXXXXXX" + numTempIn);
     var numStr = numTempIn.toFixed(2);
     if (numStr == "NaN")
         numStr = "";
@@ -208,7 +212,6 @@ var getFormattedData = function (str) {
 
 var getFormattedDataFixed = function (str, decimal) {
     var numTempIn = new Number(str);
-    // console.log("XXXXXXXXXXXXXXXXXX" + numTempIn);
     var numStr = numTempIn.toFixed(decimal);
     if (numStr == "NaN")
         numStr = "";
@@ -216,7 +219,7 @@ var getFormattedDataFixed = function (str, decimal) {
 };
 
 //var getCardinal = function (degrees)
-LCDStone.prototype.getCardinal = function(degrees) {
+LCDStone.prototype.getCardinal = function (degrees) {
     var caridnals = ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"];
     var idx = Math.round((degrees % 360) / 45);
     return caridnals[idx];
@@ -225,19 +228,19 @@ LCDStone.prototype.getCardinal = function(degrees) {
 
 //schedul LCD
 //schedule - display backlight off
-schedule.scheduleJob('0 23 * * *', function(){
-  lcd.off();
-  console.log('display off!');
+schedule.scheduleJob('0 23 * * *', function () {
+    lcd.off();
+    console.log('display off!');
 });
-schedule.scheduleJob('30 6 * * *', function(){
-  lcd.on();
-  console.log('display on!');
+schedule.scheduleJob('30 6 * * *', function () {
+    lcd.on();
+    console.log('display on!');
 });
-schedule.scheduleJob('0 9 * * 1-5', function(){
-  //lcd.off();
-  console.log('display off!');
+schedule.scheduleJob('0 9 * * 1-5', function () {
+    //lcd.off();
+    console.log('display off!');
 });
-schedule.scheduleJob('0 17 * * 1-5', function(){
-  lcd.on();
-  console.log('display on!');
+schedule.scheduleJob('0 17 * * 1-5', function () {
+    lcd.on();
+    console.log('display on!');
 });
