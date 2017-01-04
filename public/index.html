@@ -73,10 +73,10 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-3">
-                            <span><i class="fa fa-thermometer-half" aria-hidden="true"></i>&nbsp;<span class="out">Temp<sub>OUT</sub></span> <b>{{actuals.KRO.temp}}</b>°C</span>
+                            <span><i class="fa fa-thermometer-half" aria-hidden="true"></i>&nbsp;<span class="out">Temp<sub>OUT</sub></span> <b>{{actuals.KRO.temp| number:2}}</b>°C</span>
                         </div>
                         <div class="col-sm-2">
-                            <span><i class="fa fa-thermometer-half" aria-hidden="true"></i>&nbsp;<span class="in">Temp<sub>IN</sub></span> <b>{{actuals.IN.temp}}</b>°C</span>
+                            <span><i class="fa fa-thermometer-half" aria-hidden="true"></i>&nbsp;<span class="in">Temp<sub>IN</sub></span> <b>{{actuals.IN.temp| number:2}}</b>°C</span>
                         </div>
                         <!--<div class="col-sm-8">
                             <span ng-show="isLoading" class="pull-right" style="height: 10px;"><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i></span>
@@ -87,7 +87,7 @@
                             <span>CO<sub>2</sub> <b>{{actuals.IN.co2}}</b></span>
                         </div>
                         <div class="col-sm-3">
-                            <span>Druck <b>{{actuals.IN.pressure}}</b>mbar</span>
+                            <span>Druck <b>{{actuals.IN.pressure| number:1}}</b>mbar</span>
                         </div>
                     </div>
                     <div class="row row-bordered">
@@ -100,7 +100,7 @@
                     </div>
                     <div class="row row-bordered">
                         <div class="col-sm-3">
-                            <span><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;WiGe <b ng-class="getWiGeClass(actuals.KRO.wiGe)">{{actuals.KRO.wiGe}}</b>km/h</span>
+                            <span><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;WiGe <b ng-class="getWiGeClass(actuals.KRO.wiGe)">{{actuals.KRO.wiGe| number:2}}</b>km/h</span>
                         </div>
                         <div class="col-sm-2">
                             <span>WiRi <b>{{actuals.KRO.wiRi| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.wiRiStr}}</b>)</span>
@@ -108,7 +108,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
-                            <span><i class="fa fa-paper-plane-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b ng-class="getWiGeClass(actuals.KRO.nodeWiGeMax)">{{actuals.KRO.nodeWiGeMax}}</b>km/h @<b>{{actuals.KRO.nodeWiGeWiRiMax| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.nodeWiGeWiRiMaxStr}}</b>)</span>
+                            <span><i class="fa fa-paper-plane-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b ng-class="getWiGeClass(actuals.KRO.nodeWiGeMax)">{{actuals.KRO.nodeWiGeMax| number:2}}</b>km/h @<b>{{actuals.KRO.nodeWiGeWiRiMax| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.nodeWiGeWiRiMaxStr}}</b>)</span>
                         </div>
                         <div class="col-sm-2">
                             <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.wiGeMaxAt | date:'HH:mm'}}</b></span>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="row row-bordered">
                         <div class="col-sm-3">
-                            <span><i class="fa fa-paper-plane-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.nodeWiGeMin}}</b>km/h @<b>{{actuals.KRO.nodeWiGeWiRiMin| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.nodeWiGeWiRiMinStr}}</b>)</span>
+                            <span><i class="fa fa-paper-plane-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.nodeWiGeMin| number:2}}</b>km/h @<b>{{actuals.KRO.nodeWiGeWiRiMin| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.nodeWiGeWiRiMinStr}}</b>)</span>
                         </div>
                         <div class="col-sm-2">
                             <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.wiGeMinAt | date:'HH:mm'}}</b></span>
@@ -136,8 +136,8 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <span>
-                                <i class="fa fa-thermometer-full" style="color: red;" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempIn}}</b>°C
-                                <i class="fa fa-caret-down" aria-hidden="true"></i> <b>{{actuals.CALC.minTempIn}}</b>°C
+                                <i class="fa fa-thermometer-full" style="color: red;" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempIn| number:1}}</b>°C
+                                <i class="fa fa-caret-down" aria-hidden="true"></i> <b>{{actuals.CALC.minTempIn| number:1}}</b>°C
                             </span>
                         </div>
                         <div class="col-sm-2">

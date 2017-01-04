@@ -1,3 +1,13 @@
+/*var tempOut = parseFloat("1#");
+if (tempOut instanceof Error) {
+	console.log("ERROR!!!");
+}
+
+if (isNaN(tempOut))
+	console.log("isNaN!!!");
+
+console.log(tempOut);*/
+
 var dataManager = require("./dataManager");
 
 /*
@@ -19,7 +29,7 @@ dataManager.Push(dataManager.WiGe(), 11.60, dataManager.WiRi(), 101.29);
 
 var retVal = dataManager.Get();
 console.log(retVal.wige + " @" + retVal.wiri + " --> " + retVal.wiGeMaxAt);*/
-var actuals = {
+/*var actuals = {
 	IN: {
 		temp: " - ",
 		co2: " - ",
@@ -46,7 +56,7 @@ var actuals = {
 	//   }
 };
 dataManager.init(actuals);
-console.log(dataManager.GetTelegramMessage());
+console.log(dataManager.GetTelegramMessage());*/
 
 // console.log(retVal.idx);
 // console.log(retVal.wiri);
