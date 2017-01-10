@@ -159,7 +159,7 @@ var getCardinal = function (degrees) {
 };
 
 //reset values at midnight
-schedule.scheduleJob('0 0 * * *', function () {
+schedule.scheduleJob('0 23 * * *', function () {
     ResetMaxMinValues();
     console.log('ResetMaxMinValues...');
 });
