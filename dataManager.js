@@ -10,7 +10,7 @@ var WiGe = [];
 var WiRi = [];
 var Timestamps = [];
 var actuals = null;
-
+var self = null;
 //temp
 // var maxTempIn;
 // var maxTempInAt;
@@ -28,6 +28,7 @@ var modules = module.exports = {
         actuals = values;
         this.ResetMaxMinValues();
         console.log("constructor - Data-Manager...");
+        self = this;
     },
     Min: function (arr) {
         return arr.min();
@@ -87,6 +88,7 @@ var modules = module.exports = {
         actuals.CALC.minTempIn = 100;
         actuals.CALC.maxTempOut = -99;
         actuals.CALC.minTempOut = 100;
+        console.log("ResetMaxMinValues OK!");
     },
     SaveMinMaxValues: function () {
         if (actuals == null)
@@ -159,7 +161,6 @@ var getCardinal = function (degrees) {
 };
 
 //reset values at midnight
-schedule.scheduleJob('0 23 * * *', function () {
-    this.ResetMaxMinValues();
-    console.log('ResetMaxMinValues...');
+schedule.scheduleJob('59 23 * * *', function () {
+    self.ResetMaxMinValues();
 });
