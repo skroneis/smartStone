@@ -5,6 +5,9 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 
+//Data-Manager
+var dataManager = require("./dataManager");
+
 //LED
 var GpioStone = require('./gpio_stone');
 var gpioStone = new GpioStone();
@@ -78,6 +81,18 @@ apiRoutes.get('/getData', function (req, res, next) {
 apiRoutes.get('/test', function (req, res, next) {
     try {
         res.json({ temp: actuals.KRO.temp, success: true });
+    }
+    catch (e) {
+        console.log(e);
+        return next(e);
+    }
+});
+
+//Reset
+apiRoutes.get('/reset', function (req, res, next) {
+    try {
+        dataManager.ResetMaxMinValues();
+        res.json({ OK: true });
     }
     catch (e) {
         console.log(e);

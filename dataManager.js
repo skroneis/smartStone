@@ -160,6 +160,6 @@ var getCardinal = function (degrees) {
 
 //reset values at midnight
 schedule.scheduleJob('0 23 * * *', function () {
-    ResetMaxMinValues();
+    this.ResetMaxMinValues();
     console.log('ResetMaxMinValues...');
 });
