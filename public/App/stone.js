@@ -1,4 +1,4 @@
-﻿mainModule.controller("stoneController", function ($scope, viewModelHelper, $http) {
+﻿chartModule.controller("stoneController", function ($scope, viewModelHelper, $http) {
     $scope.Sepp = "Sepp Forcher";
     $scope.isLoading = false;
 
@@ -29,7 +29,7 @@
                 // bootbox.alert("ERROR");            
                 console.log(response.data);
             });
-    };
+    };   
 
     $scope.getDate = function () {
         return new Date();

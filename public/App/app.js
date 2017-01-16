@@ -1,5 +1,6 @@
 ﻿var commonModule = angular.module('common', []);
 var mainModule = angular.module('main', ['common', 'ngRoute', 'ngTouch', 'ui.bootstrap']);
+var chartModule = angular.module('chart', ['common', 'ngRoute', 'ngTouch', 'ui.bootstrap', 'amChartsDirective']);
 
 commonModule.factory('viewModelHelper', function ($http, $q, $window, $location) { return MyApp.viewModelHelper($http, $q, $window, $location); });
 

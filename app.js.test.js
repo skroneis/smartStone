@@ -1,3 +1,12 @@
+var http = require("./website.test");
+var actuals = {
+	IN: {
+		temp: "25"
+		}
+};
+	
+http.init(actuals);
+
 /*var tempOut = parseFloat("1#");
 if (tempOut instanceof Error) {
 	console.log("ERROR!!!");
@@ -8,7 +17,7 @@ if (isNaN(tempOut))
 
 console.log(tempOut);*/
 
-var dataManager = require("./dataManager");
+// var dataManager = require("./dataManager");
 
 /*
 dataManager.init();
