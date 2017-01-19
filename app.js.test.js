@@ -2,10 +2,18 @@ var http = require("./website.test");
 var actuals = {
 	IN: {
 		temp: "25"
-		}
+	}
 };
-	
+
 http.init(actuals);
+
+/**********NETATMO*********************/
+/*var netatmo = require("./netatmoHelper");
+netatmo.init();
+
+netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
+	console.log("TEMP: " + temp);
+});*/
 
 /*var tempOut = parseFloat("1#");
 if (tempOut instanceof Error) {

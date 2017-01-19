@@ -3,8 +3,9 @@
 // ========================
 //config
 var config = require('./config');
-
+var schedule = require('node-schedule');
 var netatmo = require('netatmo');
+
 var auth = {
     "client_id": "51b0dda8197759c41e00004a",
     "client_secret": "ie5f4dSDpQ1gUgQ8ZxNrqb5jMV",
@@ -12,6 +13,7 @@ var auth = {
     "password": config.password,
 };
 var api = new netatmo(auth);
+var self = null;
 
 // =======================
 // getMeasures ======
@@ -55,7 +57,13 @@ var WData = module.exports = {
 		var humidity = measure[0].value[0][1];				
         callback(time, temp, humidity); 
 		});
-	 }
+	 },
+     init : function ()
+     {
+        self = this;
+        this.api = new netatmo(auth);
+        console.log ("init netatmo - OK");
+     }
 	 //,
     // remove: function() {
         // Counter.count += 10;
@@ -93,3 +101,8 @@ var optionsOutdoor = {
 // exports.getData = function() {
     // return 'Hello!';
 // }
+
+//re-init at midnight
+schedule.scheduleJob('50 23 * * *', function () {
+    self.init();
+});

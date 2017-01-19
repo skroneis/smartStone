@@ -76,6 +76,8 @@ dataManager.init(actuals);
 http.init(actuals);
 scheduledNotifier.init(actuals);
 // lcd.setData(actuals);
+//netatmo init
+netatmo.init();
 
 logger.info("----app.js START----");
 
