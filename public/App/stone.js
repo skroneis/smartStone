@@ -1,4 +1,4 @@
-﻿chartModule.controller("stoneController", function ($scope, viewModelHelper, $http) {
+﻿mainModule.controller("stoneController", function ($scope, viewModelHelper, $http) {
     $scope.Sepp = "Sepp Forcher";
     $scope.isLoading = false;
 
