@@ -4,7 +4,7 @@
 //config
 var config = require('./config');
 var schedule = require('node-schedule');
-var netatmo = require('netatmo');
+var netatmo = require('./netatmoLib');
 
 var auth = {
     "client_id": "51b0dda8197759c41e00004a",
@@ -29,6 +29,21 @@ var WData = module.exports = {
     //  getMeasureTemp2 : function (callback){
     // 	callback("1234");
     //  },
+    getAccessToken: function (callback) {
+        api.getAccessToken(function (access_token) {
+            callback(access_token);
+        });
+    },
+    clearAccessToken: function (callback) {
+        api.clearAccessToken(auth, function (result) {
+            callback(result);
+        });
+    },
+    refreshAccessToken: function (callback) {
+        api.refreshAccessToken(auth, function (result) {
+            callback(result);
+        });
+    },
     getMeasuresIn: function (callback) {
         _options = optionsIndoor;
         api.getMeasure(_options, function (err, measure) {
@@ -111,5 +126,8 @@ var optionsOutdoor = {
 
 //re-init at midnight
 schedule.scheduleJob('50 23 * * *', function () {
-    self.init();
+    console.log ("scheduled refresh access token");
+    WData.refreshAccessToken(function (result) {
+        console.log (result);
+    });
 });

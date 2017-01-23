@@ -10,14 +10,38 @@ http.init(actuals);*/
 /**********NETATMO*********************/
 var netatmo = require("./netatmoHelper");
 // netatmo.init();
+/*netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
+	console.log("TEMP: " + temp);
+
+	netatmo.getAccessToken(function (access_token) {
+		console.log("Access_token");
+		console.log(access_token);
+
+		//refresh
+		netatmo.refreshAccessToken(function (result) {
+			netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
+				console.log("TEMP 2: " + temp);
+				//new token?
+				netatmo.getAccessToken(function (access_token) {
+					console.log("new ? Access_token");
+					console.log(access_token);
+				});
+			});
+		});		
+	});
+});*/
+
 netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
 	console.log("TEMP: " + temp);
 });
 
-netatmo = null;
-netatmo = require("./netatmoHelper");
 
+// netatmo = null;
+// netatmo = require("./netatmoHelper");
 
+// netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
+// 	console.log("TEMP: " + temp);
+// });
 
 
 /*var tempOut = parseFloat("1#");
