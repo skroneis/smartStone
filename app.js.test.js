@@ -14,6 +14,8 @@ netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
 	console.log("TEMP: " + temp);
 });
 
+netatmo = null;
+netatmo = require("./netatmoHelper");
 
 
 

@@ -60,6 +60,7 @@ var WData = module.exports = {
     },
     init: function () {
         self = this;
+        console.log("init netatmo - OK");
         //this.api = new netatmo(auth);
         // var auth = api.authenticate(auth, function (err, infos) {
         //     if (err)
@@ -67,10 +68,8 @@ var WData = module.exports = {
         //     if (infos)
         //         console.log(infos);
         // })
-
         // console.log (auth);
-        api.authenticate(auth);
-        console.log("init netatmo - OK");
+        // api.authenticate(auth);
     }
     //,
     // remove: function() {
