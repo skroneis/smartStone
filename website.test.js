@@ -76,17 +76,17 @@ apiRoutes.get('/getChartData', function (req, res, next) {
     //if(err) res.send(err);
     try {
         var json = [
-                { "time": "2017-01-16 12:14:00", "temperature": 15.3 },
-                { "time": "2017-01-16 12:15:00", "temperature": 15.4 },
-                { "time": "2017-01-16 12:16:00", "temperature": 15.5 },
-                { "time": "2017-01-16 12:17:00", "temperature": 15.6 },
-                { "time": "2017-01-16 12:18:00", "temperature": 15.7 },
-                { "time": "2017-01-16 12:19:00", "temperature": 15.5 },
-                { "time": "2017-01-16 12:20:00", "temperature": 0.1 },
-                { "time": "2017-01-16 12:21:00", "temperature": -0.5 },
-                { "time": "2017-01-16 12:22:00", "temperature": -0.6 },
-                { "time": "2017-01-16 12:23:00", "temperature": -6.1 },
-            ];
+            { "time": "2017-01-16 12:14:00", "temperature": 15.3 },
+            { "time": "2017-01-16 12:15:00", "temperature": 15.4 },
+            { "time": "2017-01-16 12:16:00", "temperature": 15.5 },
+            { "time": "2017-01-16 12:17:00", "temperature": 15.6 },
+            { "time": "2017-01-16 12:18:00", "temperature": 15.7 },
+            { "time": "2017-01-16 12:19:00", "temperature": 15.5 },
+            { "time": "2017-01-16 12:20:00", "temperature": 0.1 },
+            { "time": "2017-01-16 12:21:00", "temperature": -0.5 },
+            { "time": "2017-01-16 12:22:00", "temperature": -0.6 },
+            { "time": "2017-01-16 12:23:00", "temperature": -6.1 },
+        ];
         res.json(json);
     }
     catch (e) {
@@ -116,6 +116,19 @@ apiRoutes.get('/reset', function (req, res, next) {
         return next(e);
     }
 });
+
+
+//LED
+//website
+apiRoutes.get('/getStatus/:id', function (req, res, next) {
+    console.log(req.params.id);
+    var p = "pin_" + req.params.id;
+    res.json({ value: 1});
+    // gpioStone.read(req.params.id, function (err, pin_value) {
+    //     res.json({ pin: pin_value });;
+    // });
+});
+
 
 // apply the routes to our application with the prefix /api
 app.use('/api', apiRoutes);
