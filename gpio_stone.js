@@ -45,6 +45,14 @@ GPIOStone.prototype.setOff = function (pin) {
     // });
 };
 
+GPIOStone.prototype.read = function (pin) {
+    console.log("read: ....: " + pin);
+    gpio.read(pin, function(err, value) {
+        console.log('The value is ' + value);
+    });
+};
+
+
 GPIOStone.prototype.flash = function (pin) {    
 	setTimeout(this.setOff, 200, pin);
 	setTimeout(this.setOn, 400, pin);

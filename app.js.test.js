@@ -8,7 +8,7 @@ var actuals = {
 http.init(actuals);*/
 
 /**********NETATMO*********************/
-var netatmo = require("./netatmoHelper");
+//var netatmo = require("./netatmoHelper");
 // netatmo.init();
 /*netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
 	console.log("TEMP: " + temp);
@@ -31,11 +31,16 @@ var netatmo = require("./netatmoHelper");
 	});
 });*/
 
-netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
-	console.log("TEMP: " + temp);
-});
+// netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
+// 	console.log("TEMP: " + temp);
+// });
 
 
+//GPIO STONE
+var GpioStone = require('./gpio_stone');
+var gpioStone = new GpioStone();
+gpioStone.setOn(11);
+console.log ("11 - ON");
 // netatmo = null;
 // netatmo = require("./netatmoHelper");
 
