@@ -96,39 +96,6 @@ mainModule.directive("xledStatus", function ($compile) {
     }
 });
 
-mainModule.directive('ledStatus', function ($http, $compile) {
-    return {
-        restrict: 'E',
-        scope: {
-
-        },
-        link: function (scope, elm, attrs, http) {
-            //var url = window.URL.createObjectURL(scope.getUrlData());
-            //var url = "Seppiii";
-            // alert("Hi!");
-            //alert(attrs.pinNo);
-            //console.log(elm);
-            //alert(MyApp.rootPath);
-            //var element = '<span class="led"></span>';
-            var element = document.createElement('span');
-            element.className += "led";
-            //console.log(element);
-            $http.get(MyApp.rootPath + 'api/getStatus/' + attrs.pinNo, null).then(function (response) {
-                //console.log(response.data);
-                if (response.data.value == 1)
-                    element.className += " on";
-                //elm.html("<a target='_self' href='http://www.google.at'>GOOGLE</a>");
-                elm.replaceWith($compile(element)(scope));
-            },
-                function errorCallback(response) {
-                    console.log("ERROR");
-                    console.log(response.data);
-                });
-        }
-    };
-});
-
-
 (function (myApp) {
     "use strict";
     var viewModelHelper = function ($http, $q, $window, $location) {
