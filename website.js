@@ -115,5 +115,14 @@ apiRoutes.get('/setOn/:id', function (req, res, next) {
     res.json({ success: true });
 });
 
+//LED
+apiRoutes.get('/getStatus/:id', function (req, res, next) {
+    console.log(req.params.id);
+    gpioStone.read(req.params.id, function (err, pin_value) {
+        console.log (pin_value);
+        res.json({ value: pin_value });;
+    });
+});
+
 // apply the routes to our application with the prefix /api
 app.use('/api', apiRoutes);
