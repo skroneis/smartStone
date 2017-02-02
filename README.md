@@ -7,4 +7,12 @@ This project provides a simple Node.js home automation library for the Raspberry
 - ToDo...
 - 
 
+start/stop the Service
+----------------
+```shell
+sudo service smartStone start
+sudo service smartStone stop
+```
+
+[//]: # (.net: csharp)
 
