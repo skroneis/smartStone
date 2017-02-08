@@ -23,7 +23,7 @@ mainModule.controller('switchController', function ($scope, viewModelHelper, $ht
     return {
         restrict: 'E',
         scope: true,
-        template: '<label>{{pinLabel}}</label><span ng-click="click($event, $scope)">&nbsp;&nbsp;<input type="checkbox" data-reverse data-off-title="Off" data-on-title="On" ng-checked="ledValue"></span> <i>{{ledValue}}</i>',
+        template: '<label>{{pinLabel}}</label><span ng-click="click($event, $scope)">&nbsp;&nbsp;<input type="checkbox" data-off-title="Off" data-on-title="On" ng-checked="ledValue"></span> <i>{{ledValue}}</i>',
         controller: function ($scope, $element, $attrs) {
             // console.log($attrs.pinNo);
             var pin = $attrs.pinNo;
