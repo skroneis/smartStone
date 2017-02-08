@@ -94,3 +94,8 @@ td.vcc33 {
 td.vcc5 {
     background-color: red;
 }
+
+
+.minWidth {
+    min-width: 50px;
+}

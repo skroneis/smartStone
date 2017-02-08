@@ -2,6 +2,7 @@
 // WEB-Pages ================
 // =======================
 var express = require('express');
+var bodyParser = require('body-parser')
 var app = express();
 var http = require('http').Server(app);
 
@@ -13,10 +14,13 @@ var actuals = null;
 
 //app.use(express.compress());
 app.use('/', express.static(__dirname + '/public'));
+//4 post
+app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
+
 
 // =======================
 // start the server ======
@@ -117,13 +121,22 @@ apiRoutes.get('/reset', function (req, res, next) {
     }
 });
 
+apiRoutes.route('/setValue')
+    //(accessed at POST http://localhost:8080/api/setValue)
+    .post(function (req, res) {
+        console.log ("---------------------------------------body---------------------------");
+        console.log(req.body.pin);
+        console.log(req.body.value);
+        res.json({ success: true });
+    });
+
 
 //LED
 //website
 apiRoutes.get('/getStatus/:id', function (req, res, next) {
     console.log(req.params.id);
     var p = "pin_" + req.params.id;
-    res.json({ value: 1});
+    res.json({ value: 1 });
     // gpioStone.read(req.params.id, function (err, pin_value) {
     //     res.json({ pin: pin_value });;
     // });
