@@ -2,6 +2,7 @@
 // WEB-Pages ================
 // =======================
 var express = require('express');
+var bodyParser = require('body-parser')
 var app = express();
 var http = require('http').Server(app);
 
@@ -19,6 +20,8 @@ var actuals = null;
 
 //app.use(express.compress());
 app.use('/', express.static(__dirname + '/public'));
+//4 post
+app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
@@ -119,10 +122,24 @@ apiRoutes.get('/setOn/:id', function (req, res, next) {
 apiRoutes.get('/getStatus/:id', function (req, res, next) {
     console.log(req.params.id);
     gpioStone.read(req.params.id, function (err, pin_value) {
-        console.log (pin_value);
+        console.log(pin_value);
         res.json({ value: pin_value });;
     });
 });
+
+apiRoutes.route('/setValue')
+    //(accessed at POST http://localhost:8080/api/setValue)
+    .post(function (req, res) {
+        console.log(req.body.pin);
+        console.log(req.body.value);
+        if (req.body.value == 1) {
+            gpioStone.setOn(req.body.pin);
+        }
+        else {
+            gpioStone.setOff(req.body.pin);
+        }
+        res.json({ success: true });
+    });
 
 // apply the routes to our application with the prefix /api
 app.use('/api', apiRoutes);
