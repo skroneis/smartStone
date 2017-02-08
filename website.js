@@ -10,7 +10,7 @@ var http = require('http').Server(app);
 var dataManager = require("./dataManager");
 
 //LED
-var GpioStone = require('./gpio_stone');
+var GpioStone = require('./gpio_stone_wp');
 var gpioStone = new GpioStone();
 // =======================
 // configuration =========
@@ -120,9 +120,9 @@ apiRoutes.get('/setOn/:id', function (req, res, next) {
 
 //LED
 apiRoutes.get('/getStatus/:id', function (req, res, next) {
-    console.log(req.params.id);
+    //console.log(req.params.id);
     gpioStone.read(req.params.id, function (err, pin_value) {
-        console.log(pin_value);
+        // console.log(pin_value);
         res.json({ value: pin_value });;
     });
 });
@@ -130,12 +130,12 @@ apiRoutes.get('/getStatus/:id', function (req, res, next) {
 apiRoutes.route('/setValue')
     //(accessed at POST http://localhost:8080/api/setValue)
     .post(function (req, res) {
-        console.log(req.body.pin);
-        console.log(req.body.value);
-        if (req.body.value == 1) {
+        console.log("PIN --> " + req.body.pin);
+        console.log("VAL --> " + req.body.value);
+        if (req.body.value == 1) { 
             gpioStone.setOn(req.body.pin);
         }
-        else {
+        else {           
             gpioStone.setOff(req.body.pin);
         }
         res.json({ success: true });

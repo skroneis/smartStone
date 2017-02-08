@@ -35,7 +35,7 @@
                     <pre>{{chartData | json}}</pre>
                 </div>
             </div>-->
-            <pre>{{leds}}</pre>
+            <!--<pre>{{leds}}</pre>-->
             <div class="panel-body">
                 <div class="row">                     
                     <table class="ledTable">
@@ -52,7 +52,7 @@
                             </tr>
                             <tr>
                                 <td><app-Click pin-no="13"></td>
-                                <td><app-Click pin-no="14"></td>
+                                <td><app-Click pin-no="15"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -130,9 +130,9 @@
                      offLabel:"Off",
                      onLabel:"On",
                      html: true,
-                        offLabel: '<i class="fa fa-power-off" aria-hidden="true" style="font-size: 1.4em"></i>',
-                        onLabel: '<i class="fa fa-lightbulb-o" aria-hidden="true" style="font-size: 1.4em"></i>',
-                        cls: 'minWidth'
+                    offLabel: '<i is="0" class="fa fa-power-off" aria-hidden="true" style="font-size: 1.4em"></i>',
+                    onLabel: '<i is="1" class="fa fa-lightbulb-o" aria-hidden="true" style="font-size: 1.4em"></i>',
+                    cls: 'minWidth'
                 });
             });
     </script>
