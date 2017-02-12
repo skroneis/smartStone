@@ -5,9 +5,8 @@ var util = require('util');
 var netatmo = require("./netatmoHelper");
 var logger = require("./logger");
 var http = require("./website");
-var IR = require("./ir.js");
-var ir = new IR(); ir.init();
 
+//scheduler
 var ScheduledNotifier = require("./scheduledNotifyer.js");
 var scheduledNotifier = new ScheduledNotifier();
 
@@ -17,8 +16,12 @@ var lcd = new LCD(); lcd.init();
 
 //GPIO (requred)
 var api = require("./iControl");
-var GpioStone = require('./gpio_stone_wp');
+var GpioStone = require('./gpio_stone');
 var gpioStone = new GpioStone();
+
+//IR
+var IR = require("./ir.js");
+var ir = new IR(); ir.init();
 
 //npm libraries
 var schedule = require('node-schedule');
