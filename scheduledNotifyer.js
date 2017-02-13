@@ -25,7 +25,7 @@ ScheduledNotifyer.prototype.init = function (data) {
 
 
 schedule.scheduleJob('30 7 * * *', function () {
-    notify.notifyHtml(dataManager.GetTelegramMessage());
+    notify.notifyHtml(dataManager.GetTelegramMessage("Guten Morgen!\n"));
     // console.log("scheduleJob ~~~~~~~~~~~~~~~~~~ " + actuals.KRO.temp);
 });
 

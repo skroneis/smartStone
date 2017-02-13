@@ -38,12 +38,14 @@ GPIOStone.prototype.setOff = function (pin) {
 };
 
 GPIOStone.prototype.flash = function (pin) {
-    this.setOff(pin);
-    //setTimeout(this.setOff, 200, pin);
+    this.setOff(pin);    
     this.setOn(pin);
-    setTimeout(this.setOff, 50, pin);
-    // this.setOff(pin);
-    //setTimeout(this.setOff, 600, pin);
+    setTimeout(this.setOff, 50, pin);    
+
+    /*setTimeout(this.setOff, 200, pin);
+    setTimeout(this.setOn, 400, pin);
+    // this.setOn(pin);
+    setTimeout(this.setOff, 600, pin);*/
 };
 
 // var pin = 0;

@@ -79,9 +79,9 @@ var modules = module.exports = {
         actuals.KRO.wiGeMinAt = dateFormat(Timestamps[idx_min], "isoDateTime");
         // actuals.KRO.wiGeMinAtStr = dateFormat(Timestamps[idx_min], "dddd, mmmm dS, yyyy, h:MM:ss TT");
     },
-    GetTelegramMessage: function () {
+    GetTelegramMessage: function (msg) {
         //console.log("getTelegramMessage...");
-        return "Guten Morgen!\n" + "Temp " + actuals.KRO.temp + "°C" + "\n" + "Wind: " + getFormattedDataFixed(actuals.KRO.nodeWiGeMax, 0) + '@' + getFormattedDataFixed(actuals.KRO.nodeWiGeWiRiMax, 0);;
+        return msg + "Temp " + actuals.KRO.temp + "°C" + "\n" + "Wind: " + getFormattedDataFixed(actuals.KRO.nodeWiGeMax, 0) + '@' + getFormattedDataFixed(actuals.KRO.nodeWiGeWiRiMax, 0);;
     },
     ResetMaxMinValues: function () {
         actuals.CALC.maxTempIn = -99;

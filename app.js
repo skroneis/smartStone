@@ -239,7 +239,7 @@ var irCallback = function (data) {
 		// console.log("KEY_MENU");
 		// console.log(actuals.KRO.temp);
 		gpioStone.flash(gpioStone.LED_GREEN);
-		notify.notify(dataManager.GetTelegramMessage());
+		notify.notify(dataManager.GetTelegramMessage("Aktuelle Messwerte:\n"));
 	}
 };
 
