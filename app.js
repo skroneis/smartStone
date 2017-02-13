@@ -16,7 +16,7 @@ var lcd = new LCD(); lcd.init();
 
 //GPIO (requred)
 var api = require("./iControl");
-var GpioStone = require('./gpio_stone');
+var GpioStone = require('./gpio_stone_wp');
 var gpioStone = new GpioStone();
 
 //IR
@@ -155,22 +155,26 @@ var getNetatmoMeasures = function () {
 		actuals.IN.humidity = humidity;
 		actuals.IN.pressure = pressure;
 		actuals.IN.maturity = new Date(now - actuals.IN.time).getMinutes();
-		console.log("TIMESTAMP: " + actuals.IN.time);
-		console.log("TEMP: " + actuals.IN.temp);
-		console.log("CO2: " + actuals.IN.co2);
-		console.log("HUMIDITY: " + actuals.IN.humidity);
-		console.log("PRESSURE: " + actuals.IN.pressure);
-		console.log("MATURITY: " + actuals.IN.maturity);
+		if (config.LogNetatmo != null) {
+			console.log("TIMESTAMP: " + actuals.IN.time);
+			console.log("TEMP: " + actuals.IN.temp);
+			console.log("CO2: " + actuals.IN.co2);
+			console.log("HUMIDITY: " + actuals.IN.humidity);
+			console.log("PRESSURE: " + actuals.IN.pressure);
+			console.log("MATURITY: " + actuals.IN.maturity);
+		}
 	});
 	netatmo.getMeasuresOut(function (time, temp, humidity) {
 		actuals.OUT.time = new Date(time * 1000);
 		actuals.OUT.temp = temp;
 		actuals.OUT.humidity = humidity;
 		actuals.OUT.maturity = new Date(now - actuals.OUT.time).getMinutes();
-		console.log("TIMESTAMP (OUT): " + actuals.OUT.time);
-		console.log("TEMP (OUT): " + actuals.OUT.temp);
-		console.log("HUMIDITY (OUT): " + actuals.OUT.humidity);
-		console.log("MATURITY (OUT): " + actuals.OUT.maturity);
+		if (config.LogNetatmo != null) {
+			console.log("TIMESTAMP (OUT): " + actuals.OUT.time);
+			console.log("TEMP (OUT): " + actuals.OUT.temp);
+			console.log("HUMIDITY (OUT): " + actuals.OUT.humidity);
+			console.log("MATURITY (OUT): " + actuals.OUT.maturity);
+		}
 	});
 
 	//update angular values...

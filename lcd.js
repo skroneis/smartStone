@@ -5,6 +5,9 @@ var schedule = require('node-schedule');
 var LCD = require('lcdi2c');
 var lcd = new LCD(1, 0x27, 20, 4);
 
+//config
+var config = require('./config');
+
 //special LCD characters
 //OUT: 0
 lcd.createChar(0, [0x11, 0xa, 0xe, 0x1f, 0xe, 0xa, 0x11]);
@@ -143,7 +146,9 @@ LCDStone.prototype.setData = function (data) {
     // lines.L1 = lines.L1 + " " + numStr;
     // console.log(lines.getL2() + "X");
 
-    console.log("page: " + data.page);
+    if (config.LogUdp != null) {
+        console.log("page: " + data.page);
+    }
     self.page = data.page;
     // actuals.IN.maturity
 
@@ -154,10 +159,12 @@ LCDStone.prototype.setData = function (data) {
         lines.setLine(2, data);
         lines.setLine(3, data);
 
-        console.log(lines.getLine(0));
-        console.log(lines.getLine(1));
-        console.log(lines.getLine(2));
-        console.log(lines._lines[3].content);
+        if (config.LogUdp != null) {
+            console.log(lines.getLine(0));
+            console.log(lines.getLine(1));
+            console.log(lines.getLine(2));
+            console.log(lines._lines[3].content);
+        }
 
         //print to LCD...
         lcd.println(lines.getLine(0), 1);
@@ -174,10 +181,12 @@ LCDStone.prototype.setData = function (data) {
         lines.setLine(6, data);
         lines.setLine(7, data);
 
-        console.log(lines.getLine(4));
-        console.log(lines.getLine(5));
-        console.log(lines.getLine(6));
-        console.log(lines.getLine(7));
+        if (config.LogUdp != null) {
+            console.log(lines.getLine(4));
+            console.log(lines.getLine(5));
+            console.log(lines.getLine(6));
+            console.log(lines.getLine(7));
+        }
 
         lcd.println(lines.getLine(4), 1);
         lcd.println(lines.getLine(5), 2);

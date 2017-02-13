@@ -8,14 +8,13 @@ var self = null;
 function GPIOStone() {
     console.log("constructor - GPIOStoneWP");
     self = this;
-    this.LED_GREEN = 0;
-    this.LED_RED = 1;
-    this.LED_BLUE = 2;
-    this.LED_WHITE = 3;
+    this.LED_GREEN = 11;
+    // this.LED_RED = 1;
+    // this.LED_BLUE = 2;
+    // this.LED_WHITE = 3;
 
-    wpi.pinMode(sanitizePinNumberWiringPi(11), wpi.OUTPUT);
-    //wpi.pinMode(sanitizePinNumberWiringPi(12), wpi.INPUT);
     wpi.pinMode(sanitizePinNumberWiringPi(13), wpi.OUTPUT);
+    wpi.pinMode(sanitizePinNumberWiringPi(11), wpi.OUTPUT);
     wpi.pinMode(sanitizePinNumberWiringPi(15), wpi.OUTPUT);
 
     //wpi.pinMode(this.LED_GREEN, wpi.OUTPUT);
@@ -38,9 +37,9 @@ GPIOStone.prototype.setOff = function (pin) {
 };
 
 GPIOStone.prototype.flash = function (pin) {
-    this.setOff(pin);    
+    this.setOff(pin);
     this.setOn(pin);
-    setTimeout(this.setOff, 50, pin);    
+    setTimeout(this.setOff, 50, pin);
 
     /*setTimeout(this.setOff, 200, pin);
     setTimeout(this.setOn, 400, pin);
@@ -56,20 +55,31 @@ GPIOStone.prototype.flash = function (pin) {
 //   value = +!value;
 // }, 500);
 
-
 GPIOStone.prototype.read = function (pin, callback) {
-    //console.log("read: ....: " + pin);
+    console.log("read: ....: " + pin);
+    pin = sanitizePinNumberWiringPi(parseInt(pin));
+    console.log("read: ....: " + pin);
+    var val = wpi.digitalRead(pin);
+    console.log("val: ....: " + val);
+    (callback || noop)(null, parseInt(val, 10));
+};
+
+
+GPIOStone.prototype.read2 = function (pin, callback) {
+    console.log("read: ....: " + pin);
     pin = sanitizePinNumber(pin);
     //const value = fs.readFileSync('/sys/class/gpio/gpio23/value').toString();
     // var contents = fs.readFileSync('/sys/class/gpio/gpio17/value').toString();
     // console.log(contents);
-    //var path = '/sys/class/gpio/gpio' + pinMapping[pin] + '/value';
-    //console.log (path);
+    var path = '/sys/class/gpio/gpio' + pinMapping[pin] + '/value';
+    console.log ("path --> " + path);
+
     fs.readFile('/sys/class/gpio/gpio' + pinMapping[pin] + '/value', function (err, data) {
+        console.log("err --> " + err);
         if (err) return (callback || noop)(err);
         if (data.toString() == "undefined")
             data = 0; //TODO: geht nicht....
-        // console.log(data.toString());
+        console.log("-----------> " + data.toString());
         (callback || noop)(null, parseInt(data, 10));
     });
 
@@ -146,7 +156,7 @@ var pinMappingWiringPi = {
     "8": 15,
     "10": 16,
     "12": 1,
-    "16": 4,    
+    "16": 4,
     "18": 5,
     "22": 6,
     "24": 10,
@@ -154,7 +164,8 @@ var pinMappingWiringPi = {
     "32": 26,
     "36": 27,
     "38": 28,
-    "40": 29
+    "40": 29,
+    "23": 14
 };
 
 //revision
@@ -175,7 +186,7 @@ function sanitizePinNumber(pinNumber) {
 function sanitizePinNumberWiringPi(pinNumber) {
     if (!isNumber(pinNumber) || !isNumber(pinMappingWiringPi[pinNumber])) {
         throw new Error("Pin number isn't valid");
-    }    
+    }
     return parseInt(pinMappingWiringPi[pinNumber], 10);
 }
 
