@@ -50,7 +50,7 @@ section {
         background-color: rgb(135,187,83);
     }
 
-.ledTable {
+    .ledOverviewTable {
     font-family: verdana, arial, sans-serif;
     font-size: 11px;
     color: #333333;
@@ -59,7 +59,7 @@ section {
     border-collapse: collapse;
 }
 
-    .ledTable th {
+    .ledOverviewTable th {
         border-width: 1px;
         padding: 8px;
         border-style: solid;
@@ -70,7 +70,7 @@ section {
         text-align: center;
     }
 
-    .ledTable td {
+    .ledOverviewTable td {
         border-width: 1px;
         padding: 4px;
         border-style: solid;
@@ -82,6 +82,91 @@ section {
         display: table-cell;
         height: 5px;
     }
+
+
+.ledTable {
+    font-family: verdana, arial, sans-serif;
+    font-size: 11px;
+}
+
+    .ledTable th {
+        vertical-align: middle;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .ledTable td {
+        background-color: #ffffff;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+        display: table-cell;
+    }
+
+    .ledTableInline {
+       border: 0;
+    }
+
+
+.ledTableInline th{
+    background-color: #B2CFD8;    
+    padding: 4px;      
+    font-size: 9px;
+    height: 1px;  
+}
+
+/*table and thead with only one single border*/
+
+.ledTable > tbody > tr >td >led-switch >table > thead > tr > th {        
+        border-right-width: 1px;    
+        border-right-style: solid;
+        border-right-color: #517994;
+}
+.ledTable > tbody > tr:first-child th {
+        border-top-width: 1px;    
+        border-top-style: solid;
+        border-top-color: #517994;
+}
+.ledTable > tbody > tr >td:first-child >led-switch >table > thead > tr > th {        
+        border-left-width: 1px;    
+        border-left-style: solid;
+        border-left-color: #517994;                       
+}
+.ledTable > tbody > tr >td:last-child >led-switch >table > thead > tr > th {
+        border-right-width: 1px;    
+        border-right-style: solid;
+        border-right-color: #517994;
+}
+
+.ledTable > tbody > tr >td >led-switch >table > tbody > tr > td {        
+        border: 0;
+        border-top-width: 1px;    
+        border-top-style: solid;
+        border-top-color: #517994;
+
+        border-bottom-width: 1px;    
+        border-bottom-style: solid;
+        border-bottom-color: #517994;
+        
+        border-right-width: 1px;    
+        border-right-style: solid;
+        border-right-color: #517994;
+}
+.ledTable > tbody > tr >td:first-child >led-switch >table > tbody > tr > td {        
+        border-left-width: 1px;    
+        border-left-style: solid;
+        border-left-color: #517994;               
+}
+.ledTable > tbody > tr >td:last-child >led-switch >table > tbody > tr > td {
+        border-right-width: 1px;    
+        border-right-style: solid;
+        border-right-color: #517994;
+}
+/********************************************************************************************/
+
+.ledTableInline td{       
+        padding: 4px;        
+}
 
 td.inactive {
     background-color: lightgray;
@@ -98,4 +183,9 @@ td.vcc5 {
 
 .minWidth {
     min-width: 50px;
+}
+
+.boolLabel {
+    color:darkgray;
+    /*display: none;*/
 }

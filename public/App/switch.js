@@ -19,11 +19,12 @@ mainModule.controller('switchController', function ($scope, viewModelHelper, $ht
     //     console.log(event);
     // }
 
-}).directive('appClick', function ($http, $compile, $timeout) {
+}).directive('ledSwitch', function ($http, $compile, $timeout) {
     return {
         restrict: 'E',
         scope: true,
-        template: '<label>{{pinLabel}}</label><span ng-click="click($event, $scope)">&nbsp;&nbsp;<input type="checkbox" data-off-title="Off" data-on-title="On" ng-checked="ledValue"></span> <i>{{ledValue}}</i>',
+        // template: '<label>{{pinLabel}}</label><span ng-click="click($event, $scope)">&nbsp;&nbsp;<input type="checkbox" data-off-title="Off" data-on-title="On" ng-checked="ledValue"></span> <i>{{ledValue}}</i>',
+        template: '<table class="ledTableInline"><thead><tr><th>{{pinLabel}}</th></tr></thead><tbody><tr><td><span ng-click="click($event, $scope)"><input type="checkbox" data-off-title="Off" data-on-title="On" ng-checked="ledValue"></span><span class="boolLabel"><br/><i>{{ledValue}}</i></span></td></tr></tbody></table>',
         controller: function ($scope, $element, $attrs) {
             // console.log($attrs.pinNo);
             var pin = $attrs.pinNo;
