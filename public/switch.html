@@ -10,6 +10,8 @@
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" />-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/led.css" />
+    <link rel="stylesheet" href="./css/refresh.css" />
+    <!--<link rel="stylesheet" href="./css/genericons/genericons.css" />-->
 
     <!--https://www.bootstrapcdn.com/-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
@@ -29,7 +31,20 @@
 
 <body>
     <div ng-controller="switchController" ng-init="init()" ng-cloak>
-        <div class="container">
+        <div class="container" id="pullToRefreshContainer">
+
+            <div id="ptr">
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                <div class="loading">
+                    <span id="l1"></span>
+                    <span id="l2"></span>
+                    <span id="l3"></span>
+                </div>
+            </div>
+
+            <!--<div id="content">
+                Pull down to refresh!
+            </div>-->
             <!--<div class="page-header" id="banner">
                 <div class="row">
                     <pre>{{chartData | json}}</pre>
@@ -53,7 +68,7 @@
                                 </td>
                                 <td>
                                     <led-Switch pin-no="13">
-                                </td>                                                        
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -61,11 +76,12 @@
                                 </td>
                                 <td>
                                     <led-Switch pin-no="16">
-                                </td>                                                         
-                            </tr>                            
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
+                <button style="display: none;" id="btn-refresh" ng-click="refresh()" class="btn btn-sm btn-info">TEST</button>
             </div>
         </div>
     </div>
@@ -101,6 +117,10 @@
 
             <!--checkbox-->
             <script src="./scripts/bootstrap-checkbox.min.js" defer></script>
+
+            <!--pull to refresh-->
+            <script src="./scripts/hammer.2.0.4.js"></script>
+            <script src="./scripts/wptr.1.1.js"></script>
 
             <script>
                 window.MyApp = {};
@@ -144,6 +164,31 @@
                         cls: 'minWidth'
                     });
                 });
+            </script>
+
+            <!-- pull to refresh -->
+            <script>
+                window.onload = function () {
+                    WebPullToRefresh.init({
+                        loadingFunction: exampleLoadingFunction
+                    });
+                };
+
+                // Just an example loading function that returns a
+                // promise that WebPullToRefresh can use.
+                var exampleLoadingFunction = function () {
+                    return new Promise(function (resolve, reject) {
+                        // Run some async loading code here                        
+                        $("#btn-refresh").click();
+                        if (true /* if the loading worked */) {
+                            resolve();
+                            console.log("OK");
+                        } else {
+                            reject();
+                            console.log("NOK");
+                        }
+                    });
+                };
             </script>
 </body>
 

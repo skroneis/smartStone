@@ -46,7 +46,7 @@ mainModule.controller('ledController', function ($scope, viewModelHelper, $http)
                 };
 
                 //call function first time
-                getLedStatusInfo();
+                getLedStatusInfo();                
             },
             controller: function ($scope, $element, $attrs) {
                 // Controller code goes here.
