@@ -15,6 +15,7 @@ body {
 	z-index: 10;
 	text-align: center;
 	height: 50px;
+	/*background:red;	*/
 }
 
 #ptr .fa {
@@ -25,13 +26,20 @@ body {
 	transition: all .25s ease;
 	/*-webkit-transform: rotate(90deg);
 	transform: rotate(90deg);*/
-	margin-top: 5px;
-    display: none; /*check...*/
+	/*margin-top: 5px;*/
+    /*display: none; /*check...*/	
+		/*color: red;*/
+	/*margin-top: 200px;*/
+	color: blue;
+	display: block;
+	margin-top: -35px;
 }
 .ptr-refresh #ptr .fa {    
     display: block;
 	-webkit-transform: rotate(180deg);
 	transform: rotate(180deg);
+	/*background:red;	*/
+	color: red;
 }
 .ptr-loading #ptr .fa,
 .ptr-reset #ptr .fa {
@@ -46,7 +54,7 @@ body {
 	display: none;
 }
 .ptr-loading .loading {
-	display: block;
+	display: block;	
 }
 
 .loading span {
@@ -55,12 +63,15 @@ body {
 	width: 10px;
 	height: 10px;
 	margin-right: 3px;
+	/*stone*/
+	margin-top: -80px;
+	/*+++++*/
 	-webkit-transform: scale(0.3);
 	transform: scale(0.3);
 	border-radius: 50%;
+	background-color:black;
 	-webkit-animation: ptr-loading 0.4s infinite alternate;
-	animation: ptr-loading 0.4s infinite alternate;
-    background-color:black;
+	animation: ptr-loading 0.4s infinite alternate;    
 }
 
 #l1 {
@@ -103,17 +114,18 @@ body {
 		-webkit-transform: scale(1);
 		transform: scale(1);
         background-color: #777;
-		opacity: 1;
+		opacity: 1;		
 	}
 }
 
 #pullToRefreshContainer {
-	/*background: #fff;
-	min-height: 100%;*/
+	/*background:red;*/
+	/*min-height: 100%;*/
 	z-index: 20;
 	-webkit-backface-visibility: hidden;
 	-webkit-perspective: 1000;
 	/*padding: 50px 20px;*/
+	/*padding-top: 10px;*/
 	/*text-align: center;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 24px;
