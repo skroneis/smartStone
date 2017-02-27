@@ -37,12 +37,16 @@ http.init(actuals);*/
 
 
 //GPIO STONE
-var GpioStone = require('./gpio_stone');
-var gpioStone = new GpioStone();
-gpioStone.read(11, function (err, pin_value){
-	console.log (pin_value);
-});
+if (true) {
+	var GpioStone = require('./gpio_stone');
+	var gpioStone = new GpioStone();
+}
 
+if (gpioStone) {
+	gpioStone.read(11, function (err, pin_value) {
+		console.log(pin_value);
+	});
+}
 // netatmo = null;
 // netatmo = require("./netatmoHelper");
 
