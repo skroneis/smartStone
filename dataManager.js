@@ -5,22 +5,12 @@ var express = require('express');
 var dateFormat = require('dateformat');
 var schedule = require('node-schedule');
 const arrayLength = 720;    //720 ~ 1h/5sec
-// var p = [35, 2, 65, 7, 8, 9, 12, 121, 33, 99];
+
 var WiGe = [];
 var WiRi = [];
 var Timestamps = [];
 var actuals = null;
 var self = null;
-//temp
-// var maxTempIn;
-// var maxTempInAt;
-// var minTempIn;
-// var minTempInAt;
-
-// var maxTempOut;
-// var maxTempOutAt;
-// var minTempOut;
-// var minTempOutAt;
 
 //init values (actual)
 var modules = module.exports = {
@@ -58,9 +48,6 @@ var modules = module.exports = {
             // console.log("remove (%s)", Timestamps.length);
         }
     },
-    // P: function () {
-    //     return p;
-    // },
     WiGe: function () {
         return WiGe;
     },
@@ -127,16 +114,6 @@ var modules = module.exports = {
             actuals.CALC.minTempInAt = dateFormat(Date.now(), "isoDateTime");
             // actuals.CALC.minTempInAtStr = dateFormat(Date.now(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
         }
-        //  return {
-        //     maxTempIn: maxTempIn,
-        //     maxTempInAt: dateFormat(maxTempInAt, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
-        //     minTempIn: minTempIn,
-        //     minTempInAt: dateFormat(minTempInAt, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
-        //     maxTempOut: maxTempOut,
-        //     maxTempOutAt: dateFormat(maxTempOutAt, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
-        //     minTempOut: minTempOut,
-        //     minTempOutAt: dateFormat(minTempOutAt, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
-        // };
     }    
 };
 
@@ -156,8 +133,6 @@ var getFormattedDataFixed = function (str, decimal) {
         numStr = "";
     return numStr;
 };
-
-
 
 //reset values at midnight
 schedule.scheduleJob('59 23 * * *', function () {

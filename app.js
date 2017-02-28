@@ -19,10 +19,12 @@ if (config.LCDOn) {
 	var lcd = new LCD(); lcd.init();
 }
 
-//GPIO (requred)
+//GPIO (required)
 var api = require("./iControl");
-var GpioStone = require('./gpio_stone_wp');
-var gpioStone = new GpioStone();
+if (config.LEDsOn) {
+	var GpioStone = require('./gpio_stone_wp');
+	var gpioStone = new GpioStone();
+}
 
 //IR
 var IR = require("./ir.js");
@@ -98,7 +100,7 @@ server.on('listening', function () {
 	console.log('UDP Server listening on ' + address.address + ":" + address.port);
 });
 server.on('message', function (message, remote) {
-	// console.log(remote.address + ':' + remote.port + ' - ' + message);
+	//console.log(remote.address + ':' + remote.port + ' - ' + message);
 	var msg = JSON.parse(message);
 	//console.log("MESSAGE: " + msg.temp);
 	actuals.KRO.dateTime = msg.dateTime;
@@ -111,40 +113,17 @@ server.on('message', function (message, remote) {
 	}
 	actuals.KRO.wiRiWiGeMax = msg.wiRiWiGeMax;
 	actuals.KRO.reference = msg.reference;
-	/*console.log("dateTime: " + actuals.KRO.dateTime);
-	console.log("temp: " + actuals.KRO.temp);
-	console.log("reference: " + actuals.KRO.reference);*/
-	// http.update(actuals);
-
+	//console.log("dateTime: " + actuals.KRO.dateTime);
+	//console.log("temp: " + actuals.KRO.temp);
+	//console.log("reference: " + actuals.KRO.reference);
+	
 	//call data manager
 	dataManager.Push(dataManager.WiGe(), actuals.KRO.wiGe, dataManager.WiRi(), actuals.KRO.wiRi);
-	dataManager.Get();
-	//var dataRetVal = dataManager.Get();
-	// actuals.KRO.nodeWiGeMax = dataRetVal.wige;
-	// actuals.KRO.nodeWiGeWiRiMax = dataRetVal.wiri;
-	// actuals.KRO.nodeWiGeWiRiMaxStr = lcd.getCardinal(new Number(dataRetVal.wiri));
-	// actuals.KRO.lengthWiGe = dataRetVal.lengthWiGe;
-	// actuals.KRO.lengthWiRi = dataRetVal.lengthWiRi;
-	// actuals.KRO.lengthTimestamps = dataRetVal.lengthTimestamps;
-	// actuals.KRO.wiGeMaxAt = dataRetVal.wiGeMaxAt;
-	// actuals.KRO.nodeWiGeMin = dataRetVal.wigeMin;
-	// actuals.KRO.nodeWiGeWiRiMin = dataRetVal.wiriMin;
-	// actuals.KRO.nodeWiGeWiRiMinStr = lcd.getCardinal(new Number(dataRetVal.wiriMin));
-	// actuals.KRO.wiGeMinAt = dataRetVal.wiGeMinAt;
-	//set values to display
+	dataManager.Get();	
 	if (lcd)
 		lcd.setData(actuals);
 	//Min Max (temp)
 	dataManager.SaveMinMaxValues();
-	// var dataRetValMinMax = dataManager.SaveMinMaxValues();
-	// actuals.CALC.maxTempIn = dataRetValMinMax.maxTempIn;
-	// actuals.CALC.maxTempInAt = dataRetValMinMax.maxTempInAt;
-	// actuals.CALC.minTempIn = dataRetValMinMax.minTempIn;
-	// actuals.CALC.minTempInAt = dataRetValMinMax.minTempInAt;
-	// actuals.CALC.maxTempOut = dataRetValMinMax.maxTempOut;
-	// actuals.CALC.maxTempOutAt = dataRetValMinMax.maxTempOutAt;
-	// actuals.CALC.minTempOut = dataRetValMinMax.minTempOut;
-	// actuals.CALC.minTempOutAt = dataRetValMinMax.minTempOutAt;
 });
 server.bind(PORT);
 
@@ -225,27 +204,32 @@ var irCallback = function (data) {
 	console.log("callback...");
 	console.log(data.key);
 	if (data.key == "KEY_PLAY") {
-		gpioStone.setOn(gpioStone.LED_GREEN);
+		if (gpioStone)
+			gpioStone.setOn(gpioStone.LED_GREEN);
 	}
 	else if (data.key == "KEY_ENTER") {
-		gpioStone.setOff(gpioStone.LED_GREEN);
+		if (gpioStone)
+			gpioStone.setOff(gpioStone.LED_GREEN);
 	}
 	else if (data.key == "KEY_UP") {
 		actuals.page = actuals.page + 1;
 		console.log(actuals.page);
-		gpioStone.flash(gpioStone.LED_GREEN);
+		if (gpioStone)
+			gpioStone.flash(gpioStone.LED_GREEN);
 	}
 	else if (data.key == "KEY_DOWN") {
 		actuals.page = actuals.page - 1;
 		if (actuals.page <= 0)
 			actuals.page = 1;
 		console.log(actuals.page);
-		gpioStone.flash(gpioStone.LED_GREEN);
+		if (gpioStone)
+			gpioStone.flash(gpioStone.LED_GREEN);
 	}
 	else if (data.key == "KEY_MENU") {
 		// console.log("KEY_MENU");
 		// console.log(actuals.KRO.temp);
-		gpioStone.flash(gpioStone.LED_GREEN);
+		if (gpioStone)
+			gpioStone.flash(gpioStone.LED_GREEN);
 		notify.notify(dataManager.GetTelegramMessage("Aktuelle Messwerte:\n"));
 	}
 };

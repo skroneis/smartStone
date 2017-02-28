@@ -1,6 +1,8 @@
 // =======================
 // WEB-Pages ================
 // =======================
+//config
+var config = require('./config');
 var express = require('express');
 var bodyParser = require('body-parser')
 var app = express();
@@ -10,8 +12,10 @@ var http = require('http').Server(app);
 var dataManager = require("./dataManager");
 
 //LED
-var GpioStone = require('./gpio_stone_wp');
-var gpioStone = new GpioStone();
+if (config.LEDsOn) {
+    var GpioStone = require('./gpio_stone_wp');
+    var gpioStone = new GpioStone();
+}
 // =======================
 // configuration =========
 // =======================
@@ -37,14 +41,12 @@ var server = http.listen(port, function () {
     // console.log(config.secret);
 });
 
-
 function errorHandler(err, req, res, next) {
     var code = err.code;
     var message = err.message;
     res.writeHead(code, message, { 'content-type': 'text/plain' });
     res.end(message);
 }
-
 
 //init values (actual)
 var modules = module.exports = {
@@ -106,14 +108,16 @@ apiRoutes.get('/reset', function (req, res, next) {
 //iPhone App
 apiRoutes.get('/setOff/:id', function (req, res, next) {
     //if(err) res.send(err);
-    gpioStone.setOff(req.params.id);
+    if (gpioStone)
+        gpioStone.setOff(req.params.id);
     //res.json("OK");
     res.json({ success: true });
 });
 
 apiRoutes.get('/setOn/:id', function (req, res, next) {
     //if(err) res.send(err);
-    gpioStone.setOn(req.params.id);
+    if (gpioStone)
+        gpioStone.setOn(req.params.id);
     //res.json("OK");
     res.json({ success: true });
 });
@@ -121,10 +125,11 @@ apiRoutes.get('/setOn/:id', function (req, res, next) {
 //LED
 apiRoutes.get('/getStatus/:id', function (req, res, next) {
     //console.log(req.params.id);
-    gpioStone.read(req.params.id, function (err, pin_value) {
-        // console.log(pin_value);
-        res.json({ value: pin_value });;
-    });
+    if (gpioStone)
+        gpioStone.read(req.params.id, function (err, pin_value) {
+            // console.log(pin_value);
+            res.json({ value: pin_value });;
+        });
 });
 
 apiRoutes.route('/setValue')
@@ -132,11 +137,13 @@ apiRoutes.route('/setValue')
     .post(function (req, res) {
         console.log("PIN --> " + req.body.pin);
         console.log("VAL --> " + req.body.value);
-        if (req.body.value == 1) { 
-            gpioStone.setOn(req.body.pin);
+        if (req.body.value == 1) {
+            if (gpioStone)
+                gpioStone.setOn(req.body.pin);
         }
-        else {           
-            gpioStone.setOff(req.body.pin);
+        else {
+            if (gpioStone)
+                gpioStone.setOff(req.body.pin);
         }
         res.json({ success: true });
     });
