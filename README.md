@@ -16,3 +16,11 @@ sudo service smartStone stop
 
 [//]: # (.net: csharp)
 
+### config-samples
+```js
+module.exports={
+    [...]
+    'LCDOn': false,
+    'LEDsOn': false
+};
+```
