@@ -1,5 +1,5 @@
 // =======================
-// WEB-Pages ================
+// WEB-Pages =============
 // =======================
 //config
 var config = require('./config');
@@ -37,7 +37,7 @@ app.get('/', function (req, res) {
 var server = http.listen(port, function () {
     var host = server.address().address
     var port = server.address().port
-    console.log('listening on %s:%s', host, port);
+    console.log('HTTP listening on %s:%s', host, port);
     // console.log(config.secret);
 });
 

@@ -80,7 +80,7 @@ var modules = module.exports = {
         actuals.CALC.minTempIn = 100;
         actuals.CALC.maxTempOut = -99;
         actuals.CALC.minTempOut = 100;
-        console.log("ResetMaxMinValues OK!");
+        console.log("  ResetMaxMinValues OK!");
     },
     SaveMinMaxValues: function () {
         if (actuals == null)

@@ -1,9 +1,25 @@
+// =======================
+// API ===================
+// =======================
+
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 
+//Data-Manager
+var dataManager = require("./dataManager");
+
 //GPIO
 /*var gpio = require('./rpi_gpio')*/
+var actuals = null;
+var self = null;
+var modules = module.exports = {
+    init: function (values) {
+        actuals = values;
+        console.log("constructor - API...");
+        self = this;
+    },
+};
 
 // =======================
 // configuration =========
@@ -25,14 +41,14 @@ var apiRoutes = express.Router();
 apiRoutes.get('/setOn/:id', function (req, res, next) {
     //if(err) res.send(err);
     //gu.setPin(req.params.id, 1);
-	gpio.setOn(req.params.id)
+    gpio.setOn(req.params.id)
     //res.json("OK");
     res.json({ success: true });
 });
 
 apiRoutes.get('/setOff/:id', function (req, res, next) {
     //if(err) res.send(err);
-	gpio.setOff(req.params.id)
+    gpio.setOff(req.params.id)
     //gu.setPin(req.params.id, 0);
     //res.json("OK");
     res.json({ success: true });
@@ -41,8 +57,10 @@ apiRoutes.get('/setOff/:id', function (req, res, next) {
 apiRoutes.get('/getTemp', function (req, res, next) {
     //if(err) res.send(err);
     try {
-        var tempIn, tempOut;
-		//TODO
+        if (actuals && actuals.IN && actuals.OUT)
+            res.json({ "TempIn": actuals.IN.temp, "TempOut": actuals.OUT.temp });
+        else
+            res.json({ success: false });
     }
     catch (e) {
         console.log(e);
@@ -50,16 +68,15 @@ apiRoutes.get('/getTemp', function (req, res, next) {
     }
 });
 
-
-apiRoutes.get('/getTempDB', function (req, res, next) {
-    try {
-        res.json({ success: true });
-    }
-    catch (e) {
-        console.log(e);
-        return next(e);
-    }
-});
+// apiRoutes.get('/getTempDB', function (req, res, next) {
+//     try {
+//         res.json({ success: true });
+//     }
+//     catch (e) {
+//         console.log(e);
+//         return next(e);
+//     }
+// });
 
 apiRoutes.get('/test', function (req, res, next) {
     try {
@@ -110,5 +127,5 @@ app.use('/api', apiRoutes);
 var server = http.listen(port, function () {
     var host = server.address().address
     var port = server.address().port
-    console.log('listening on %s:%s', host, port);
+    console.log('API listening on %s:%s', host, port);
 });

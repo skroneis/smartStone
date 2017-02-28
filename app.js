@@ -3,6 +3,7 @@ var config = require('./config');
 
 //standard libraries
 var util = require('util');
+var clc = require('cli-color'); //https://github.com/medikoo/cli-color
 
 //custom libraries
 var netatmo = require("./netatmoHelper");
@@ -35,12 +36,15 @@ var schedule = require('node-schedule');
 var dgram = require('dgram');
 var server = dgram.createSocket('udp4');
 var events = require('events');
-//
-var EventEmitter = events.EventEmitter;
-var eventEmitter = new events.EventEmitter();
+
+//Events
+// var EventEmitter = events.EventEmitter;
+// var eventEmitter = new events.EventEmitter();
+
 //Maker notifier
 var Notifier = require("./telegramNotify.js");
 var notify = new Notifier();
+
 // var lirc_node = require('lirc_node');
 // lirc_node.init();
 
@@ -50,43 +54,18 @@ var dataManager = require("./dataManager");
 // =============================
 // global variables ============
 // =============================
-var actuals = {
-	IN: {
-		// temp: " - ",
-		// co2: " - ",
-		// humidity: " - ",
-		// pressure: " - "
-	},
-	OUT: {
-		// temp: " - ",
-		// humidity: " - "
-	},
-	KRO: {
-		// dateTime: "",
-		// temp: " - ",
-		// wiGe: " - ",
-		// wiRi: " - ",
-		// wiRiStr: " - ",
-		// wiGeMax: " - ",
-		// wiRiWiGeMax: " - ",
-		// reference: " - "
-	},
-	CALC: {},
-	page: 1
-	//   greeting: function () {
-	//     return "Hello " + this.name + ".  Wow, you are " + this.age + " years old.";
-	//   }
-};
+var actuals = {	IN: {},	OUT: {},KRO: {},CALC: {},page: 1};
 //init angular values...
 //http.update(actuals);
-dataManager.init(actuals);
-http.init(actuals);
+//dataManager.init(actuals);
 scheduledNotifier.init(actuals);
+http.init(actuals);
+api.init(actuals);
 // lcd.setData(actuals);
 //netatmo init
 netatmo.init();
 
-logger.info("----app.js START----");
+logger.info(clc.green("----app.js START----"));
 
 // =============================
 // UDP listener ================
@@ -161,6 +140,7 @@ var getNetatmoMeasures = function () {
 
 	//update angular values...
 	// http.update(actuals);
+	console.log ("  OK");
 };
 
 //init (manual)
@@ -170,7 +150,7 @@ getNetatmoMeasures();
 // get netatmo data ============
 // =============================
 schedule.scheduleJob('*/5 * * * *', function () {
-	console.log('every 5 minutes...');
+	console.log('every 5 minutes get Netatmo measurements...');
 	getNetatmoMeasures();
 });
 
@@ -257,4 +237,4 @@ ir.addListener("KEY_MENU", irCallback);
 // console.log("Received IR keypress '" + data.key + "' from remote '" + data.remote +"'");
 // });
 
-logger.info("----app.js END----");
+logger.info(clc.green("----app.js END----"));
