@@ -30,6 +30,11 @@ var modules = module.exports = {
         console.log("constructor - Data-Manager...");
         self = this;
     },
+    getCardinal: function (degrees) {
+        var caridnals = ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"];
+        var idx = Math.round((degrees % 360) / 45);
+        return caridnals[idx];
+    },
     Min: function (arr) {
         return arr.min();
     },
@@ -67,7 +72,7 @@ var modules = module.exports = {
         var idx_min = WiGe.lastIndexOf(WiGe.min());
         actuals.KRO.nodeWiGeMax = WiGe.max();
         actuals.KRO.nodeWiGeWiRiMax = WiRi[idx];
-        actuals.KRO.nodeWiGeWiRiMaxStr = getCardinal(new Number(WiRi[idx]));
+        actuals.KRO.nodeWiGeWiRiMaxStr = this.getCardinal(new Number(WiRi[idx]));
         actuals.KRO.lengthWiGe = WiGe.length;
         actuals.KRO.lengthWiRi = WiRi.length;
         actuals.KRO.lengthTimestamps = Timestamps.length;
@@ -75,7 +80,7 @@ var modules = module.exports = {
         // actuals.KRO.wiGeMaxAtStr = dateFormat(Timestamps[idx], "dddd, mmmm dS, yyyy, h:MM:ss TT");
         actuals.KRO.nodeWiGeMin = WiGe.min();
         actuals.KRO.nodeWiGeWiRiMin = WiRi[idx_min];
-        actuals.KRO.nodeWiGeWiRiMinStr = getCardinal(new Number(WiRi[idx_min]));
+        actuals.KRO.nodeWiGeWiRiMinStr = this.getCardinal(new Number(WiRi[idx_min]));
         actuals.KRO.wiGeMinAt = dateFormat(Timestamps[idx_min], "isoDateTime");
         // actuals.KRO.wiGeMinAtStr = dateFormat(Timestamps[idx_min], "dddd, mmmm dS, yyyy, h:MM:ss TT");
     },
@@ -132,12 +137,7 @@ var modules = module.exports = {
         //     minTempOut: minTempOut,
         //     minTempOutAt: dateFormat(minTempOutAt, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
         // };
-    },
-    getCardinal: function (degrees) {
-        var caridnals = ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"];
-        var idx = Math.round((degrees % 360) / 45);
-        return caridnals[idx];
-    }
+    }    
 };
 
 //helper
