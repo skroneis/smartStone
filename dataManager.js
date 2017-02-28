@@ -132,6 +132,11 @@ var modules = module.exports = {
         //     minTempOut: minTempOut,
         //     minTempOutAt: dateFormat(minTempOutAt, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
         // };
+    },
+    getCardinal: function (degrees) {
+        var caridnals = ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"];
+        var idx = Math.round((degrees % 360) / 45);
+        return caridnals[idx];
     }
 };
 
@@ -153,12 +158,6 @@ var getFormattedDataFixed = function (str, decimal) {
 };
 
 
-//var getCardinal = function (degrees)
-var getCardinal = function (degrees) {
-    var caridnals = ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"];
-    var idx = Math.round((degrees % 360) / 45);
-    return caridnals[idx];
-};
 
 //reset values at midnight
 schedule.scheduleJob('59 23 * * *', function () {

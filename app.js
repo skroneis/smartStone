@@ -1,3 +1,6 @@
+//config
+var config = require('./config');
+
 //standard libraries
 var util = require('util');
 
@@ -11,8 +14,10 @@ var ScheduledNotifier = require("./scheduledNotifyer.js");
 var scheduledNotifier = new ScheduledNotifier();
 
 //LCD-library
-var LCD = require("./lcd.js");
-var lcd = new LCD(); lcd.init();
+if (config.LCDOn) {
+	var LCD = require("./lcd.js");
+	var lcd = new LCD(); lcd.init();
+}
 
 //GPIO (requred)
 var api = require("./iControl");
@@ -39,9 +44,6 @@ var notify = new Notifier();
 
 //Data-Manager
 var dataManager = require("./dataManager");
-
-//config
-var config = require('./config');
 
 // =============================
 // global variables ============
@@ -103,7 +105,7 @@ server.on('message', function (message, remote) {
 	actuals.KRO.temp = msg.temp;
 	actuals.KRO.wiGe = msg.wiGe;
 	actuals.KRO.wiRi = msg.wiRi;
-	actuals.KRO.wiRiStr = lcd.getCardinal(new Number(msg.wiRi));
+	actuals.KRO.wiRiStr = dataManager.getCardinal(new Number(msg.wiRi));
 	if (msg.wiGeMax != "") {
 		actuals.KRO.wiGeMax = msg.wiGeMax;
 	}
@@ -130,7 +132,8 @@ server.on('message', function (message, remote) {
 	// actuals.KRO.nodeWiGeWiRiMinStr = lcd.getCardinal(new Number(dataRetVal.wiriMin));
 	// actuals.KRO.wiGeMinAt = dataRetVal.wiGeMinAt;
 	//set values to display
-	lcd.setData(actuals);
+	if (lcd)
+		lcd.setData(actuals);
 	//Min Max (temp)
 	dataManager.SaveMinMaxValues();
 	// var dataRetValMinMax = dataManager.SaveMinMaxValues();
