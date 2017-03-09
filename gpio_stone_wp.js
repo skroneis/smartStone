@@ -16,6 +16,7 @@ function GPIOStone() {
     wpi.pinMode(sanitizePinNumberWiringPi(13), wpi.OUTPUT);
     wpi.pinMode(sanitizePinNumberWiringPi(11), wpi.OUTPUT);
     wpi.pinMode(sanitizePinNumberWiringPi(15), wpi.OUTPUT);
+    wpi.pinMode(sanitizePinNumberWiringPi(16), wpi.OUTPUT);
 
     //wpi.pinMode(this.LED_GREEN, wpi.OUTPUT);
     //wpi.pinMode(this.LED_RED, wpi.OUTPUT);
