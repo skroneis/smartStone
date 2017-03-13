@@ -1,4 +1,19 @@
 
+// mainModule.factory('updateService', function ($scope, $http) {
+//     return {
+//         getPinValue: function (pin) {
+//             console.log(pin);
+//             console.log("sfsdfsdfsfsdfsd");
+//             $http.get(MyApp.rootPath + 'api/getStatus/' + pin, null).then(function (response) {
+//                 $scope.ledValue = response.data.value == 1;
+//             },
+//                 function errorCallback(response) {
+//                     console.log("ERROR");
+//                     console.log(response.data);
+//                 });
+//         }
+//     };
+// });
 mainModule.controller('switchController', function ($scope, viewModelHelper, $http) {
     $scope.Sepp = "Sepp Forcher";
     $scope.isLoading = false;
@@ -30,8 +45,28 @@ mainModule.controller('switchController', function ($scope, viewModelHelper, $ht
         scope: true,
         // template: '<label>{{pinLabel}}</label><span ng-click="click($event, $scope)">&nbsp;&nbsp;<input type="checkbox" data-off-title="Off" data-on-title="On" ng-checked="ledValue"></span> <i>{{ledValue}}</i>',
         template: '<table class="ledTableInline"><thead><tr><th>{{pinLabel}}</th></tr></thead><tbody><tr><td><span ng-click="click($event, $scope)"><input type="checkbox" data-off-title="Off" data-on-title="On" ng-checked="ledValue"></span><span class="boolLabel"><br/><i>{{ledValue}}</i></span></td></tr></tbody></table>',
-        link: function (scope, elm, attrs, http) {
+        link: function ($scope, elm, $attrs, http) {
+            //infinite loop
+            var pin = $attrs.pinNo;
+            var refreshPin = function (pin) {
+                console.log("refresh loop...");
+                // console.log(pin);
+                $http.get(MyApp.rootPath + 'api/getStatus/' + pin, null).then(function (response) {
+                    $scope.ledValue = response.data.value == 1;
+                },
+                    function errorCallback(response) {
+                        console.log("ERROR");
+                        console.log(response.data);
+                    });
 
+                //infinite loop
+                $timeout(function () {
+                    refreshPin(pin);
+                }, 2000)
+            };
+
+            //call function first time
+            refreshPin(pin);
         },
         controller: function ($scope, $element, $attrs) {
             // console.log($attrs.pinNo);
@@ -53,14 +88,14 @@ mainModule.controller('switchController', function ($scope, viewModelHelper, $ht
                 refresh(pin);
             });
 
-            refresh(pin);
-
+            // refresh(pin);
             //get value
-            $http.get(MyApp.rootPath + 'api/getStatus/' + pin, null).then(function (response) {
-                // console.log("GET...");
-                // console.log("PIN: " + pin + ": " + response.data.value);
-                $scope.ledValue = response.data.value == 1;
-            });
+            // $http.get(MyApp.rootPath + 'api/getStatus/' + pin, null).then(function (response) {
+            //     // console.log("GET...");
+            //     // console.log("PIN: " + pin + ": " + response.data.value);
+            //     $scope.ledValue = response.data.value == 1;
+            // });
+
             $scope.click = function ($event, scope) {
                 // console.log ($event.currentTarget.querySelector('.active').children[0].getAttribute("is"));
                 var valChkBox = $event.currentTarget.querySelector('.active').children[0].getAttribute("is");
