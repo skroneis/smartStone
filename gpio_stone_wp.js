@@ -1,5 +1,6 @@
 var fs = require("fs");
 var wpi = require('wiring-pi');
+//var wpi = require("wiringpi-node");
 wpi.setup('wpi');
 
 exports = module.exports = GPIOStone;
