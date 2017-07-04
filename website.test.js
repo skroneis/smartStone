@@ -128,7 +128,7 @@ apiRoutes.get('/reset', function (req, res, next) {
 });
 
 apiRoutes.route('/setValue')
-    //(accessed at POST http://localhost:8080/api/setValue)
+    //(accessed at POST http://localhost:8001/api/setValue)
     .post(function (req, res) {
         console.log ("---------------------------------------body---------------------------");
         console.log(req.body.pin);
@@ -148,6 +148,17 @@ apiRoutes.get('/getStatus/:id', function (req, res, next) {
     // });
 });
 
+// apiRoutes.get('/writeRow', function (req, res, next) {    
+//     res.json({ value: 1 });    
+// });
+
+apiRoutes.route('/writeRow')
+    //(accessed at POST http://localhost:8001/api/writeRow)
+    .post(function (req, res) {
+        console.log ("---------------------------------------writeRow::body---------------------------");      
+        console.log(req.body.stone);  
+        res.json({ success: true });
+    });
 
 // apply the routes to our application with the prefix /api
 app.use('/api', apiRoutes);

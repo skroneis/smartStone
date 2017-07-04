@@ -34,3 +34,7 @@
 sub{
     font-size: xx-small;
 }
+
+.bootbox-body{
+    color: black;
+}

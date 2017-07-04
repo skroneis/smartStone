@@ -29,7 +29,7 @@
                 // bootbox.alert("ERROR");            
                 console.log(response.data);
             });
-    };   
+    };
 
     $scope.getDate = function () {
         return new Date();
@@ -40,6 +40,26 @@
             return "danger";
         return null;
     }
+
+    $scope.writeSpreadsheetEntry = function () {
+        console.log("writeSpreadsheetEntry...");
+        $scope.isLoading = true;
+        return $http.post(MyApp.rootPath + 'api/writeRow', { "stone": "SeppForcher" }).then(function (response) {
+            //console.log(response.data);
+            console.log(response.data);
+            $scope.isLoading = false;
+            if (response.data.success)
+                bootbox.alert({
+                    message: "OK!",
+                    size: 'small'
+                });
+        },
+            function errorCallback(response) {
+                console.log("ERROR");
+                // bootbox.alert("ERROR");            
+                console.log(response.data);
+            });
+    };
 
     setInterval(function () {
         // console.log("get....");
