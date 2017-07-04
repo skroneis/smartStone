@@ -8,6 +8,12 @@ var bodyParser = require('body-parser')
 var app = express();
 var http = require('http').Server(app);
 
+// =======================
+// Google spreadsheet ====
+// =======================
+var Spreadsheet = require("./spreadsheet.js");
+var spreadsheet = new Spreadsheet();
+
 //Data-Manager
 var dataManager = require("./dataManager");
 
