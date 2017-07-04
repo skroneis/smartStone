@@ -48,21 +48,22 @@ function errorHandler(err, req, res, next) {
     res.end(message);
 }
 
+// =======================
+// Google spreadsheet ====
+// =======================
+var Spreadsheet = require("./spreadsheet.js");
+var spreadsheet = new Spreadsheet();
+
 //init values (actual)
 var modules = module.exports = {
     init: function (values) {
         //console.log("init (http)...");
         //console.log(values.temp);
         actuals = values;
+        spreadsheet.init(actuals);
     }
 };
 
-// =======================
-// Google spreadsheet ====
-// =======================
-var Spreadsheet = require("./spreadsheet.js");
-var spreadsheet = new Spreadsheet();
-spreadsheet.init(actuals);
 
 // =======================
 // REST-API ================
