@@ -53,7 +53,7 @@ SpreadsheetLogger.prototype.init = function (values) {
 SpreadsheetLogger.prototype.writeRow = function () {
     if (sheet != null)
         console.log("  SpreadsheetLogger::addRow...");
-        console.log(actuals);
+        // console.log(actuals);
         sheet.addRow({ temp_in: actuals.IN.temp, temp_out: actuals.OUT.temp, timestamp: actuals.KRO.dateTime }, function (err, row) {
             if (err) {
                 throw err;
