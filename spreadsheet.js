@@ -28,7 +28,7 @@ SpreadsheetLogger.prototype.init = function (values) {
 
     async.series([
         function setAuth(step) {
-            console.log("----------setAuth-----------");
+            console.log("  SpreadsheetLogger::setAuth");
             // see notes below for authentication instructions! 
             var creds = require('./stone-5ab93e7770eb.json');
             doc.useServiceAccountAuth(creds, step);
@@ -36,7 +36,7 @@ SpreadsheetLogger.prototype.init = function (values) {
         function getInfoAndWorksheets(step) {
             doc.getInfo(function (err, info) {
                 // console.log('Loaded doc: ' + info.title + ' by ' + info.author.email);
-                console.log("----------getInfoAndWorksheets-----------");
+                console.log("  SpreadsheetLogger::getInfoAndWorksheets");
                 sheet = info.worksheets[0];
                 // console.log('sheet 1: ' + sheet.title + ' ' + sheet.rowCount + 'x' + sheet.colCount);
                 step();
@@ -52,11 +52,12 @@ SpreadsheetLogger.prototype.init = function (values) {
 // write a new row entry in spreadsheet
 SpreadsheetLogger.prototype.writeRow = function () {
     if (sheet != null)
-        console.log("addRow...");
+        console.log("  SpreadsheetLogger::addRow...");
+        console.log(actuals);
         sheet.addRow({ temp_in: actuals.IN.temp, temp_out: actuals.OUT.temp, timestamp: actuals.KRO.dateTime }, function (err, row) {
             if (err) {
                 throw err;
             }
-            console.log("OK!");
+            console.log("  SpreadsheetLogger::OK!");
         });
 };
