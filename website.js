@@ -133,7 +133,7 @@ apiRoutes.get('/getStatus/:id', function (req, res, next) {
 });
 
 apiRoutes.route('/setValue')
-    //(accessed at POST http://localhost:8080/api/setValue)
+    //(accessed at POST http://localhost:8001/api/setValue)
     .post(function (req, res) {
         console.log("PIN --> " + req.body.pin);
         console.log("VAL --> " + req.body.value);
@@ -147,6 +147,22 @@ apiRoutes.route('/setValue')
         }
         res.json({ success: true });
     });
+
+// =======================
+// GOOGLE SPREADSHEET ====
+// =======================
+spreadsheet.init(actuals);
+
+apiRoutes.route('/writeRow')
+    //(accessed at POST http://localhost:8001/api/writeRow)
+    .post(function (req, res) {
+        console.log("---------------------------------------body---------------------------");
+        //console.log(req.body);
+        console.log(req.body.stone);
+        spreadsheet.writeRow();
+        res.json({ success: true });
+    });
+
 
 // apply the routes to our application with the prefix /api
 app.use('/api', apiRoutes);

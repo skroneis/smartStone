@@ -6,6 +6,9 @@ var bodyParser = require('body-parser')
 var app = express();
 var http = require('http').Server(app);
 
+var Spreadsheet = require("./spreadsheet.js");
+var spreadsheet = new Spreadsheet();
+
 // =======================
 // configuration =========
 // =======================

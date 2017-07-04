@@ -88,3 +88,6 @@ $RECYCLE.BIN/
 .svn
 
 config
+
+# Google spreadsheet/API config
+stone-5ab93e7770eb.json

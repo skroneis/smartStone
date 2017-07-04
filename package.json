@@ -29,6 +29,7 @@
     "dateformat": "^2.0.0",
     "dgram": "^1.0.1",
     "express": "^4.14.0",
+    "google-spreadsheet": "^2.0.4",
     "lcdi2c": "^1.0.6",
     "lirc_node": "0.0.4",
     "moment": "^2.15.2",
