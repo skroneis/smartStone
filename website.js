@@ -8,12 +8,6 @@ var bodyParser = require('body-parser')
 var app = express();
 var http = require('http').Server(app);
 
-// =======================
-// Google spreadsheet ====
-// =======================
-var Spreadsheet = require("./spreadsheet.js");
-var spreadsheet = new Spreadsheet();
-
 //Data-Manager
 var dataManager = require("./dataManager");
 
@@ -62,6 +56,13 @@ var modules = module.exports = {
         actuals = values;
     }
 };
+
+// =======================
+// Google spreadsheet ====
+// =======================
+var Spreadsheet = require("./spreadsheet.js");
+var spreadsheet = new Spreadsheet();
+spreadsheet.init(actuals);
 
 // =======================
 // REST-API ================
@@ -153,11 +154,6 @@ apiRoutes.route('/setValue')
         }
         res.json({ success: true });
     });
-
-// =======================
-// GOOGLE SPREADSHEET ====
-// =======================
-spreadsheet.init(actuals);
 
 apiRoutes.route('/writeRow')
     //(accessed at POST http://localhost:8001/api/writeRow)
