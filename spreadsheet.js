@@ -54,7 +54,15 @@ SpreadsheetLogger.prototype.writeRow = function () {
     if (sheet != null)
         console.log("  SpreadsheetLogger::addRow...");
         // console.log(actuals);
-        sheet.addRow({ temp_in: actuals.IN.temp, temp_out: actuals.OUT.temp, timestamp: actuals.KRO.dateTime }, function (err, row) {
+        sheet.addRow({	temp_in: actuals.IN.temp, 
+			temp_out: actuals.OUT.temp, 
+			timestamp: actuals.KRO.dateTime, 
+			wiGe: actuals.KRO.wiGe, 
+			wiRi: actuals.KRO.wiRi, 
+			wiRiStr: actuals.KRO.wiRiStr, 
+			wiGeMax: actuals.KRO.nodeWiGeMax,
+			wiGeMaxAt: actuals.KRO.wiGeMaxAt,
+			wiGeWiRiMaxStr: actuals.KRO.nodeWiGeWiRiMaxStr }, function (err, row) {
             if (err) {
                 throw err;
             }
