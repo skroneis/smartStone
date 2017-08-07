@@ -241,6 +241,10 @@ schedule.scheduleJob('0 23 * * *', function () {
     lcd.off();
     console.log('display off!');
 });
+schedule.scheduleJob('5 0 * * *', function () {
+    lcd.off();
+    console.log('display off!');
+});
 schedule.scheduleJob('30 6 * * *', function () {
     lcd.on();
     console.log('display on!');
