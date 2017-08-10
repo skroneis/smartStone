@@ -5,6 +5,7 @@
 var config = require('./config');
 var schedule = require('node-schedule');
 var netatmo = require('./netatmoLib');
+var logger = require("./logger");
 
 var auth = {
     "client_id": "51b0dda8197759c41e00004a",

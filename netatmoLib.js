@@ -2,6 +2,7 @@ var util = require('util');
 var EventEmitter = require("events").EventEmitter;
 var request = require('request');
 var moment = require('moment');
+var logger = require("./logger");
 
 const BASE_URL = 'https://api.netatmo.net';
 
