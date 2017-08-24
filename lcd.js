@@ -1,6 +1,7 @@
 var pad = require('pad');
 var moment = require('moment');
 var schedule = require('node-schedule');
+var logger = require("./logger");
 
 var LCD = require('lcdi2c');
 var lcd = new LCD(1, 0x27, 20, 4);
