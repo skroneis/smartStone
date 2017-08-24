@@ -134,7 +134,7 @@ console.log(dataManager.GetTelegramMessage());*/
 // actuals.temp = 15.5;
 // scheduledNotifier.send();
 
-// var GpioStone = require('./gpio_stone_wp');
+// var GpioStone = require('./gpio_stone_node');
 // var gpioStone = new GpioStone();
 // gpioStone.flash(gpioStone.LED_GREEN);
 

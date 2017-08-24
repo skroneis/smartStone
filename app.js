@@ -30,7 +30,7 @@ if (config.LCDOn) {
 //GPIO (required)
 var api = require("./iControl");
 if (config.LEDsOn) {
-	var GpioStone = require('./gpio_stone_wp');
+	var GpioStone = require('./gpio_stone_node');
 	var gpioStone = new GpioStone();
 }
 
