@@ -25,5 +25,5 @@ module.exports={
 };
 ```
 
-### Patch - wiring-pi
-copy node_modules\wiringpi-node\build\Release\WiringPi.node --> node_modules\wiring-pi\build\Release\wiringPi.node
+### wiring-pi
+use node-wiring-pi
