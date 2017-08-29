@@ -1,10 +1,13 @@
 ﻿mainModule.controller("stoneController", function ($scope, viewModelHelper, $http) {
     $scope.Sepp = "Sepp Forcher";
     $scope.isLoading = false;
+    $scope.actuals = null;
 
     var initialize = function () {
         console.log("initialize");
         $scope.getValues();
+        $scope.resetAirConditionValues();
+        $scope.getAirConditionIndicator();
     }
 
     $scope.init = function () {
@@ -64,5 +67,45 @@
     setInterval(function () {
         // console.log("get....");
         $scope.getValues();
+        $scope.getAirConditionIndicator();
     }, 1000 * 5) //5 secongs...
+
+    $scope.resetAirConditionValues = function () {
+        $scope.showAirConditionIndicatorGreen = false;
+        $scope.showAirConditionIndicatorRed = false;
+        $scope.showAirConditionIndicatorYellow = false;
+        $scope.airConditionMessage = null;
+    }
+
+    $scope.getAirConditionIndicator = function () {
+        $scope.resetAirConditionValues();
+        console.log($scope.actuals);
+        if ($scope.actuals) {
+            //if temp inside is higher than outside --> green (turn on)
+            if ($scope.actuals.IN.temp > $scope.actuals.KRO.temp) {
+                $scope.airConditionMessage = "[turn off]"
+                if ($scope.actuals.IN.temp - $scope.actuals.KRO.temp <= 0.5) {
+                    $scope.showAirConditionIndicatorYellow = true;
+                    $scope.airConditionMessage += " ...soon";
+                }
+                else
+                    $scope.showAirConditionIndicatorRed = true;
+
+
+            }
+            //if temp inside is lower than outside --> red (turn off)
+            else if ($scope.actuals.IN.temp < $scope.actuals.KRO.temp) {
+                $scope.airConditionMessage = "[turn on]"
+                if ($scope.actuals.KRO.temp - $scope.actuals.IN.temp <= 0.5) {
+                    $scope.showAirConditionIndicatorYellow = true;
+                    $scope.airConditionMessage += " ...soon";
+                }
+                else
+                    $scope.showAirConditionIndicatorGreen = true;
+
+            }
+        }
+    };
+
+
 });

@@ -16,7 +16,7 @@ var spreadsheet = new Spreadsheet();
 // configuration =========
 // =======================
 var port = process.env.PORT || 8001;
-var actuals = null;
+var actuals = {	IN: {temp: 33.10},	OUT: {},KRO: {temp: 35.85},CALC: {},page: 1};
 
 //app.use(express.compress());
 app.use('/', express.static(__dirname + '/public'));
