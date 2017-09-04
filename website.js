@@ -122,7 +122,7 @@ apiRoutes.get('/reset', function (req, res, next) {
 //Reset NETATMO
 apiRoutes.get('/resetNetatmo', function (req, res, next) {
     try {
-        this.netatmo.refreshAccessToken(function (result) {
+        netatmo.refreshAccessToken(function (result) {
             console.log (result);
             res.json({ OK: true, info: result });
         });
