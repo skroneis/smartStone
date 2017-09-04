@@ -67,11 +67,11 @@ var actuals = {	IN: {},	OUT: {},KRO: {},CALC: {},page: 1};
 //dataManager.init(actuals);
 scheduledNotifier.init(actuals);
 http.init(actuals);
-http.setNetatmo(netatmo);
 api.init(actuals);
 // lcd.setData(actuals);
 //netatmo init
 netatmo.init();
+http.setNetatmo(netatmo);
 
 logger.info(clc.green("----app.js START----"));
 

@@ -64,7 +64,9 @@ var modules = module.exports = {
         spreadsheet.init(actuals);
     },
     setNetatmo: function (_netatmo){
-        this.netatmo = _netatmo;
+        netatmo = _netatmo;
+        console.log ("NETATMO......")
+        console.log(netatmo);
     }
 };
 
