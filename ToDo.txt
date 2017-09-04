@@ -1,0 +1,1 @@
+optimize 4 800 x 480 (Rpi 7'' touch LCD)

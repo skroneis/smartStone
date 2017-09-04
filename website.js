@@ -21,6 +21,7 @@ if (config.LEDsOn) {
 // =======================
 var port = process.env.PORT || 8001;
 var actuals = null;
+var netatmo = null;
 
 //app.use(express.compress());
 app.use('/', express.static(__dirname + '/public'));
@@ -61,6 +62,9 @@ var modules = module.exports = {
         //console.log(values.temp);
         actuals = values;
         spreadsheet.init(actuals);
+    },
+    setNetatmo: function (_netatmo){
+        this.netatmo = _netatmo;
     }
 };
 
@@ -112,6 +116,23 @@ apiRoutes.get('/reset', function (req, res, next) {
         return next(e);
     }
 });
+
+//Reset NETATMO
+apiRoutes.get('/resetNetatmo', function (req, res, next) {
+    try {
+        this.netatmo.refreshAccessToken(function (result) {
+            console.log (result);
+            res.json({ OK: true, info: result });
+        });
+        res.json({ OK: false });
+    }
+    catch (e) {
+        console.log(e);
+        return next(e);
+    }
+});
+
+
 
 //iPhone App
 apiRoutes.get('/setOff/:id', function (req, res, next) {

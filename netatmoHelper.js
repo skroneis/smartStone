@@ -125,8 +125,8 @@ var optionsOutdoor = {
 // return 'Hello!';
 // }
 
-//re-init at midnight
-schedule.scheduleJob('50 23 * * *', function () {
+//re-init
+schedule.scheduleJob('50 0 * * *', function () {
     console.log ("scheduled refresh access token");
     WData.refreshAccessToken(function (result) {
         console.log (result);
