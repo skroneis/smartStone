@@ -8,8 +8,13 @@ var actuals = {
 http.init(actuals);*/
 
 /**********NETATMO*********************/
-//var netatmo = require("./netatmoHelper");
-// netatmo.init();
+var netatmo = require("./netatmoHelper");
+netatmo.init();
+netatmo.getStationData(function (stationData) {
+	console.log ("OK");
+	console.log (stationData.IN.Temp);
+});
+
 /*netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
 	console.log("TEMP: " + temp);
 

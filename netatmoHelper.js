@@ -6,6 +6,7 @@ var config = require('./config');
 var schedule = require('node-schedule');
 var netatmo = require('./netatmoLib');
 var logger = require("./logger");
+var moment = require('moment');
 
 var auth = {
     "client_id": "51b0dda8197759c41e00004a",
@@ -74,6 +75,43 @@ var WData = module.exports = {
             callback(time, temp, humidity);
         });
     },
+    getStationData: function (callback) {
+        _options = optionsIndoor;
+        api.getStationsData(_options, function (err, measure) {
+            console.log(measure);
+            console.log("----------------------------------");
+            console.log(measure[0].modules[0].dashboard_data);
+            console.log(measure[0].modules[0].dashboard_data.Temperature);
+            console.log(measure[0].modules[0].dashboard_data.temp_trend);
+            console.log(measure[0].modules[0].dashboard_data.Humidity);
+            console.log(measure[0].modules[0].dashboard_data.min_temp);
+            console.log(measure[0].modules[0].dashboard_data.max_temp);
+            console.log(measure[0].modules[0].dashboard_data.date_min_temp);
+            console.log(measure[0].modules[0].dashboard_data.date_max_temp);
+            console.log("----------------------------------");
+            console.log(measure[0].dashboard_data);
+            console.log(measure[0].dashboard_data.Temperature);
+            console.log(measure[0].dashboard_data.Humidity);
+            console.log(measure[0].dashboard_data.min_temp);
+            console.log(measure[0].dashboard_data.max_temp);
+            console.log(measure[0].dashboard_data.date_min_temp);
+            console.log(measure[0].dashboard_data.date_max_temp);
+            console.log(measure[0].dashboard_data.CO2);
+            console.log(measure[0].dashboard_data.Pressure);
+            console.log(measure[0].dashboard_data.pressure_trend);
+            console.log(measure[0].dashboard_data.temp_trend);
+            console.log("----------------------------------");
+
+            var ts = moment.utc(measure[0].dashboard_data.time_utc*1000);
+            console.log(ts.local().format('DD.MM.YYYY HH:mm:ss'));
+
+            var stationData = {	IN: {},	OUT: {}};
+
+            stationData.IN.Temp = measure[0].dashboard_data.Temperature;
+            //save
+            callback(stationData);
+        });
+    },
     init: function () {
         self = this;
         console.log("init netatmo - OK");
@@ -112,7 +150,7 @@ var optionsIndoor = {
     scale: 'max',
     date_end: 'last',
     module_id: '70:ee:50:00:fc:36',//'NAMain',
-    type: ['Temperature', 'CO2', 'Humidity', 'Pressure', 'Noise'],
+    type: ['Temperature', 'CO2', 'Humidity', 'Pressure', 'Noise', 'temp_trend'],
 };
 var optionsOutdoor = {
     device_id: '70:ee:50:00:fc:36', //indoor70:ee:50:00:fc:36
