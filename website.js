@@ -32,6 +32,11 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
+app.get('/rpi/', function (req, res) {
+    res.sendFile(__dirname + '/public/index_Rpi.html');
+});
+
+
 // =======================
 // start the server ======
 // =======================
