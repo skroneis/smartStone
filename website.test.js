@@ -16,15 +16,37 @@ var spreadsheet = new Spreadsheet();
 // configuration =========
 // =======================
 var port = process.env.PORT || 8001;
-var actuals = {	IN: {temp: 33.10},	OUT: {},KRO: {temp: 35.85},CALC: {},page: 1};
+// var actuals = { IN: { temp: 33.10, maturity: 8 }, OUT: {}, KRO: { temp: 35.85 }, CALC: {}, page: 1 };
+actuals = {
+    IN: {
+        time: "2017-09-06T12:21:46.000Z", temp: 24.2, co2: 667, humidity: 56, "pressure": 1012.9, "maturity": 8
+    },
+    "OUT": {
+        "time": "2017-09-06T12:21:18.000Z", "temp": 25.5, "humidity": 67, "maturity": 8
+    },
+    "KRO": {
+        "dateTime": "2017-09-06T14:31:00", "temp": "23.14", "wiGe": "6.47", "wiRi": "244.78",
+        "wiRiStr": "SW", "wiRiWiGeMax": "", "reference": "2.21", "nodeWiGeMax": 32.59, "nodeWiGeWiRiMax": 246.88,
+        "nodeWiGeWiRiMaxStr": "SW", "lengthWiGe": 720, "lengthWiRi": 720, "lengthTimestamps": 720, "wiGeMaxAt": "2017-09-06T14:11:35+0200",
+        "nodeWiGeMin": 1.16, "nodeWiGeWiRiMin": 209.44, "nodeWiGeWiRiMinStr": "SW", "wiGeMinAt": "2017-09-06T14:25:45+0200", "wiGeMax": "222.63"
+    },
+    "CALC": {
+        "maxTempIn": 24.2, "minTempIn": 22.6, "maxTempOut": 23.2, "minTempOut": 14.52,
+        "maxTempOutAt": "2017-09-06T14:06:26+0200", "minTempOutAt": "2017-09-06T06:51:36+0200", "maxTempInAt": "2017-09-06T14:31:56+0200",
+        "minTempInAt": "2017-09-06T07:59:55+0200"
+    },
+    "page": 1
+}
+
 
 //app.use(express.compress());
 app.use('/', express.static(__dirname + '/public'));
 //4 post
 app.use(bodyParser.json())
 
-app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/public/index.html');
+app.get('/rpi/', function (req, res) {
+    // res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + '/public/index_Rpi.html');
 });
 
 
@@ -69,6 +91,26 @@ app.use(function (req, res, next) {
 var apiRoutes = express.Router();
 
 //-----------------------------------------------------------------------------------------------------------------------------
+//Reset NETATMO
+apiRoutes.get('/resetNetatmo', function (req, res, next) {
+    try {
+        netatmo.reInit(function (result) {
+            console.log(result);
+            res.json({ OK: true, info: result });
+        });
+        res.json({ OK: false });
+        // netatmo.refreshAccessToken(function (result) {
+        //     console.log (result);
+        //     res.json({ OK: true, info: result });
+        // });
+        // res.json({ OK: false });
+    }
+    catch (e) {
+        console.log(e);
+        return next(e);
+    }
+});
+
 //getData
 apiRoutes.get('/getData', function (req, res, next) {
     //if(err) res.send(err);
@@ -130,7 +172,7 @@ apiRoutes.get('/reset', function (req, res, next) {
 apiRoutes.route('/setValue')
     //(accessed at POST http://localhost:8001/api/setValue)
     .post(function (req, res) {
-        console.log ("---------------------------------------body---------------------------");
+        console.log("---------------------------------------body---------------------------");
         console.log(req.body.pin);
         console.log(req.body.value);
         res.json({ success: true });
@@ -155,10 +197,12 @@ apiRoutes.get('/getStatus/:id', function (req, res, next) {
 apiRoutes.route('/writeRow')
     //(accessed at POST http://localhost:8001/api/writeRow)
     .post(function (req, res) {
-        console.log ("---------------------------------------writeRow::body---------------------------");      
-        console.log(req.body.stone);  
+        console.log("---------------------------------------writeRow::body---------------------------");
+        console.log(req.body.stone);
         res.json({ success: true });
     });
+
+
 
 // apply the routes to our application with the prefix /api
 app.use('/api', apiRoutes);

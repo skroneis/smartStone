@@ -1,0 +1,131 @@
+.spinner {
+    margin-right: 15px;
+    margin-top: 10px;
+}
+
+.clock {
+    color: lightGray;
+}
+
+.row-bordered:after {
+  content: "";
+  display: block;
+  border-bottom: 0px solid #ccc;
+  margin: 0 15px;
+  margin-top: 28px;
+}
+
+.panel{
+    margin-bottom: 0;
+}
+
+.in, .danger{
+    color: red;
+}
+
+.out{
+    color: blue;
+}
+
+.page-header {
+    border-bottom: 0;
+}
+
+sub{
+    font-size: xx-small;
+}
+
+.bootbox-body{
+    color: black;
+}
+
+.rpi-container{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+@media (min-width: 768px)
+{
+    .container {
+    width: 800px;
+    }
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    height: 35px;
+}
+
+hr {
+    margin-top: 0;
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 1px solid #eeeeee;
+}
+
+.smallFont
+{
+
+    font-size: smaller;
+}
+
+.floor{
+    font-weight: bold;
+    font-size: 65px;
+}
+
+.decimal{
+    font-size: 20px;
+    font-weight: bold;
+}
+.tdN{
+    margin-top: 18px;
+    padding: 0;
+}
+.tdS
+{
+    margin-bottom: 8px;
+    padding: 0;
+}
+.symbol
+{
+    font-size: 16px;
+}
+
+.annotation{
+    font-size: 35px;
+    color:darkgrey;
+}
+
+.small .floor{
+    font-weight: bold;
+    font-size: 25px;
+}
+.small .decimal{
+    font-size: 14px;
+    font-weight: bold;
+}
+.small .tdN-single{
+    margin-top: 5px;
+    padding: 0;
+}
+.small .tdN{
+    margin-top: -5px;
+    padding: 0;
+}
+.small .tdS
+{
+    margin-bottom: 0px;
+    margin-top: -10px;
+    padding: 0;
+}
+.small .symbol
+{
+    font-size: 16px;
+} 
+
+.small .annotation{
+    font-size: 15px;
+    color:darkgrey;
+}

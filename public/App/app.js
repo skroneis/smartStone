@@ -96,6 +96,14 @@ mainModule.directive("xledStatus", function ($compile) {
     }
 });
 
+mainModule.filter('decimals', ['$filter', function ($filter) {
+    return function (input) {
+        let values = (input + "").split(".");
+        return values[1];
+        //   return $filter('number')(input * 100, decimals) + '%';
+    };
+}]);
+
 (function (myApp) {
     "use strict";
     var viewModelHelper = function ($http, $q, $window, $location) {
@@ -310,4 +318,4 @@ mainModule.directive("xledStatus", function ($compile) {
         return this;
     };
     myApp.viewModelHelper = viewModelHelper;
-} (window.MyApp));
+}(window.MyApp));

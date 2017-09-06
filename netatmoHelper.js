@@ -86,11 +86,13 @@ var WData = module.exports = {
         // })
         // console.log (auth);
         // api.authenticate(auth);
+    },
+    reInit: function (callback) {
+        api = null;
+        api = new netatmo(auth);
+        console.log("ReInit (netatmo) - OK");
+        callback("OK");
     }
-    //,
-    // remove: function() {
-    // Counter.count += 10;
-    // }
 }
 
 
@@ -127,8 +129,8 @@ var optionsOutdoor = {
 
 //re-init
 schedule.scheduleJob('50 0 * * *', function () {
-    console.log ("scheduled refresh access token");
+    console.log("scheduled refresh access token");
     WData.refreshAccessToken(function (result) {
-        console.log (result);
+        console.log(result);
     });
 });

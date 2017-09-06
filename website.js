@@ -63,9 +63,9 @@ var modules = module.exports = {
         actuals = values;
         spreadsheet.init(actuals);
     },
-    setNetatmo: function (_netatmo){
+    setNetatmo: function (_netatmo) {
         netatmo = _netatmo;
-        console.log ("NETATMO......")
+        console.log("NETATMO......")
         console.log(netatmo);
     }
 };
@@ -122,19 +122,22 @@ apiRoutes.get('/reset', function (req, res, next) {
 //Reset NETATMO
 apiRoutes.get('/resetNetatmo', function (req, res, next) {
     try {
-        netatmo.refreshAccessToken(function (result) {
-            console.log (result);
+        netatmo.reInit(function (result) {
+            console.log(result);
             res.json({ OK: true, info: result });
         });
         res.json({ OK: false });
+        // netatmo.refreshAccessToken(function (result) {
+        //     console.log (result);
+        //     res.json({ OK: true, info: result });
+        // });
+        // res.json({ OK: false });
     }
     catch (e) {
         console.log(e);
         return next(e);
     }
 });
-
-
 
 //iPhone App
 apiRoutes.get('/setOff/:id', function (req, res, next) {

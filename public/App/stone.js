@@ -25,6 +25,7 @@
         return $http.get(MyApp.rootPath + 'api/getData', null).then(function (response) {
             //console.log(response.data);
             $scope.actuals = response.data;
+            $scope.getAirConditionIndicator();
             $scope.isLoading = false;
         },
             function errorCallback(response) {
@@ -67,7 +68,7 @@
     setInterval(function () {
         // console.log("get....");
         $scope.getValues();
-        $scope.getAirConditionIndicator();
+        // $scope.getAirConditionIndicator();
     }, 1000 * 5) //5 secongs...
 
     $scope.resetAirConditionValues = function () {
