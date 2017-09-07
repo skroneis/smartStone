@@ -52,11 +52,15 @@ var WData = module.exports = {
             // When the "error" event is emitted, this is called
             //console.error('Netatmo threw an error: ' + error);
             //console.log(measure[0].value);
-            var time = measure[0].beg_time;
-            var temp = measure[0].value[0][0];
-            var co2 = measure[0].value[0][1];
-            var humidity = measure[0].value[0][2];
-            var pressure = measure[0].value[0][3];
+            if (measure !== null && measure !== undefinded) {
+                if (measure[0] !== null && measure[0] !== undefinded) {
+                    var time = measure[0].beg_time;
+                    var temp = measure[0].value[0][0];
+                    var co2 = measure[0].value[0][1];
+                    var humidity = measure[0].value[0][2];
+                    var pressure = measure[0].value[0][3];
+                }
+            }
             //console.log("_co2: %s", _co2);
             // logger.info(measure[0].value);
             // console.log("Temp: %s", temp);
@@ -102,10 +106,10 @@ var WData = module.exports = {
             console.log(measure[0].dashboard_data.temp_trend);
             console.log("----------------------------------");
 
-            var ts = moment.utc(measure[0].dashboard_data.time_utc*1000);
+            var ts = moment.utc(measure[0].dashboard_data.time_utc * 1000);
             console.log(ts.local().format('DD.MM.YYYY HH:mm:ss'));
 
-            var stationData = {	IN: {},	OUT: {}};
+            var stationData = { IN: {}, OUT: {} };
 
             stationData.IN.Temp = measure[0].dashboard_data.Temperature;
             //save
