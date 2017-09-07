@@ -117,6 +117,8 @@ server.bind(PORT);
 //get measures from netatmo
 var getNetatmoMeasures = function () {
 	var now = new Date(Date.now());
+	try
+	{
 	netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
 		if (time !== null) {
 			actuals.IN.time = new Date(time * 1000);
@@ -149,7 +151,11 @@ var getNetatmoMeasures = function () {
 			}
 		}
 	});
-
+	}
+	catch (e)
+	{
+		console.log (e);
+	}
 	//update angular values...
 	// http.update(actuals);
 	console.log("  OK");
