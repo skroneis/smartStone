@@ -11,8 +11,11 @@ http.init(actuals);*/
 var netatmo = require("./netatmoHelper");
 netatmo.init();
 netatmo.getStationData(function (stationData) {
+	var now = new Date(Date.now());
 	console.log ("OK");
-	console.log (stationData.IN.Temp);
+	console.log (stationData.IN.Temperature);	
+	console.log(new Date(now - stationData.IN.time).getMinutes());
+	console.log(new Date(now - stationData.OUT.time).getMinutes());
 });
 
 /*netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {

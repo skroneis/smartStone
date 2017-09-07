@@ -119,10 +119,25 @@ var getNetatmoMeasures = function () {
 	var now = new Date(Date.now());
 	try {
 		//NEW (WIP)
-		// netatmo.getStationData(function (stationData) {
-		// 	console.log ("OK");
-		// 	console.log (stationData.IN.Temp);
-		// });
+		netatmo.getStationData(function (stationData) {
+			if (stationData !== null) {
+				console.log("getStationData --> OK");
+				// console.log(stationData.IN.Temperature);
+				//IN
+				actuals.IN.time = new Date(stationData.time);
+				actuals.IN.temp = stationData.IN.Temperature;
+				actuals.IN.co2 = stationData.IN.CO2;
+				actuals.IN.humidity = stationData.IN.Humidity;
+				actuals.IN.pressure = stationData.IN.Pressure;
+				actuals.IN.maturity = new Date(now - stationData.IN.time).getMinutes();
+
+				//OUT
+				actuals.OUT.time = new Date(time * 1000);
+				actuals.OUT.temp = stationData.OUT.Temperature;
+				actuals.OUT.humidity = stationData.OUT.Humidity;
+				actuals.OUT.maturity = new Date(now - stationData.OUT.time).getMinutes();
+			}
+		});
 		netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
 			if (time !== null) {
 				actuals.IN.time = new Date(time * 1000);

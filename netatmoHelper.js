@@ -89,36 +89,58 @@ var WData = module.exports = {
     getStationData: function (callback) {
         var _options = optionsIndoor;
         api.getStationsData(_options, function (err, measure) {
-            console.log(measure);
-            console.log("----------------------------------");
-            console.log(measure[0].modules[0].dashboard_data);
-            console.log(measure[0].modules[0].dashboard_data.Temperature);
-            console.log(measure[0].modules[0].dashboard_data.temp_trend);
-            console.log(measure[0].modules[0].dashboard_data.Humidity);
-            console.log(measure[0].modules[0].dashboard_data.min_temp);
-            console.log(measure[0].modules[0].dashboard_data.max_temp);
-            console.log(measure[0].modules[0].dashboard_data.date_min_temp);
-            console.log(measure[0].modules[0].dashboard_data.date_max_temp);
-            console.log("----------------------------------");
-            console.log(measure[0].dashboard_data);
-            console.log(measure[0].dashboard_data.Temperature);
-            console.log(measure[0].dashboard_data.Humidity);
-            console.log(measure[0].dashboard_data.min_temp);
-            console.log(measure[0].dashboard_data.max_temp);
-            console.log(measure[0].dashboard_data.date_min_temp);
-            console.log(measure[0].dashboard_data.date_max_temp);
-            console.log(measure[0].dashboard_data.CO2);
-            console.log(measure[0].dashboard_data.Pressure);
-            console.log(measure[0].dashboard_data.pressure_trend);
-            console.log(measure[0].dashboard_data.temp_trend);
-            console.log("----------------------------------");
+            //  console.log(measure[0].dashboard_data);
+            // console.log("----------------------------------");
+            // console.log(measure[0].modules[0].dashboard_data);
+            // console.log(measure[0].modules[0].dashboard_data.Temperature);
+            // console.log(measure[0].modules[0].dashboard_data.temp_trend);
+            // console.log(measure[0].modules[0].dashboard_data.Humidity);
+            // console.log(measure[0].modules[0].dashboard_data.min_temp);
+            // console.log(measure[0].modules[0].dashboard_data.max_temp);
+            // console.log(measure[0].modules[0].dashboard_data.date_min_temp);
+            // console.log(measure[0].modules[0].dashboard_data.date_max_temp);
+            // console.log("----------------------------------");
+            // console.log(measure[0].dashboard_data);
+            // console.log(measure[0].dashboard_data.Temperature);
+            // console.log(measure[0].dashboard_data.Humidity);
+            // console.log(measure[0].dashboard_data.min_temp);
+            // console.log(measure[0].dashboard_data.max_temp);
+            // console.log(measure[0].dashboard_data.date_min_temp);
+            // console.log(measure[0].dashboard_data.date_max_temp);
+            // console.log(measure[0].dashboard_data.CO2);
+            // console.log(measure[0].dashboard_data.Pressure);
+            // console.log(measure[0].dashboard_data.pressure_trend);
+            // console.log(measure[0].dashboard_data.temp_trend);            
 
-            var ts = moment.utc(measure[0].dashboard_data.time_utc * 1000);
-            console.log(ts.local().format('DD.MM.YYYY HH:mm:ss'));
+            // var ts = moment.utc(measure[0].dashboard_data.time_utc * 1000);
+            // console.log(ts.local().format('DD.MM.YYYY HH:mm:ss'));
+            //console.log(calcDateTime(measure[0].dashboard_data.time_utc));
 
-            var stationData = { IN: {}, OUT: {} };
+            var stationData = { IN: {}, OUT: {} };            
+            //OUT
+            stationData.OUT.time = calcDateTime(measure[0].modules[0].dashboard_data.time_utc);
+            stationData.OUT.Temperature = measure[0].modules[0].dashboard_data.Temperature;
+            stationData.OUT.temp_trend = measure[0].modules[0].dashboard_data.temp_trend;
+            stationData.OUT.Humidity = measure[0].modules[0].dashboard_data.Humidity;
+            stationData.OUT.min_temp = measure[0].modules[0].dashboard_data.min_temp;
+            stationData.OUT.max_temp = measure[0].modules[0].dashboard_data.max_temp;
+            stationData.OUT.date_min_temp = calcDateTime(measure[0].modules[0].dashboard_data.date_min_temp);
+            stationData.OUT.date_max_temp = calcDateTime(measure[0].modules[0].dashboard_data.date_max_temp);
+            //IN
+            stationData.IN.time = calcDateTime(measure[0].dashboard_data.time_utc);
+            stationData.IN.Temperature = measure[0].dashboard_data.Temperature;
+            stationData.IN.Humidity = measure[0].dashboard_data.Humidity;
+            stationData.IN.min_temp = measure[0].dashboard_data.min_temp;
+            stationData.IN.max_temp = measure[0].dashboard_data.max_temp;
+            stationData.IN.date_min_temp = calcDateTime(measure[0].dashboard_data.date_min_temp);
+            stationData.IN.date_max_temp = calcDateTime(measure[0].dashboard_data.date_max_temp);
+            stationData.IN.CO2 = measure[0].dashboard_data.CO2;
+            stationData.IN.Pressure = measure[0].dashboard_data.Pressure;
+            stationData.IN.pressure_trend = measure[0].dashboard_data.pressure_trend;
+            stationData.IN.temp_trend = measure[0].dashboard_data.temp_trend;
 
-            stationData.IN.Temp = measure[0].dashboard_data.Temperature;
+            // console.log(stationData);
+            // console.log("----------------------------------");
             //save
             callback(stationData);
         });
@@ -144,6 +166,16 @@ var WData = module.exports = {
     }
 }
 
+var calcDateTime = function (utc)
+{
+    var ts = moment.utc(utc * 1000);
+    return (new Date(ts.local()));
+}
+var calcDateTimeStr = function (utc)
+{
+    var ts = moment.utc(utc * 1000);
+    return (ts.local().format('DD.MM.YYYY HH:mm:ss'));
+}
 
 api.on("error", function (error) {
     // When the "error" event is emitted, this is called

@@ -7,6 +7,7 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var app = express();
 var http = require('http').Server(app);
+var httpget = require('http');
 
 //Data-Manager
 var dataManager = require("./dataManager");

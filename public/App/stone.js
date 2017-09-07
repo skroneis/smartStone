@@ -12,8 +12,7 @@
 
         setInterval(function () {
             // console.log("get....");
-            //$scope.getValues();
-            // $scope.getAirConditionIndicator();
+            $scope.getValues();
         }, 1000 * 5) //5 secongs...
     }
 
@@ -26,11 +25,11 @@
         console.log("init-img");
         initialize();
         $scope.getImage();
-        if (false) {
-            setInterval(function () {
-                $scope.getImage();
-            }, 1000 * 5) //5 secongs...
-        }
+        // if (false) {
+        //     setInterval(function () {
+        //         $scope.getImage();
+        //     }, 1000 * 5) //5 secongs...
+        // }
     };
 
     $scope.getImage = function () {
