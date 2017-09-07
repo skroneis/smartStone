@@ -118,6 +118,11 @@ server.bind(PORT);
 var getNetatmoMeasures = function () {
 	var now = new Date(Date.now());
 	try {
+		//NEW (WIP)
+		// netatmo.getStationData(function (stationData) {
+		// 	console.log ("OK");
+		// 	console.log (stationData.IN.Temp);
+		// });
 		netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
 			if (time !== null) {
 				actuals.IN.time = new Date(time * 1000);

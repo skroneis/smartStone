@@ -48,55 +48,43 @@ var WData = module.exports = {
     },
     getMeasuresIn: function (callback) {
         var _options = optionsIndoor;
-        try {
-            api.getMeasure(_options, function (err, measure) {
-                // When the "error" event is emitted, this is called
-                //console.error('Netatmo threw an error: ' + error);
-                //console.log(measure[0].value);
-                if (measure !== null && measure !== undefinded) {
-                    if (measure[0] !== null && measure[0] !== undefinded) {
-                        var time = measure[0].beg_time;
-                        var temp = measure[0].value[0][0];
-                        var co2 = measure[0].value[0][1];
-                        var humidity = measure[0].value[0][2];
-                        var pressure = measure[0].value[0][3];
+        api.getMeasure(_options, function (err, measure) {
+            // When the "error" event is emitted, this is called
+            //console.error('Netatmo threw an error: ' + error);
+            //console.log(measure[0].value);
+            if (measure !== null && measure !== undefined) {
+                if (measure[0] !== null && measure[0] !== undefined) {
+                    var time = measure[0].beg_time;
+                    var temp = measure[0].value[0][0];
+                    var co2 = measure[0].value[0][1];
+                    var humidity = measure[0].value[0][2];
+                    var pressure = measure[0].value[0][3];
 
-                        callback(time, temp, co2, humidity, pressure); // this will "return" your value to the original caller
-                    }
+                    callback(time, temp, co2, humidity, pressure); // this will "return" your value to the original caller
                 }
-                //console.log("_co2: %s", _co2);
-                // logger.info(measure[0].value);
-                // console.log("Temp: %s", temp);        
-                callback(null, null, null, null, null); // this will "return" your value to the original caller
-            });
-        }
-        catch (e) {
-            console.log(e);
-            return;
-        }
+            }
+            //console.log("_co2: %s", _co2);
+            // logger.info(measure[0].value);
+            // console.log("Temp: %s", temp);        
+            callback(null, null, null, null, null); // this will "return" your value to the original caller
+        });
     },
     getMeasuresOut: function (callback) {
         var _options = optionsOutdoor;
-        try {
-            api.getMeasure(_options, function (err, measure) {
-                // When the "error" event is emitted, this is called
-                //console.error('Netatmo threw an error: ' + error);
-                // console.log(measure[0].value);
-                if (measure !== null && measure !== undefinded) {
-                    if (measure[0] !== null && measure[0] !== undefinded) {
-                        var time = measure[0].beg_time;
-                        var temp = measure[0].value[0][0];
-                        var humidity = measure[0].value[0][1];
-                        callback(time, temp, humidity);
-                    }
+        api.getMeasure(_options, function (err, measure) {
+            // When the "error" event is emitted, this is called
+            //console.error('Netatmo threw an error: ' + error);
+            // console.log(measure[0].value);
+            if (measure !== null && measure !== undefined) {
+                if (measure[0] !== null && measure[0] !== undefined) {
+                    var time = measure[0].beg_time;
+                    var temp = measure[0].value[0][0];
+                    var humidity = measure[0].value[0][1];
+                    callback(time, temp, humidity);
                 }
-                callback(null, null, null);
-            });
-        }
-        catch (e) {
-            console.log(e);
-            return;
-        }
+            }
+            callback(null, null, null);
+        });
     },
     getStationData: function (callback) {
         var _options = optionsIndoor;
