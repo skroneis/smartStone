@@ -70,28 +70,33 @@ var WData = module.exports = {
                 callback(null, null, null, null, null); // this will "return" your value to the original caller
             });
         }
-        catch (e)
-        {
+        catch (e) {
             console.log(e);
             return;
         }
     },
     getMeasuresOut: function (callback) {
         _options = optionsOutdoor;
-        api.getMeasure(_options, function (err, measure) {
-            // When the "error" event is emitted, this is called
-            //console.error('Netatmo threw an error: ' + error);
-            // console.log(measure[0].value);
-            if (measure !== null && measure !== undefinded) {
-                if (measure[0] !== null && measure[0] !== undefinded) {
-                    var time = measure[0].beg_time;
-                    var temp = measure[0].value[0][0];
-                    var humidity = measure[0].value[0][1];
-                    callback(time, temp, humidity);
+        try {
+            api.getMeasure(_options, function (err, measure) {
+                // When the "error" event is emitted, this is called
+                //console.error('Netatmo threw an error: ' + error);
+                // console.log(measure[0].value);
+                if (measure !== null && measure !== undefinded) {
+                    if (measure[0] !== null && measure[0] !== undefinded) {
+                        var time = measure[0].beg_time;
+                        var temp = measure[0].value[0][0];
+                        var humidity = measure[0].value[0][1];
+                        callback(time, temp, humidity);
+                    }
                 }
-            }
-            callback(null, null, null);
-        });
+                callback(null, null, null);
+            });
+        }
+        catch (e) {
+            console.log(e);
+            return;
+        }
     },
     getStationData: function (callback) {
         _options = optionsIndoor;
