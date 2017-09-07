@@ -72,8 +72,8 @@ var modules = module.exports = {
     },
     setNetatmo: function (_netatmo) {
         netatmo = _netatmo;
-        console.log("NETATMO......")
-        console.log(netatmo);
+        // console.log("NETATMO......")
+        // console.log(netatmo);
     }
 };
 

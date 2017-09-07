@@ -47,7 +47,7 @@ var WData = module.exports = {
         });
     },
     getMeasuresIn: function (callback) {
-        _options = optionsIndoor;
+        var _options = optionsIndoor;
         try {
             api.getMeasure(_options, function (err, measure) {
                 // When the "error" event is emitted, this is called
@@ -76,7 +76,7 @@ var WData = module.exports = {
         }
     },
     getMeasuresOut: function (callback) {
-        _options = optionsOutdoor;
+        var _options = optionsOutdoor;
         try {
             api.getMeasure(_options, function (err, measure) {
                 // When the "error" event is emitted, this is called
@@ -99,7 +99,7 @@ var WData = module.exports = {
         }
     },
     getStationData: function (callback) {
-        _options = optionsIndoor;
+        var _options = optionsIndoor;
         api.getStationsData(_options, function (err, measure) {
             console.log(measure);
             console.log("----------------------------------");

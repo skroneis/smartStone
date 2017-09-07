@@ -117,44 +117,42 @@ server.bind(PORT);
 //get measures from netatmo
 var getNetatmoMeasures = function () {
 	var now = new Date(Date.now());
-	try
-	{
-	netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
-		if (time !== null) {
-			actuals.IN.time = new Date(time * 1000);
-			actuals.IN.temp = temp;
-			actuals.IN.co2 = co2;
-			actuals.IN.humidity = humidity;
-			actuals.IN.pressure = pressure;
-			actuals.IN.maturity = new Date(now - actuals.IN.time).getMinutes();
-			if (config.LogNetatmo != null) {
-				console.log("TIMESTAMP: " + actuals.IN.time);
-				console.log("TEMP: " + actuals.IN.temp);
-				console.log("CO2: " + actuals.IN.co2);
-				console.log("HUMIDITY: " + actuals.IN.humidity);
-				console.log("PRESSURE: " + actuals.IN.pressure);
-				console.log("MATURITY: " + actuals.IN.maturity);
+	try {
+		netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
+			if (time !== null) {
+				actuals.IN.time = new Date(time * 1000);
+				actuals.IN.temp = temp;
+				actuals.IN.co2 = co2;
+				actuals.IN.humidity = humidity;
+				actuals.IN.pressure = pressure;
+				actuals.IN.maturity = new Date(now - actuals.IN.time).getMinutes();
+				if (config.LogNetatmo != null) {
+					console.log("TIMESTAMP: " + actuals.IN.time);
+					console.log("TEMP: " + actuals.IN.temp);
+					console.log("CO2: " + actuals.IN.co2);
+					console.log("HUMIDITY: " + actuals.IN.humidity);
+					console.log("PRESSURE: " + actuals.IN.pressure);
+					console.log("MATURITY: " + actuals.IN.maturity);
+				}
 			}
-		}
-	});
-	netatmo.getMeasuresOut(function (time, temp, humidity) {
-		if (time !== null) {
-			actuals.OUT.time = new Date(time * 1000);
-			actuals.OUT.temp = temp;
-			actuals.OUT.humidity = humidity;
-			actuals.OUT.maturity = new Date(now - actuals.OUT.time).getMinutes();
-			if (config.LogNetatmo != null) {
-				console.log("TIMESTAMP (OUT): " + actuals.OUT.time);
-				console.log("TEMP (OUT): " + actuals.OUT.temp);
-				console.log("HUMIDITY (OUT): " + actuals.OUT.humidity);
-				console.log("MATURITY (OUT): " + actuals.OUT.maturity);
+		});
+		netatmo.getMeasuresOut(function (time, temp, humidity) {
+			if (time !== null) {
+				actuals.OUT.time = new Date(time * 1000);
+				actuals.OUT.temp = temp;
+				actuals.OUT.humidity = humidity;
+				actuals.OUT.maturity = new Date(now - actuals.OUT.time).getMinutes();
+				if (config.LogNetatmo != null) {
+					console.log("TIMESTAMP (OUT): " + actuals.OUT.time);
+					console.log("TEMP (OUT): " + actuals.OUT.temp);
+					console.log("HUMIDITY (OUT): " + actuals.OUT.humidity);
+					console.log("MATURITY (OUT): " + actuals.OUT.maturity);
+				}
 			}
-		}
-	});
+		});
 	}
-	catch (e)
-	{
-		console.log (e);
+	catch (e) {
+		console.log(e);
 	}
 	//update angular values...
 	// http.update(actuals);
