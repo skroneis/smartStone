@@ -132,10 +132,14 @@ var getNetatmoMeasures = function () {
 				actuals.IN.maturity = new Date(now - stationData.IN.time).getMinutes();
 
 				//OUT
-				actuals.OUT.time = new Date(stationData.OUT.time);
-				actuals.OUT.temp = stationData.OUT.Temperature;
-				actuals.OUT.humidity = stationData.OUT.Humidity;
-				actuals.OUT.maturity = new Date(now - stationData.OUT.time).getMinutes();
+				if (stationData.OUT.time)
+					actuals.OUT.time = new Date(stationData.OUT.time);
+				if (stationData.OUT.Temperature)
+					actuals.OUT.temp = stationData.OUT.Temperature;
+				if (stationData.OUT.Humidity)
+					actuals.OUT.humidity = stationData.OUT.Humidity;
+				if (stationData.OUT.time)
+					actuals.OUT.maturity = new Date(now - stationData.OUT.time).getMinutes();
 			}
 		});
 		netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
