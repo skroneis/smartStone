@@ -1,3 +1,22 @@
+div.bg-img
+{
+    width: 800px;
+    height: 480px;
+    display: block;
+    position: relative;
+}
+
+div.bg-img::after {
+    content: "";
+    background: url(/images/background.jpg);
+    opacity: 0.2;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+  }
 .spinner {
     margin-right: 15px;
     margin-top: 10px;
@@ -128,4 +147,8 @@ hr {
 .small .annotation{
     font-size: 15px;
     color:darkgrey;
+}
+
+.panel {
+    background-color: transparent;
 }

@@ -104,6 +104,7 @@ mainModule.filter('decimals', ['$filter', function ($filter) {
     };
 }]);
 
+
 (function (myApp) {
     "use strict";
     var viewModelHelper = function ($http, $q, $window, $location) {
@@ -143,7 +144,7 @@ mainModule.filter('decimals', ['$filter', function ($filter) {
                     if (always != null)
                         always();
                 });
-        }
+        }        
 
         //with anti-forgery token
         self.apiSecGet = function (uri, data, token, success, failure, always) {

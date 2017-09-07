@@ -2,18 +2,48 @@
     $scope.Sepp = "Sepp Forcher";
     $scope.isLoading = false;
     $scope.actuals = null;
+    $scope.trigger = true;
 
     var initialize = function () {
         console.log("initialize");
         $scope.getValues();
         $scope.resetAirConditionValues();
         $scope.getAirConditionIndicator();
+
+        setInterval(function () {
+            // console.log("get....");
+            //$scope.getValues();
+            // $scope.getAirConditionIndicator();
+        }, 1000 * 5) //5 secongs...
     }
 
     $scope.init = function () {
         console.log("init");
         initialize();
     };
+
+    $scope.initImg = function () {
+        console.log("init-img");
+        initialize();
+        $scope.getImage();
+        if (false) {
+            setInterval(function () {
+                $scope.getImage();
+            }, 1000 * 5) //5 secongs...
+        }
+    };
+
+    $scope.getImage = function () {
+        // console.log("get image....");
+        // return $http.get(MyApp.rootPath + 'api/getImage', null).then(function (response) {
+        //     console.log(response.data.img);
+        // },
+        //     function errorCallback(response) {
+        //         console.log("ERROR");
+        //         // bootbox.alert("ERROR");            
+        //         console.log(response.data);
+        //     });
+    }
 
     $scope.getValues = function () {
         //alert("getInfos");
@@ -65,11 +95,7 @@
             });
     };
 
-    setInterval(function () {
-        // console.log("get....");
-        $scope.getValues();
-        // $scope.getAirConditionIndicator();
-    }, 1000 * 5) //5 secongs...
+
 
     $scope.resetAirConditionValues = function () {
         $scope.showAirConditionIndicatorGreen = false;
@@ -108,5 +134,64 @@
         }
     };
 
+    $scope.updateImage = function () {
+        console.log("update image...");
+        $scope.trigger = !$scope.trigger;
+    }
+}).directive('backImgBing', function ($http, $compile, $timeout) {
+    return function (scope, element) {
+        console.log("get image....");
+        //get url
+        var getImgUrl = function () {
+            return $http.get(MyApp.rootPath + 'api/getBingImage', null).then(function (response) {
+                console.log(response.data.img);
+                element.css({
+                    'background-image': 'url(' + response.data.img + ')',
+                    'position': 'absolute',
+                    'top': '0',
+                    'left': '0',
+                    'right': '0',
+                    'bottom': '0',
+                    'background-repeat': 'no-repeat',
+                    'background-size': 'cover',
+                    'z-index': '-1'
+                });
+            },
+                function errorCallback(response) {
+                    console.log("ERROR");
+                    // bootbox.alert("ERROR");            
+                    console.log(response.data);
+                });
+        }
+        //watch
+        scope.$watch('trigger', function (val) {
+            console.log("TRIGGER");
+            return getImgUrl();
+        });
 
+        return getImgUrl();
+    };
+}).directive('backImgChromecast', function ($http, $compile, $timeout) {
+    return function (scope, element) {
+        console.log("get image....");
+        return $http.get(MyApp.rootPath + 'api/getChromecastImage', null).then(function (response) {
+            console.log(response.data.img);
+            element.css({
+                'background-image': 'url(' + response.data.img + ')',
+                'position': 'absolute',
+                'top': '0',
+                'left': '0',
+                'right': '0',
+                'bottom': '0',
+                'background-repeat': 'no-repeat',
+                'background-size': 'cover',
+                'z-index': '-1'
+            });
+        },
+            function errorCallback(response) {
+                console.log("ERROR");
+                // bootbox.alert("ERROR");            
+                console.log(response.data);
+            });
+    };
 });

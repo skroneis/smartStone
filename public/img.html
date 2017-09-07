@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" ng-app="main">
+
+<head>
+    <meta charset="utf-8" />
+    <title>smartStone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Latest compiled and minified CSS -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/img.css" />
+    <!--https://www.bootstrapcdn.com/-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <!--http://iconifier.net-->
+    <link rel="shortcut icon" href="/measure.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="./icons/measure-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="./icons/measure-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="./icons/measure-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./icons/measure-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="./icons/measure-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="./icons/measure-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="./icons/measure-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="./icons/measure-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/measure-180x180.png" />
+</head>
+
+<body>
+    <div ng-controller="stoneController" ng-init="initImg()" ng-cloak back-img-bing>
+        <div class="bg-img">
+            <div class="container rpi-container" style="padding-top: 10px;"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <span class="annotation"><i class="fa fa-thermometer-half" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="col-sm-5">
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <span class="annotation"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;</span>
+                                    <span class="floor">{{actuals.IN.temp| number:0}}</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="tdN symbol">°C</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <!-- <td>21</td> -->
+                                <td>
+                                    <div class="tdS decimal">,{{actuals.IN.temp| decimals}}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-5">
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <span class="annotation"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;</span>
+                                    <span class="floor">{{actuals.KRO.temp| number:0}}</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="tdN symbol">°C</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <!-- <td>21</td> -->
+                                <td>
+                                    <div class="tdS decimal">,{{actuals.KRO.temp| decimals}}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <ul class="nav nav-pills">
+                    <div ng-show="isLoading" class="pull-right spinner"><img src="./images/spinner.gif" alt="loading"></div>
+                </ul>
+            </div>
+        </div>
+
+        <!--footer-->
+        <footer>
+            <div class="container" style="margin-top: 10px;">
+                <p class="pull-left smallFont">
+                    &copy;&nbsp;<span ng-controller='stoneController'>{{ getDate() |  date:"yyyy" }}</span>&nbsp;Stefan&nbsp;Kroneis
+                    &nbsp;
+                    <a href="#" ng-click="updateImage()"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;refresh<span class="badge"></span></a>
+                </p>
+                <div class="pull-right smallFont">
+                    <i class="fa fa-calendar-o" aria-hidden="true" style="font-size:12px;"></i>&nbsp;
+                    <span class="clock" ng-controller='TimeCtrl' style="float: right;" ng-cloak>{{ clock | date:'EEEE, dd.MM.yyyy HH:mm:ss'}}</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- JQuery -->
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+        crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-touch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap.min.js"></script>
+    <!--i18n-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.1/angular-locale_de-de.min.js"></script>
+    <!--bootbox.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <!--notify.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" integrity="sha256-tSRROoGfGWTveRpDHFiWVz+UXt+xKNe90wwGn25lpw8="
+        crossorigin="anonymous"></script>
+    <script>
+        window.MyApp = {};
+        MyApp.rootPath = '/';
+    </script>
+    <script src="./App/app.js"></script>
+    <script src="./App/stone.js"></script>
+    <!-- Page specific scripts -->
+    <script>
+        //main functions (MVC)
+        $(document).ready(function () {
+            console.log("document ready...");
+        });
+    </script>
+</body>
+
+</html>

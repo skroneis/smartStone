@@ -5,6 +5,8 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var app = express();
 var http = require('http').Server(app);
+// var request = require('request');
+var httpget = require('http');
 
 // =======================
 // Google spreadsheet ====
@@ -45,8 +47,10 @@ app.use('/', express.static(__dirname + '/public'));
 app.use(bodyParser.json())
 
 app.get('/rpi/', function (req, res) {
-    // res.sendFile(__dirname + '/public/index.html');
     res.sendFile(__dirname + '/public/index_Rpi.html');
+});
+app.get('/img/', function (req, res) {
+    res.sendFile(__dirname + '/public/img.html');
 });
 
 
@@ -116,6 +120,62 @@ apiRoutes.get('/getData', function (req, res, next) {
     //if(err) res.send(err);
     try {
         res.json(actuals);
+    }
+    catch (e) {
+        console.log(e);
+        return next(e);
+    }
+});
+
+//getImage
+apiRoutes.get('/getBingImage', function (req, res, next) {
+    try {
+        var url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US';
+        var result = { img: null };
+        var _res = res;
+        httpget.get(url, function (res) {
+            var body = '';
+            res.on('data', function (chunk) {
+                body += chunk;
+            });
+            res.on('end', function () {
+                var response = JSON.parse(body);
+                // console.log(response);
+                var resultUrl = "http://www.bing.com" + response.images[0].url;
+                console.log(resultUrl);
+                var result = { img: resultUrl };
+                _res.json(result);
+            });
+        }).on('error', function (e) {
+            console.log("Got an error: ", e);
+        });
+    }
+    catch (e) {
+        console.log(e);
+        return next(e);
+    }
+});
+
+//getChromecastImage
+apiRoutes.get('/getChromecastImage', function (req, res, next) {
+    try {
+        var url = 'http://clients3.google.com/cast/chromecast/home';
+        var result = { img: null };
+        var _res = res;
+        httpget.get(url, function (res) {
+            var body = '';
+            res.on('data', function (chunk) {
+                body += chunk;
+            });
+            res.on('end', function () {
+                //  var response = JSON.parse(body);                
+                console.log(body);
+                // var result = {img: resultUrl};
+                // _res.json(result);
+            });
+        }).on('error', function (e) {
+            console.log("Got an error: ", e);
+        });
     }
     catch (e) {
         console.log(e);
