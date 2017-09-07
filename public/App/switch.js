@@ -44,7 +44,8 @@ mainModule.controller('switchController', function ($scope, viewModelHelper, $ht
         restrict: 'E',
         scope: true,
         // template: '<label>{{pinLabel}}</label><span ng-click="click($event, $scope)">&nbsp;&nbsp;<input type="checkbox" data-off-title="Off" data-on-title="On" ng-checked="ledValue"></span> <i>{{ledValue}}</i>',
-        template: '<table class="ledTableInline"><thead><tr><th>{{pinLabel}}/{{caption}}</th></tr></thead><tbody><tr><td><span ng-click="click($event, $scope)"><input type="checkbox" data-off-title="Off" data-on-title="On" ng-checked="ledValue"></span><span class="boolLabel"><br/><i>{{ledValue}}</i></span></td></tr></tbody></table>',
+        //template: '<table class="ledTableInline"><thead><tr><th>{{pinLabel}}{{caption}}</th></tr></thead><tbody><tr><td><span ng-click="click($event, $scope)"><input type="checkbox" data-off-title="Off" data-on-title="On" ng-checked="ledValue"></span><span class="boolLabel"><br/><i>{{ledValue}}</i></span></td></tr></tbody></table>',
+        template: '<table class="ledTableInline"><thead><tr><th>{{pinLabel}}{{caption}}</th></tr></thead><tbody><tr><td><span ng-click="click($event, $scope)"><input type="checkbox" data-off-title="Off" data-on-title="On" ng-checked="ledValue"></span></td></tr></tbody></table>',
         link: function ($scope, elm, $attrs, http) {
             //infinite loop
             var pin = $attrs.pinNo;
@@ -75,7 +76,8 @@ mainModule.controller('switchController', function ($scope, viewModelHelper, $ht
             var caption = $attrs.caption;
             var _self = $scope;
             $scope.pinLabel = "PIN" + pin;
-            $scope.caption = caption;
+            if (caption)
+                $scope.caption = "/" + caption;
             var refresh = function (pin) {
                 //console.log("TEST!!!!!!!!");
                 $http.get(MyApp.rootPath + 'api/getStatus/' + pin, null).then(function (response) {
