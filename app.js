@@ -1,8 +1,8 @@
 //uncaughtException
 process.on('uncaughtException', function (err) {
-  console.error((new Date).toUTCString() + ' uncaughtException:', err.message)
-  console.error(err.stack)
-  process.exit(1)
+	console.error((new Date).toUTCString() + ' uncaughtException:', err.message)
+	console.error(err.stack)
+	process.exit(1)
 })
 
 //config
@@ -61,7 +61,7 @@ var dataManager = require("./dataManager");
 // =============================
 // global variables ============
 // =============================
-var actuals = {	IN: {},	OUT: {},KRO: {},CALC: {},page: 1};
+var actuals = { IN: {}, OUT: {}, KRO: {}, CALC: {}, page: 1 };
 //init angular values...
 //http.update(actuals);
 //dataManager.init(actuals);
@@ -103,10 +103,10 @@ server.on('message', function (message, remote) {
 	//console.log("dateTime: " + actuals.KRO.dateTime);
 	//console.log("temp: " + actuals.KRO.temp);
 	//console.log("reference: " + actuals.KRO.reference);
-	
+
 	//call data manager
 	dataManager.Push(dataManager.WiGe(), actuals.KRO.wiGe, dataManager.WiRi(), actuals.KRO.wiRi);
-	dataManager.Get();	
+	dataManager.Get();
 	if (lcd)
 		lcd.setData(actuals);
 	//Min Max (temp)
@@ -118,37 +118,41 @@ server.bind(PORT);
 var getNetatmoMeasures = function () {
 	var now = new Date(Date.now());
 	netatmo.getMeasuresIn(function (time, temp, co2, humidity, pressure) {
-		actuals.IN.time = new Date(time * 1000);
-		actuals.IN.temp = temp;
-		actuals.IN.co2 = co2;
-		actuals.IN.humidity = humidity;
-		actuals.IN.pressure = pressure;
-		actuals.IN.maturity = new Date(now - actuals.IN.time).getMinutes();
-		if (config.LogNetatmo != null) {
-			console.log("TIMESTAMP: " + actuals.IN.time);
-			console.log("TEMP: " + actuals.IN.temp);
-			console.log("CO2: " + actuals.IN.co2);
-			console.log("HUMIDITY: " + actuals.IN.humidity);
-			console.log("PRESSURE: " + actuals.IN.pressure);
-			console.log("MATURITY: " + actuals.IN.maturity);
+		if (time !== null) {
+			actuals.IN.time = new Date(time * 1000);
+			actuals.IN.temp = temp;
+			actuals.IN.co2 = co2;
+			actuals.IN.humidity = humidity;
+			actuals.IN.pressure = pressure;
+			actuals.IN.maturity = new Date(now - actuals.IN.time).getMinutes();
+			if (config.LogNetatmo != null) {
+				console.log("TIMESTAMP: " + actuals.IN.time);
+				console.log("TEMP: " + actuals.IN.temp);
+				console.log("CO2: " + actuals.IN.co2);
+				console.log("HUMIDITY: " + actuals.IN.humidity);
+				console.log("PRESSURE: " + actuals.IN.pressure);
+				console.log("MATURITY: " + actuals.IN.maturity);
+			}
 		}
 	});
 	netatmo.getMeasuresOut(function (time, temp, humidity) {
-		actuals.OUT.time = new Date(time * 1000);
-		actuals.OUT.temp = temp;
-		actuals.OUT.humidity = humidity;
-		actuals.OUT.maturity = new Date(now - actuals.OUT.time).getMinutes();
-		if (config.LogNetatmo != null) {
-			console.log("TIMESTAMP (OUT): " + actuals.OUT.time);
-			console.log("TEMP (OUT): " + actuals.OUT.temp);
-			console.log("HUMIDITY (OUT): " + actuals.OUT.humidity);
-			console.log("MATURITY (OUT): " + actuals.OUT.maturity);
+		if (time !== null) {
+			actuals.OUT.time = new Date(time * 1000);
+			actuals.OUT.temp = temp;
+			actuals.OUT.humidity = humidity;
+			actuals.OUT.maturity = new Date(now - actuals.OUT.time).getMinutes();
+			if (config.LogNetatmo != null) {
+				console.log("TIMESTAMP (OUT): " + actuals.OUT.time);
+				console.log("TEMP (OUT): " + actuals.OUT.temp);
+				console.log("HUMIDITY (OUT): " + actuals.OUT.humidity);
+				console.log("MATURITY (OUT): " + actuals.OUT.maturity);
+			}
 		}
 	});
 
 	//update angular values...
 	// http.update(actuals);
-	console.log ("  OK");
+	console.log("  OK");
 };
 
 //init (manual)
