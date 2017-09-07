@@ -173,7 +173,7 @@ var optionsIndoor = {
     scale: 'max',
     date_end: 'last',
     module_id: '70:ee:50:00:fc:36',//'NAMain',
-    type: ['Temperature', 'CO2', 'Humidity', 'Pressure', 'Noise', 'temp_trend'],
+    type: ['Temperature', 'CO2', 'Humidity', 'Pressure', 'Noise'],
 };
 var optionsOutdoor = {
     device_id: '70:ee:50:00:fc:36', //indoor70:ee:50:00:fc:36
