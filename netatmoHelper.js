@@ -65,7 +65,7 @@ var WData = module.exports = {
             }
             //console.log("_co2: %s", _co2);
             // logger.info(measure[0].value);
-            // console.log("Temp: %s", temp);
+            // console.log("Temp: %s", temp);        
             callback(null, null, null, null, null); // this will "return" your value to the original caller
         });
     },
