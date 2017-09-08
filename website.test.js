@@ -130,7 +130,7 @@ apiRoutes.get('/getData', function (req, res, next) {
 //getImage
 apiRoutes.get('/getBingImage', function (req, res, next) {
     try {
-        var url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US';
+        var url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=de-AT';
         var result = { img: null };
         var _res = res;
         httpget.get(url, function (res) {

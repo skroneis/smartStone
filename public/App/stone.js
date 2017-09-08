@@ -13,7 +13,7 @@
         setInterval(function () {
             // console.log("get....");
             $scope.getValues();
-        }, 1000 * 5) //5 secongs...
+        }, 1000 * 5) //5 seconds...
     }
 
     $scope.init = function () {
@@ -21,28 +21,26 @@
         initialize();
     };
 
-    $scope.initImg = function () {
-        console.log("init-img");
-        initialize();
-        $scope.getImage();
-        // if (false) {
-        //     setInterval(function () {
-        //         $scope.getImage();
-        //     }, 1000 * 5) //5 secongs...
-        // }
-    };
+    // $scope.initImg = function () {
+    //     console.log("init-img");
+    //     initialize();
+    //     $scope.getImage();
+    //     setInterval(function () {
+    //         $scope.getImage();
+    //     }, 1000 * 1 * 60 * 60) //1 second --> 1hour ...
+    // };
 
-    $scope.getImage = function () {
-        // console.log("get image....");
-        // return $http.get(MyApp.rootPath + 'api/getImage', null).then(function (response) {
-        //     console.log(response.data.img);
-        // },
-        //     function errorCallback(response) {
-        //         console.log("ERROR");
-        //         // bootbox.alert("ERROR");            
-        //         console.log(response.data);
-        //     });
-    }
+    // $scope.getImage = function () {
+    // console.log("get image....");
+    // return $http.get(MyApp.rootPath + 'api/getImage', null).then(function (response) {
+    //     console.log(response.data.img);
+    // },
+    //     function errorCallback(response) {
+    //         console.log("ERROR");
+    //         // bootbox.alert("ERROR");            
+    //         console.log(response.data);
+    //     });
+    // }
 
     $scope.getValues = function () {
         //alert("getInfos");
@@ -167,6 +165,10 @@
             console.log("TRIGGER");
             return getImgUrl();
         });
+
+        setInterval(function () {
+            return getImgUrl();
+        }, 1000 * 1 * 60 * 60) // 1 second --> 1hour ...
 
         return getImgUrl();
     };
