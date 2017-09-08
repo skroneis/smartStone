@@ -35,7 +35,7 @@ app.get('/', function (req, res) {
 app.get('/rpi/', function (req, res) {
     res.sendFile(__dirname + '/public/index_Rpi.html');
 });
-app.get('/img/', function (req, res) {    
+app.get('/img/', function (req, res) {
     res.sendFile(__dirname + '/public/img.html');
 });
 
@@ -105,27 +105,28 @@ apiRoutes.get('/getData', function (req, res, next) {
 });
 
 //getBingImage
-apiRoutes.get('/getBingImage', function (req, res, next) {    
+apiRoutes.get('/getBingImage', function (req, res, next) {
     try {
-        var url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US';        
-        var result = {img:null};
+        // var url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US';      
+        var url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=de-AT';
+        var result = { img: null };
         var _res = res;
-        httpget.get(url, function(res){
-            var body = '';        
-            res.on('data', function(chunk){
+        httpget.get(url, function (res) {
+            var body = '';
+            res.on('data', function (chunk) {
                 body += chunk;
-            });        
-            res.on('end', function(){
-                var response = JSON.parse(body);                
+            });
+            res.on('end', function () {
+                var response = JSON.parse(body);
                 // console.log(response);
-                var resultUrl = "http://www.bing.com" + response.images[0].url;                
+                var resultUrl = "http://www.bing.com" + response.images[0].url;
                 console.log(resultUrl);
-                var result = {img: resultUrl};
+                var result = { img: resultUrl };
                 _res.json(result);
             });
-        }).on('error', function(e){
-              console.log("Got an error: ", e);
-        });        
+        }).on('error', function (e) {
+            console.log("Got an error: ", e);
+        });
     }
     catch (e) {
         console.log(e);
