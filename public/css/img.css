@@ -97,14 +97,22 @@ hr {
 
 .floor{
     font-weight: bold;
-    font-size: 65px;
+    font-size: 85px;
     color: lightGray;
 }
 
 .decimal{
-    font-size: 20px;
+    font-size: 40px;
     font-weight: bold;
+    color: lightGray;
 }
+
+
+.row.small {
+    color: lightGray;
+    font-size: 14px;
+}
+
 .tdN{
     margin-top: 18px;
     padding: 0;
@@ -186,4 +194,3 @@ footer{
     /* background-color: rgba(0,0,0,0.6); */
     background-color: rgba(255,255,255,0.2);
 }
-

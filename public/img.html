@@ -49,7 +49,6 @@
                                 </td>
                             </tr>
                             <tr>
-                                <!-- <td>21</td> -->
                                 <td>
                                     <div class="tdS decimal">,{{actuals.IN.temp| decimals}}</div>
                                 </td>
@@ -69,7 +68,6 @@
                                 </td>
                             </tr>
                             <tr>
-                                <!-- <td>21</td> -->
                                 <td>
                                     <div class="tdS decimal">,{{actuals.KRO.temp| decimals}}</div>
                                 </td>
@@ -78,11 +76,219 @@
                     </div>
                 </div>
 
-                <ul class="nav nav-pills">
-                    <div ng-show="isLoading" class="pull-right spinner"><img src="./images/spinner.gif" alt="loading"></div>
-                </ul>
+
+                <div class="row small">
+                    <div class="col-sm-1">
+                        <span class="annotation"><i class="fa fa-percent" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="col-sm-5">
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <span class="annotation"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;RH<sub>IN&nbsp;</span>
+                                    <span class="floor">{{actuals.IN.humidity| number:0}}</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="tdN-single symbol">&nbsp;%</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="tdS decimal">&nbsp;</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-5">
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <span class="annotation"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;RH<sub>OUT&nbsp;</span>
+                                    <span class="floor">{{actuals.OUT.humidity| number:0}}</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="tdN-single symbol">&nbsp;%</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="tdS decimal">&nbsp;</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row small">
+                    <div class="col-sm-1">
+                        <!-- <span class="annotation"><i class="fa fa-percent" aria-hidden="true"></i></span> -->
+                    </div>
+                    <div class="col-sm-5">
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <span class="annotation"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;CO<sub>2&nbsp;</span>
+                                    <span class="floor">{{actuals.IN.co2}}</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="tdN symbol"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="tdS decimal">&nbsp;</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-5">
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <span class="annotation"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;</span>
+                                    <span class="floor">{{actuals.IN.pressure| number:0}}</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="tdN symbol">&nbsp;mbar</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="tdS decimal">,{{actuals.IN.pressure| decimals}}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row small">
+                    <div class="col-sm-1">
+                        <span class="annotation"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="col-sm-5">
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <span class="annotation">WiGe</span>
+                                    <span class="floor" ng-class="getWiGeClass(actuals.KRO.wiGe)">{{actuals.KRO.wiGe| number:0}}</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="tdN symbol">km/h</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="tdS decimal" ng-class="getWiGeClass(actuals.KRO.wiGe)">,{{actuals.KRO.wiGe| decimals}}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-5">
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <span class="annotation">WiRi</span>
+                                    <span class="floor">{{actuals.KRO.wiRiStr}}</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="tdN symbol">&nbsp;(<b>{{actuals.KRO.wiRi| number:0}}</b>&nbsp;Grad)</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="tdS decimal">&nbsp;</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row small" style="margin-top: 10px;">
+                    <div class="col-sm-1">
+                        <span class="annotation"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <span><i class="fa fa-paper-plane-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b ng-class="getWiGeClass(actuals.KRO.nodeWiGeMax)">{{actuals.KRO.nodeWiGeMax| number:2}}</b>km/h @<b>{{actuals.KRO.nodeWiGeWiRiMax| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.nodeWiGeWiRiMaxStr}}</b>)</span>
+
+                    </div>
+                    <div class="col-sm-1">
+                        <span class="annotation"><i class="fa fa-at" aria-hidden="true" style="font-size: 25px;"></i></span>
+                    </div>
+                    <div class="col-sm-5">
+                        <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.wiGeMaxAt | date:'HH:mm'}}</b></span>
+                    </div>
+                </div>
+                <div class="row small">
+                    <div class="col-sm-1">
+                        <span class="annotation"></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <span><i class="fa fa-paper-plane-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.nodeWiGeMin| number:2}}</b>km/h @<b>{{actuals.KRO.nodeWiGeWiRiMin| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.nodeWiGeWiRiMinStr}}</b>)</span>
+                    </div>
+                    <div class="col-sm-offset-1 col-sm-5">
+                        <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.wiGeMinAt | date:'HH:mm'}}</b></span>
+                    </div>
+                </div>
+
+                <div class="row small" style="margin-top: 10px;">
+                    <div class="col-sm-1">
+                        <span class="annotation"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="col-sm-3">
+                        <span>
+                                        <i class="fa fa-home" aria-hidden="true"></i>&nbsp;<i class="fa fa-thermometer-full" style="color: red;" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempIn| number:1}}</b>°C
+                                        &nbsp;&nbsp;&nbsp;<i class="fa fa-thermometer-quarter" style="color: blue;" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i> <b>{{actuals.CALC.minTempIn| number:1}}</b>°C
+                                                </span>
+                    </div>
+                    <div class="col-sm-1">
+                        <span class="annotation"><i class="fa fa-at" aria-hidden="true" style="font-size: 25px;"></i></span>
+                    </div>
+                    <div class="col-sm-5">
+                        <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-thermometer-full" style="color: red;" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempInAt | date:'HH:mm'}}</b>&nbsp;/&nbsp;<i class="fa fa-thermometer-quarter" style="color: blue;" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.minTempInAt | date:'HH:mm'}}</b></span>
+                    </div>
+                </div>
+
+                <div class="row small">
+                    <div class="col-sm-1">
+                        <span class="annotation"></span>
+                    </div>
+                    <div class="col-sm-3">
+                        <span>
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;<i class="fa fa-thermometer-full" style="color: red;" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempOut | number:1}}</b>°C
+                                &nbsp;&nbsp;&nbsp;<i class="fa fa-thermometer-quarter" style="color: blue;" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i> <b>{{actuals.CALC.minTempOut| number:1}}</b>°C
+                                        </span>
+                    </div>
+
+                    <div class="col-sm-offset-1 col-sm-5">
+                        <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-thermometer-full" style="color: red;" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempOutAt | date:'HH:mm'}}</b>&nbsp;/&nbsp;<i class="fa fa-thermometer-quarter" style="color: blue;" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.minTempOutAt | date:'HH:mm'}}</b></span>
+                    </div>
+                </div>
+
+                <!--Air-condition-->
+                <div class="row small" style="margin-top: 20px;">
+                    <div class="col-sm-1">
+                        <span class="annotation"><i class="fa fa-power-off" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="col-sm-5">
+                        <span class="annotation"><b>Air-condition</b>&nbsp;<i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;<img ng-show="showAirConditionIndicatorGreen" src="./images/green.png" style="width: 25px;">
+                                    <img ng-show="showAirConditionIndicatorRed" src="./images/red.png" style="width: 25px;">
+                                    <img ng-show="showAirConditionIndicatorYellow" src="./images/yellow.png" style="width: 25px;">
+                                    {{airConditionMessage}}
+                        </span>
+                    </div>
+                    <div class="col-sm-6" style="margin-top: 5px;;">
+                        <span class="pull-right">Aktualität:&nbsp;<b>{{actuals.IN.maturity}}</b>&nbsp;min</span>
+                    </div>
+                </div>
             </div>
         </div>
+
 
         <!--footer-->
         <footer>
@@ -96,6 +302,9 @@
                     <i class="fa fa-calendar-o" aria-hidden="true" style="font-size:12px;"></i>&nbsp;
                     <span class="clock" ng-controller='TimeCtrl' style="float: right;" ng-cloak>{{ clock | date:'EEEE, dd.MM.yyyy HH:mm:ss'}}</span>
                 </div>
+                <ul class="nav nav-pills">
+                    <div ng-show="isLoading" class="pull-right spinner" style="margin-top: -2px  ;"><img src="./images/spinner.gif" alt="loading"></div>
+                </ul>
             </div>
         </footer>
     </div>
