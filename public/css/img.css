@@ -28,8 +28,23 @@ div.bg-img
     z-index: -1;
   }
 
-  .container{
-    
+  .bg-img2
+  {
+    width:800px;
+    height:480px;
+    margin:auto;    
+    position: relative;  
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background-image: url(/images/0.jpg); */
+    background-image: url(/images/actual.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;    
   }
 
 .spinner {
@@ -101,20 +116,24 @@ hr {
 
 .floor{
     font-weight: bold;
-    font-size: 85px;
-    color: lightGray;
-    color: darkblue;
+    font-size: 85px;    
+}
+.background--dark
+{
+    color:#E9E9E9; 
+}
+.background--light
+{
+    color: #1D1D1D;
 }
 
 .decimal{
     font-size: 40px;
-    font-weight: bold;
-    color: lightGray;
+    font-weight: bold;    
 }
 
-
 .row.small {
-    color: lightGray;
+    /* color: yellow; */
     font-size: 14px;
 }
 
@@ -134,14 +153,23 @@ hr {
 
 .annotation{
     font-size: 35px;
-    color:darkgrey;
+    /* color:darkgrey; */
 }
 
 .small .floor{
     font-weight: bold;
     font-size: 25px;
-    color: lightGray;
 }
+
+/* .background--dark .small .floor
+{
+    color: lightgray;    
+}
+.background--light .small .floor
+{
+    color: #1D1D1D;
+} */
+
 .small .decimal{
     font-size: 14px;
     font-weight: bold;
@@ -167,7 +195,7 @@ hr {
 
 .small .annotation{
     font-size: 15px;
-    color:darkgrey;
+    /* color:darkgrey; */
 }
 
 .panel {

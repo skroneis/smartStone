@@ -5,8 +5,9 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var app = express();
 var http = require('http').Server(app);
-// var request = require('request');
+var request = require('request');
 var httpget = require('http');
+var fs = require('fs');
 
 // =======================
 // Google spreadsheet ====
@@ -52,7 +53,9 @@ app.get('/rpi/', function (req, res) {
 app.get('/img/', function (req, res) {
     res.sendFile(__dirname + '/public/img.html');
 });
-
+app.get('/bg/', function (req, res) {
+    res.sendFile(__dirname + '/public/bg.html');
+});
 
 // =======================
 // start the server ======
@@ -127,9 +130,11 @@ apiRoutes.get('/getData', function (req, res, next) {
     }
 });
 
-//getImage
+//getBingImage
 apiRoutes.get('/getBingImage', function (req, res, next) {
     try {
+        // console.log(req.query.download);
+        // var url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US';      
         var url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=de-AT';
         var result = { img: null };
         var _res = res;
@@ -144,7 +149,17 @@ apiRoutes.get('/getBingImage', function (req, res, next) {
                 var resultUrl = "http://www.bing.com" + response.images[0].url;
                 console.log(resultUrl);
                 var result = { img: resultUrl };
-                _res.json(result);
+                //save to fs                
+                //req.query.download !== undefined
+                // console.log("download ?????????????????????");
+                // console.log(req.query.download);
+                if (req.query.download === 'true') {
+                    console.log('download binary image...');
+                    download(resultUrl, './public/images/actual.jpg', function () {
+                        console.log('done downloading image');
+                        _res.json(result);
+                    });
+                }
             });
         }).on('error', function (e) {
             console.log("Got an error: ", e);
@@ -155,6 +170,32 @@ apiRoutes.get('/getBingImage', function (req, res, next) {
         return next(e);
     }
 });
+
+var download = function (uri, filename, callback) {
+    request.head(uri, function (err, res, body) {
+        console.log('content-type:', res.headers['content-type']);
+        console.log('content-length:', res.headers['content-length']);
+        request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+    });
+};
+
+//get bin Img
+// apiRoutes.get('/getBinaryImage', function (req, res, next) {
+//     try {
+//         console.log('getBinaryImage...');
+//         var url = 'http://www.bing.com/az/hprichbg/rb/BandiagaraDogon_ROW13599741421_1920x1080.jpg';
+//         var result = { img: null };
+//         download(url, './public/images/actual.jpg', function () {
+//             console.log('done');
+//         });
+
+//         res.json("OK");
+//     }
+//     catch (e) {
+//         console.log(e);
+//         return next(e);
+//     }
+// });
 
 //getChromecastImage
 apiRoutes.get('/getChromecastImage', function (req, res, next) {

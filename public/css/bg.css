@@ -1,0 +1,45 @@
+div.bg-img
+{
+    width:800px;
+    height:480px;
+    margin:auto;    
+    position: relative;  
+}
+
+  div.bg-img::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url(/images/0.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+  }
+
+  .bg-img2
+  {
+    width:800px;
+    height:480px;
+    margin:auto;    
+    position: relative;  
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background-image: url(/images/0.jpg); */
+    background-image: url(/images/actual.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;    
+  }
+
+  .first{
+    position: absolute;
+    top: 170px;
+    left: 150px;
+  }

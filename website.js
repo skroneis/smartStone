@@ -8,6 +8,9 @@ var bodyParser = require('body-parser')
 var app = express();
 var http = require('http').Server(app);
 var httpget = require('http');
+var fs = require('fs');
+var request = require('request');
+
 
 //Data-Manager
 var dataManager = require("./dataManager");
@@ -104,6 +107,14 @@ apiRoutes.get('/getData', function (req, res, next) {
     }
 });
 
+var download = function (uri, filename, callback) {
+    request.head(uri, function (err, res, body) {
+        console.log('content-type:', res.headers['content-type']);
+        console.log('content-length:', res.headers['content-length']);
+        request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+    });
+};
+
 //getBingImage
 apiRoutes.get('/getBingImage', function (req, res, next) {
     try {
@@ -122,7 +133,12 @@ apiRoutes.get('/getBingImage', function (req, res, next) {
                 var resultUrl = "http://www.bing.com" + response.images[0].url;
                 console.log(resultUrl);
                 var result = { img: resultUrl };
-                _res.json(result);
+                //save to fs
+                console.log('getBinaryImage...');
+                download(resultUrl, './public/images/actual.jpg', function () {
+                    console.log('done');
+                    _res.json(result);
+                });                
             });
         }).on('error', function (e) {
             console.log("Got an error: ", e);

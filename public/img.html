@@ -29,7 +29,7 @@
 
 <body>
     <div ng-controller="stoneController" ng-init="init()" ng-cloak back-img-bing>
-        <div class="bg-img">
+        <div class="bg-img2">
             <div class="container rpi-container" style="padding-top: 10px;"></div>
             <div class="fixed-nav container">
                 <div class="row">
@@ -341,9 +341,11 @@
         $(document).ready(function () {
             console.log("document ready...");
             BackgroundCheck.init({
-                targets: '.row'
+                targets: '.col-sm-5,.col-sm-1,.col-sm-3,.col-sm-4',
+                images: '.bg-img2'
             });
             console.log("BackgroundCheck...");
+            setTimeout(function(){ BackgroundCheck.refresh(); }, 1000);
         });
 
         $("#background").click(function () {
@@ -353,7 +355,6 @@
 
         // document.addEventListener('DOMContentLoaded', function () {
         // });
-
     </script>
 </body>
 

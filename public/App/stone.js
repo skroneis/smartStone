@@ -139,21 +139,26 @@
     return function (scope, element) {
         console.log("get image....");
         //get url
-        var getImgUrl = function () {
-            return $http.get(MyApp.rootPath + 'api/getBingImage', null).then(function (response) {
+        var getImgUrl = function (_download) {
+            var config = {
+                params: {
+                    download: _download
+                }
+            }
+            return $http.get(MyApp.rootPath + 'api/getBingImage', config).then(function (response) {
                 console.log(response.data.img);
-                element.css({
-                    'background-image': 'url(' + response.data.img + ')',
-                    'position': 'absolute',
-                    'top': '0',
-                    'left': '0',
-                    'right': '0',
-                    'bottom': '0',
-                    'background-repeat': 'no-repeat',
-                    'background-size': 'cover',
-                    'z-index': '-99',
-                    'opacity': '1'
-                });
+                // element.css({
+                //     'background-image': 'url(' + response.data.img + ')',
+                //     'position': 'absolute',
+                //     'top': '0',
+                //     'left': '0',
+                //     'right': '0',
+                //     'bottom': '0',
+                //     'background-repeat': 'no-repeat',
+                //     'background-size': 'cover',
+                //     'z-index': '-99',
+                //     'opacity': '1'
+                // });                
             },
                 function errorCallback(response) {
                     console.log("ERROR");
@@ -164,11 +169,17 @@
         //watch
         scope.$watch('trigger', function (val) {
             console.log("TRIGGER");
-            return getImgUrl();
+            var res = getImgUrl(false);
+            BackgroundCheck.refresh();
+            return res;
         });
 
         setInterval(function () {
-            return getImgUrl();
+            console.log("setInterval");
+            var res = getImgUrl(true);
+            location.reload();
+            BackgroundCheck.refresh();
+            return res;
         }, 1000 * 1 * 60 * 60) // 1 second --> 1hour ...
 
         return getImgUrl();
