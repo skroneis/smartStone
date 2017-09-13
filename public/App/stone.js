@@ -151,7 +151,8 @@
                     'bottom': '0',
                     'background-repeat': 'no-repeat',
                     'background-size': 'cover',
-                    'z-index': '-1'
+                    'z-index': '-99',
+                    'opacity': '1'
                 });
             },
                 function errorCallback(response) {

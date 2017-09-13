@@ -31,12 +31,13 @@
     <div ng-controller="stoneController" ng-init="init()" ng-cloak back-img-bing>
         <div class="bg-img">
             <div class="container rpi-container" style="padding-top: 10px;"></div>
-            <div class="container">
+            <div class="fixed-nav container">
                 <div class="row">
                     <div class="col-sm-1">
                         <span class="annotation"><i class="fa fa-thermometer-half" aria-hidden="true"></i></span>
                     </div>
                     <div class="col-sm-5">
+                        <!-- <img class="bgImg" src="./images/green.png"/> -->
                         <table>
                             <tr>
                                 <td rowspan="2">
@@ -75,7 +76,6 @@
                         </table>
                     </div>
                 </div>
-
 
                 <div class="row small">
                     <div class="col-sm-1">
@@ -297,6 +297,7 @@
                     &copy;&nbsp;<span ng-controller='stoneController'>{{ getDate() |  date:"yyyy" }}</span>&nbsp;Stefan&nbsp;Kroneis
                     &nbsp;
                     <a href="#" ng-click="updateImage()"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;refresh<span class="badge"></span></a>
+                    <a href="#" id="background"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;background<span class="badge"></span></a>
                 </p>
                 <div class="pull-right smallFont">
                     <i class="fa fa-calendar-o" aria-hidden="true" style="font-size:12px;"></i>&nbsp;
@@ -326,6 +327,8 @@
     <!--notify.js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" integrity="sha256-tSRROoGfGWTveRpDHFiWVz+UXt+xKNe90wwGn25lpw8="
         crossorigin="anonymous"></script>
+    <!--background-check-->
+    <script src="./scripts/background-check.min.js"></script>
     <script>
         window.MyApp = {};
         MyApp.rootPath = '/';
@@ -337,7 +340,20 @@
         //main functions (MVC)
         $(document).ready(function () {
             console.log("document ready...");
+            BackgroundCheck.init({
+                targets: '.row'
+            });
+            console.log("BackgroundCheck...");
         });
+
+        $("#background").click(function () {
+            console.log("BackgroundCheck...");
+            BackgroundCheck.refresh();
+        });
+
+        // document.addEventListener('DOMContentLoaded', function () {
+        // });
+
     </script>
 </body>
 
