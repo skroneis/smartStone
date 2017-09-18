@@ -104,6 +104,12 @@ mainModule.filter('decimals', ['$filter', function ($filter) {
     };
 }]);
 
+mainModule.filter('dropdigits', function() {
+    return function(input) {
+        let values = (input + "").split(".");
+        return values[0]
+    };
+});
 
 (function (myApp) {
     "use strict";

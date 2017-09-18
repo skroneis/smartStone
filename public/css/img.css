@@ -41,7 +41,7 @@ div.bg-img
     right: 0;
     bottom: 0;
     /* background-image: url(/images/0.jpg); */
-    background-image: url(/images/actual.jpg);
+    /* background-image: url(/images/actual.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;    
@@ -107,6 +107,47 @@ hr {
     border-top: 1px solid #eeeeee;
 }
 
+/*~~~~~~~~~~~~~~~~~~~~~~color~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.background--dark
+{
+    color:#E9E9E9; 
+}
+.background--dark .annotation 
+{
+    color:#AAAAAA; 
+}
+.annotation.background--dark 
+{
+    color:#AAAAAA; 
+}
+
+
+.background--light
+{
+    color: #1D1D1D;
+}
+.background--light .annotation 
+{
+    color:#494949;
+}
+.annotation.background--light 
+{
+    color:#494949;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.row{
+    /* line-height: 25px; */
+}
+.row.medium{
+    /* line-height: 25px; */
+}
+.row.small{
+    line-height: 25px;
+}
+
 .smallFont
 {
 
@@ -117,14 +158,6 @@ hr {
 .floor{
     font-weight: bold;
     font-size: 85px;    
-}
-.background--dark
-{
-    color:#E9E9E9; 
-}
-.background--light
-{
-    color: #1D1D1D;
 }
 
 .decimal{
@@ -152,26 +185,24 @@ hr {
 }
 
 .annotation{
-    font-size: 35px;
+    font-size: 40px;
     /* color:darkgrey; */
 }
 
 .small .floor{
     font-weight: bold;
-    font-size: 25px;
+    font-size: 35px;
 }
-
-/* .background--dark .small .floor
-{
-    color: lightgray;    
+.medium .floor{
+    font-weight: bold;
+    font-size: 42px;
 }
-.background--light .small .floor
-{
-    color: #1D1D1D;
-} */
-
 .small .decimal{
     font-size: 14px;
+    font-weight: bold;
+}
+.medium .decimal{
+    font-size: 22px;
     font-weight: bold;
 }
 .small .tdN-single{
@@ -194,9 +225,24 @@ hr {
 } 
 
 .small .annotation{
-    font-size: 15px;
-    /* color:darkgrey; */
+    font-size: 25px;
+    font-weight: bold;  
 }
+.medium .annotation{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.row.small.summary{
+    font-size: 18px;
+}
+.row.small.remark .annotation{
+    font-size: 12px;
+}
+.remark.annotation{
+    font-size: 16px;
+}
+
 
 .panel {
     background-color: transparent;

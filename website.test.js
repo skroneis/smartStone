@@ -22,13 +22,13 @@ var port = process.env.PORT || 8001;
 // var actuals = { IN: { temp: 33.10, maturity: 8 }, OUT: {}, KRO: { temp: 35.85 }, CALC: {}, page: 1 };
 actuals = {
     IN: {
-        time: "2017-09-06T12:21:46.000Z", temp: 24.2, co2: 667, humidity: 56, "pressure": 1012.9, "maturity": 8
+        time: "2017-09-06T12:21:46.000Z", temp: 24.9, co2: 667, humidity: 56, "pressure": 1012.9, "maturity": 8
     },
     "OUT": {
         "time": "2017-09-06T12:21:18.000Z", "temp": 25.5, "humidity": 67, "maturity": 8
     },
     "KRO": {
-        "dateTime": "2017-09-06T14:31:00", "temp": "23.14", "wiGe": "6.47", "wiRi": "244.78",
+        "dateTime": "2017-09-06T14:31:00", "temp": "23.74", "wiGe": "6.47", "wiRi": "244.78",
         "wiRiStr": "SW", "wiRiWiGeMax": "", "reference": "2.21", "nodeWiGeMax": 32.59, "nodeWiGeWiRiMax": 246.88,
         "nodeWiGeWiRiMaxStr": "SW", "lengthWiGe": 720, "lengthWiRi": 720, "lengthTimestamps": 720, "wiGeMaxAt": "2017-09-06T14:11:35+0200",
         "nodeWiGeMin": 1.16, "nodeWiGeWiRiMin": 209.44, "nodeWiGeWiRiMinStr": "SW", "wiGeMinAt": "2017-09-06T14:25:45+0200", "wiGeMax": "222.63"
@@ -150,9 +150,6 @@ apiRoutes.get('/getBingImage', function (req, res, next) {
                 console.log(resultUrl);
                 var result = { img: resultUrl };
                 //save to fs                
-                //req.query.download !== undefined
-                // console.log("download ?????????????????????");
-                // console.log(req.query.download);
                 if (req.query.download === 'true') {
                     console.log('download binary image...');
                     download(resultUrl, './public/images/actual.jpg', function () {

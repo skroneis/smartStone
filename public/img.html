@@ -28,30 +28,30 @@
 </head>
 
 <body>
-    <div ng-controller="stoneController" ng-init="init()" ng-cloak back-img-bing>
-        <div class="bg-img2">
+    <div ng-controller="stoneController" ng-init="init()" ng-cloak>
+        <div class="bg-img2" style="background-image: url(/images/actual.jpg);" Xback-img-bing>
             <div class="container rpi-container" style="padding-top: 10px;"></div>
             <div class="fixed-nav container">
                 <div class="row">
                     <div class="col-sm-1">
-                        <span class="annotation"><i class="fa fa-thermometer-half" aria-hidden="true"></i></span>
+                        <span class="annotation chk-bg"><i class="fa fa-thermometer-half" aria-hidden="true"></i></span>
                     </div>
                     <div class="col-sm-5">
                         <!-- <img class="bgImg" src="./images/green.png"/> -->
                         <table>
                             <tr>
                                 <td rowspan="2">
-                                    <span class="annotation"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;</span>
-                                    <span class="floor">{{actuals.IN.temp| number:0}}</span>
+                                    <span class="annotation chk-bg"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;</span>
+                                    <span class="floor chk-bg">{{actuals.IN.temp| dropdigits}}</span>
                                     </span>
                                 </td>
                                 <td>
-                                    <div class="tdN symbol">°C</div>
+                                    <div class="tdN symbol chk-bg">°C</div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="tdS decimal">,{{actuals.IN.temp| decimals}}</div>
+                                    <div class="tdS decimal chk-bg">,{{actuals.IN.temp| decimals}}</div>
                                 </td>
                             </tr>
                         </table>
@@ -60,17 +60,61 @@
                         <table>
                             <tr>
                                 <td rowspan="2">
-                                    <span class="annotation"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;</span>
-                                    <span class="floor">{{actuals.KRO.temp| number:0}}</span>
+                                    <span class="annotation chk-bg"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;</span>
+                                    <span class="floor chk-bg">{{actuals.KRO.temp| dropdigits}}</span>
                                     </span>
                                 </td>
                                 <td>
-                                    <div class="tdN symbol">°C</div>
+                                    <div class="tdN symbol chk-bg">°C</div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="tdS decimal">,{{actuals.KRO.temp| decimals}}</div>
+                                    <div class="tdS decimal chk-bg">,{{actuals.KRO.temp| decimals}}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row medium">
+                    <div class="col-sm-1">
+                        <span class="annotation chk-bg"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="col-sm-5">
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <span class="annotation chk-bg">WiGe</span>
+                                    <span class="floor chk-bg" ng-class="getWiGeClass(actuals.KRO.wiGe)">{{actuals.KRO.wiGe| number:0}}</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="tdN symbol chk-bg">km/h</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="tdS decimal chk-bg" ng-class="getWiGeClass(actuals.KRO.wiGe)">,{{actuals.KRO.wiGe| decimals}}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-5">
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <span class="annotation chk-bg">WiRi</span>
+                                    <span class="floor chk-bg">{{actuals.KRO.wiRiStr}}</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="tdN symbol chk-bg">&nbsp;(<b>{{actuals.KRO.wiRi| number:0}}</b>&nbsp;Grad)</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="tdS decimal chk-bg">&nbsp;</div>
                                 </td>
                             </tr>
                         </table>
@@ -79,23 +123,23 @@
 
                 <div class="row small">
                     <div class="col-sm-1">
-                        <span class="annotation"><i class="fa fa-percent" aria-hidden="true"></i></span>
+                        <span class="annotation chk-bg"><i class="fa fa-percent" aria-hidden="true"></i></span>
                     </div>
                     <div class="col-sm-5">
                         <table>
                             <tr>
                                 <td rowspan="2">
-                                    <span class="annotation"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;RH<sub>IN&nbsp;</span>
-                                    <span class="floor">{{actuals.IN.humidity| number:0}}</span>
+                                    <span class="annotation chk-bg"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;RH<sub>IN&nbsp;</span>
+                                    <span class="floor chk-bg">{{actuals.IN.humidity| number:0}}</span>
                                     </span>
                                 </td>
                                 <td>
-                                    <div class="tdN-single symbol">&nbsp;%</div>
+                                    <div class="tdN-single symbol chk-bg">&nbsp;%</div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="tdS decimal">&nbsp;</div>
+                                    <div class="tdS decimal chk-bg">&nbsp;</div>
                                 </td>
                             </tr>
                         </table>
@@ -104,17 +148,17 @@
                         <table>
                             <tr>
                                 <td rowspan="2">
-                                    <span class="annotation"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;RH<sub>OUT&nbsp;</span>
-                                    <span class="floor">{{actuals.OUT.humidity| number:0}}</span>
+                                    <span class="annotation chk-bg"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;RH<sub>OUT&nbsp;</span>
+                                    <span class="floor chk-bg">{{actuals.OUT.humidity| number:0}}</span>
                                     </span>
                                 </td>
                                 <td>
-                                    <div class="tdN-single symbol">&nbsp;%</div>
+                                    <div class="tdN-single symbol chk-bg">&nbsp;%</div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="tdS decimal">&nbsp;</div>
+                                    <div class="tdS decimal chk-bg">&nbsp;</div>
                                 </td>
                             </tr>
                         </table>
@@ -129,17 +173,17 @@
                         <table>
                             <tr>
                                 <td rowspan="2">
-                                    <span class="annotation"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;CO<sub>2&nbsp;</span>
-                                    <span class="floor">{{actuals.IN.co2}}</span>
+                                    <span class="annotation chk-bg"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;CO<sub>2&nbsp;</span>
+                                    <span class="floor chk-bg">{{actuals.IN.co2}}</span>
                                     </span>
                                 </td>
                                 <td>
-                                    <div class="tdN symbol"></div>
+                                    <div class="tdN symbol chk-bg"></div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="tdS decimal">&nbsp;</div>
+                                    <div class="tdS decimal chk-bg">&nbsp;</div>
                                 </td>
                             </tr>
                         </table>
@@ -148,147 +192,119 @@
                         <table>
                             <tr>
                                 <td rowspan="2">
-                                    <span class="annotation"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;</span>
-                                    <span class="floor">{{actuals.IN.pressure| number:0}}</span>
+                                    <span class="annotation chk-bg"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;</span>
+                                    <span class="floor chk-bg">{{actuals.IN.pressure| number:0}}</span>
                                     </span>
                                 </td>
                                 <td>
-                                    <div class="tdN symbol">&nbsp;mbar</div>
+                                    <div class="tdN symbol chk-bg">&nbsp;mbar</div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="tdS decimal">,{{actuals.IN.pressure| decimals}}</div>
+                                    <div class="tdS decimal chk-bg">,{{actuals.IN.pressure| decimals}}</div>
                                 </td>
                             </tr>
                         </table>
                     </div>
-                </div>
+                </div>                
 
-                <div class="row small">
+                <div class="row small summary" style="margin-top: 10px;">
                     <div class="col-sm-1">
-                        <span class="annotation"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                        <span class="annotation chk-bg"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
                     </div>
                     <div class="col-sm-5">
-                        <table>
-                            <tr>
-                                <td rowspan="2">
-                                    <span class="annotation">WiGe</span>
-                                    <span class="floor" ng-class="getWiGeClass(actuals.KRO.wiGe)">{{actuals.KRO.wiGe| number:0}}</span>
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="tdN symbol">km/h</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="tdS decimal" ng-class="getWiGeClass(actuals.KRO.wiGe)">,{{actuals.KRO.wiGe| decimals}}</div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-sm-5">
-                        <table>
-                            <tr>
-                                <td rowspan="2">
-                                    <span class="annotation">WiRi</span>
-                                    <span class="floor">{{actuals.KRO.wiRiStr}}</span>
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="tdN symbol">&nbsp;(<b>{{actuals.KRO.wiRi| number:0}}</b>&nbsp;Grad)</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="tdS decimal">&nbsp;</div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+                        <span><i class="fa fa-paper-plane-o remark annotation chk-bg" aria-hidden="true"></i>&nbsp;
+                            <i class="fa fa-caret-up chk-bg" aria-hidden="true"></i>&nbsp;<b class="chk-bg" ng-class="getWiGeClass(actuals.KRO.nodeWiGeMax)">{{actuals.KRO.nodeWiGeMax| number:2}}</b>
+                            km/h @<b class="chk-bg">{{actuals.KRO.nodeWiGeWiRiMax| number:0}}</b>
+                            Grad&nbsp;(<b class="chk-bg">{{actuals.KRO.nodeWiGeWiRiMaxStr}}</b>)</span>
 
-                <div class="row small" style="margin-top: 10px;">
+                    </div>
                     <div class="col-sm-1">
-                        <span class="annotation"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                        <span class="annotation chk-bg"><i class="fa fa-at chk-bg" aria-hidden="true"></i></span>
                     </div>
                     <div class="col-sm-4">
-                        <span><i class="fa fa-paper-plane-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b ng-class="getWiGeClass(actuals.KRO.nodeWiGeMax)">{{actuals.KRO.nodeWiGeMax| number:2}}</b>km/h @<b>{{actuals.KRO.nodeWiGeWiRiMax| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.nodeWiGeWiRiMaxStr}}</b>)</span>
-
-                    </div>
-                    <div class="col-sm-1">
-                        <span class="annotation"><i class="fa fa-at" aria-hidden="true" style="font-size: 25px;"></i></span>
-                    </div>
-                    <div class="col-sm-5">
-                        <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.wiGeMaxAt | date:'HH:mm'}}</b></span>
+                        <span><i class="fa fa-clock-o remark annotation chk-bg" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up chk-bg" aria-hidden="true"></i>&nbsp;
+                            <b class="chk-bg">{{actuals.KRO.wiGeMaxAt | date:'HH:mm'}}</b>
+                        </span>
                     </div>
                 </div>
-                <div class="row small">
+                <div class="row small summary">
                     <div class="col-sm-1">
                         <span class="annotation"></span>
                     </div>
-                    <div class="col-sm-4">
-                        <span><i class="fa fa-paper-plane-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.nodeWiGeMin| number:2}}</b>km/h @<b>{{actuals.KRO.nodeWiGeWiRiMin| number:0}}</b>Grad&nbsp;(<b>{{actuals.KRO.nodeWiGeWiRiMinStr}}</b>)</span>
+                    <div class="col-sm-5">
+                        <span><i class="fa fa-paper-plane-o remark annotation chk-bg" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-down chk-bg" aria-hidden="true"></i>&nbsp;
+                            <b class="chk-bg">{{actuals.KRO.nodeWiGeMin| number:2}}</b>
+                            km/h @<b class="chk-bg">{{actuals.KRO.nodeWiGeWiRiMin| number:0}}</b>Grad&nbsp;(<b class="chk-bg">{{actuals.KRO.nodeWiGeWiRiMinStr}}</b>)</span>
                     </div>
-                    <div class="col-sm-offset-1 col-sm-5">
-                        <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i>&nbsp;<b>{{actuals.KRO.wiGeMinAt | date:'HH:mm'}}</b></span>
+                    <div class="col-sm-offset-1 col-sm-3">
+                        <span><i class="fa fa-clock-o remark annotation chk-bg" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-down chk-bg" aria-hidden="true"></i>&nbsp;
+                            <b class="chk-bg">{{actuals.KRO.wiGeMinAt | date:'HH:mm'}}</b></span>
                     </div>
                 </div>
 
-                <div class="row small" style="margin-top: 10px;">
+                <div class="row small summary" style="margin-top: 10px;">
                     <div class="col-sm-1">
-                        <span class="annotation"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                        <span class="annotation chk-bg"><i class="fa fa-clock-o chk-bg" aria-hidden="true"></i></span>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-5">
                         <span>
-                                        <i class="fa fa-home" aria-hidden="true"></i>&nbsp;<i class="fa fa-thermometer-full" style="color: red;" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempIn| number:1}}</b>°C
-                                        &nbsp;&nbsp;&nbsp;<i class="fa fa-thermometer-quarter" style="color: blue;" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i> <b>{{actuals.CALC.minTempIn| number:1}}</b>°C
+                                        <i class="fa fa-home remark annotation chk-bg" aria-hidden="true"></i>&nbsp;<i class="fa fa-thermometer-full chk-bg" style="color: red;" aria-hidden="true"></i>&nbsp;
+                                        <i class="fa fa-caret-up chk-bg" aria-hidden="true"></i>&nbsp;<b class="chk-bg">{{actuals.CALC.maxTempIn| number:1}}</b>°C
+                                        &nbsp;&nbsp;&nbsp;<i class="fa fa-thermometer-quarter chk-bg" style="color: blue;" aria-hidden="true"></i>&nbsp;
+                                        <i class="fa fa-caret-down chk-bg" aria-hidden="true"></i> <b class="chk-bg">{{actuals.CALC.minTempIn| number:1}}</b>°C
                                                 </span>
                     </div>
                     <div class="col-sm-1">
-                        <span class="annotation"><i class="fa fa-at" aria-hidden="true" style="font-size: 25px;"></i></span>
+                        <span class="annotation"><i class="fa fa-at" aria-hidden="true"></i></span>
                     </div>
-                    <div class="col-sm-5">
-                        <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-thermometer-full" style="color: red;" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempInAt | date:'HH:mm'}}</b>&nbsp;/&nbsp;<i class="fa fa-thermometer-quarter" style="color: blue;" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.minTempInAt | date:'HH:mm'}}</b></span>
+                    <div class="col-sm-3">
+                        <span><i class="fa fa-clock-o remark annotation chk-bg" aria-hidden="true"></i>&nbsp;<i class="fa fa-thermometer-full chk-bg" style="color: red;" aria-hidden="true"></i>&nbsp;
+                            <b class="chk-bg">{{actuals.CALC.maxTempInAt | date:'HH:mm'}}</b>&nbsp;/&nbsp;<i class="fa fa-thermometer-quarter chk-bg" style="color: blue;" aria-hidden="true"></i>&nbsp;
+                            <b class="chk-bg">{{actuals.CALC.minTempInAt | date:'HH:mm'}}</b></span>
                     </div>
                 </div>
 
-                <div class="row small">
+                <div class="row small summary">
                     <div class="col-sm-1">
                         <span class="annotation"></span>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-5">
                         <span>
-                                <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;<i class="fa fa-thermometer-full" style="color: red;" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempOut | number:1}}</b>°C
-                                &nbsp;&nbsp;&nbsp;<i class="fa fa-thermometer-quarter" style="color: blue;" aria-hidden="true"></i>&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i> <b>{{actuals.CALC.minTempOut| number:1}}</b>°C
+                                <i class="fa fa-sign-out remark annotation chk-bg" aria-hidden="true"></i>&nbsp;<i class="fa fa-thermometer-full chk-bg" style="color: red;" aria-hidden="true"></i>&nbsp;
+                                <i class="fa fa-caret-up chk-bg" aria-hidden="true"></i>&nbsp;<b class="chk-bg">{{actuals.CALC.maxTempOut | number:1}}</b>°C
+                                &nbsp;&nbsp;&nbsp;<i class="fa fa-thermometer-quarter" style="color: blue;" aria-hidden="true"></i>&nbsp;
+                                <i class="fa fa-caret-down chk-bg" aria-hidden="true"></i> <b class="chk-bg">{{actuals.CALC.minTempOut| number:1}}</b>°C
                                         </span>
                     </div>
 
-                    <div class="col-sm-offset-1 col-sm-5">
-                        <span><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;<i class="fa fa-thermometer-full" style="color: red;" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.maxTempOutAt | date:'HH:mm'}}</b>&nbsp;/&nbsp;<i class="fa fa-thermometer-quarter" style="color: blue;" aria-hidden="true"></i>&nbsp;<b>{{actuals.CALC.minTempOutAt | date:'HH:mm'}}</b></span>
+                    <div class="col-sm-offset-1 col-sm-3">
+                        <span><i class="fa fa-clock-o remark annotation chk-bg" aria-hidden="true"></i>&nbsp;<i class="fa fa-thermometer-full chk-bg" style="color: red;" aria-hidden="true"></i>&nbsp;
+                            <b class="chk-bg">{{actuals.CALC.maxTempOutAt | date:'HH:mm'}}</b>&nbsp;/&nbsp;<i class="fa fa-thermometer-quarter chk-bg" style="color: blue;" aria-hidden="true"></i>
+                            &nbsp;<b class="chk-bg">{{actuals.CALC.minTempOutAt | date:'HH:mm'}}</b></span>
                     </div>
                 </div>
 
                 <!--Air-condition-->
-                <div class="row small" style="margin-top: 20px;">
+                <div class="row small remark" style="margin-top: 0px;">
                     <div class="col-sm-1">
-                        <span class="annotation"><i class="fa fa-power-off" aria-hidden="true"></i></span>
+                        <span class="annotation chk-bg"><i class="fa fa-power-off" aria-hidden="true"></i></span>
                     </div>
-                    <div class="col-sm-5">
-                        <span class="annotation"><b>Air-condition</b>&nbsp;<i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;<img ng-show="showAirConditionIndicatorGreen" src="./images/green.png" style="width: 25px;">
+                    <div class="col-sm-8">
+                        <span class="annotation chk-bg"><span class="chk-bg">Air-condition</span>&nbsp;<i class="fa fa-arrow-right chk-bg" aria-hidden="true"></i>&nbsp;
+                            <img ng-show="showAirConditionIndicatorGreen" src="./images/green.png" style="width: 25px;">
                                     <img ng-show="showAirConditionIndicatorRed" src="./images/red.png" style="width: 25px;">
                                     <img ng-show="showAirConditionIndicatorYellow" src="./images/yellow.png" style="width: 25px;">
-                                    {{airConditionMessage}}
+                                    <span class="chk-bg">{{airConditionMessage}}</span>
                         </span>
                     </div>
-                    <div class="col-sm-6" style="margin-top: 5px;;">
-                        <span class="pull-right">Aktualität:&nbsp;<b>{{actuals.IN.maturity}}</b>&nbsp;min</span>
+                    <div class="col-sm-3" style="margin-top: 5px;;">
+                        <span class="pull-right annotation chk-bg">Aktualität:&nbsp;<b>{{actuals.IN.maturity}}</b>&nbsp;min</span>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <!--footer-->
         <footer>
@@ -296,7 +312,7 @@
                 <p class="pull-left smallFont">
                     &copy;&nbsp;<span ng-controller='stoneController'>{{ getDate() |  date:"yyyy" }}</span>&nbsp;Stefan&nbsp;Kroneis
                     &nbsp;
-                    <a href="#" ng-click="updateImage()"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;refresh<span class="badge"></span></a>
+                    <a href="#" ng-click="refreshImageAndBackground(true)"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;refresh<span class="badge"></span></a>
                     <a href="#" id="background"><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;background<span class="badge"></span></a>
                 </p>
                 <div class="pull-right smallFont">
@@ -341,7 +357,7 @@
         $(document).ready(function () {
             console.log("document ready...");
             BackgroundCheck.init({
-                targets: '.col-sm-5,.col-sm-1,.col-sm-3,.col-sm-4',
+                targets: '.chk-bg',
                 images: '.bg-img2'
             });
             console.log("BackgroundCheck...");

@@ -134,11 +134,13 @@ apiRoutes.get('/getBingImage', function (req, res, next) {
                 console.log(resultUrl);
                 var result = { img: resultUrl };
                 //save to fs
-                console.log('getBinaryImage...');
-                download(resultUrl, './public/images/actual.jpg', function () {
-                    console.log('done');
-                    _res.json(result);
-                });                
+                if (req.query.download === 'true') {
+                    console.log('download binary image...');
+                    download(resultUrl, './public/images/actual.jpg', function () {
+                        console.log('done downloading image');
+                        _res.json(result);
+                    });
+                }             
             });
         }).on('error', function (e) {
             console.log("Got an error: ", e);

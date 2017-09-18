@@ -32,7 +32,7 @@ div.bg-img
     right: 0;
     bottom: 0;
     /* background-image: url(/images/0.jpg); */
-    background-image: url(/images/actual.jpg);
+    /* background-image: url(/images/actual.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;    
@@ -42,4 +42,13 @@ div.bg-img
     position: absolute;
     top: 170px;
     left: 150px;
+  }
+
+  .background--dark
+  {
+      color:#E9E9E9; 
+  }
+  .background--light
+  {
+      color: #1D1D1D;
   }

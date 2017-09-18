@@ -135,6 +135,31 @@
         console.log("update image...");
         $scope.trigger = !$scope.trigger;
     }
+
+    $scope.refreshImageAndBackground = function (loadImage) {
+        console.log("refresh image and background...");
+        return $http.get(MyApp.rootPath + 'api/getBingImage', {
+            params: {
+                download: loadImage
+            }
+        })
+            .then(function (response) {
+                console.log(response.data.img);
+                location.reload();
+                BackgroundCheck.refresh();
+            },
+            function errorCallback(response) {
+                console.log("ERROR");
+                // bootbox.alert("ERROR");
+                console.log(response.data);
+            });
+    }
+
+    setInterval(function () {
+        console.log("setInterval Main");
+        $scope.refreshImageAndBackground(true);
+    }, 1000 * 1 * 60 * 60) // --> 1hour ...
+
 }).directive('backImgBing', function ($http, $compile, $timeout) {
     return function (scope, element) {
         console.log("get image....");
@@ -147,8 +172,9 @@
             }
             return $http.get(MyApp.rootPath + 'api/getBingImage', config).then(function (response) {
                 console.log(response.data.img);
-                // element.css({
-                //     'background-image': 'url(' + response.data.img + ')',
+                //  element.css({
+                //    'background-image': 'url(/images/actual.jpg)'
+                //     'background-image': 'url(' + response.data.img + ')'
                 //     'position': 'absolute',
                 //     'top': '0',
                 //     'left': '0',
@@ -158,7 +184,7 @@
                 //     'background-size': 'cover',
                 //     'z-index': '-99',
                 //     'opacity': '1'
-                // });                
+                //  });                
             },
                 function errorCallback(response) {
                     console.log("ERROR");
