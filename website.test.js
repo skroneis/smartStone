@@ -8,6 +8,8 @@ var http = require('http').Server(app);
 var request = require('request');
 var httpget = require('http');
 var fs = require('fs');
+var Notifier = require("./telegramNotify.js");
+var notify = new Notifier();
 
 // =======================
 // Google spreadsheet ====
@@ -277,6 +279,19 @@ apiRoutes.route('/setValue')
     });
 
 
+apiRoutes.route('/sendMessage')
+    //(accessed at POST http://localhost:8001/api/sendMessage)
+    .post(function (req, res) {
+        console.log("---------------------------------------body---------------------------");
+        console.log(req.body);
+        // console.log(req.body.pin);
+        // console.log(req.body.value);
+        
+        //notify.notify("TEST");
+
+        res.json({ success: true });
+    });
+
 //LED
 //website
 apiRoutes.get('/getStatus/:id', function (req, res, next) {
@@ -301,6 +316,18 @@ apiRoutes.route('/writeRow')
     });
 
 
+/** bodyParser.urlencoded(options)
+* Parses the text as URL encoded data (which is how browsers tend to send form data from regular forms set to POST)
+* and exposes the resulting object (containing the keys and values) on req.body
+*/
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+/**bodyParser.json(options)
+ * Parses the text as JSON and exposes the resulting object on req.body.
+ */
+app.use(bodyParser.json());
 
 // apply the routes to our application with the prefix /api
 app.use('/api', apiRoutes);
